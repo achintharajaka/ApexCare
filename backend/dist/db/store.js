@@ -325,15 +325,39 @@ function initStorage() {
             }
             catch (_) { }
         }
+        const DEFAULT_FALLBACK_KEY = "apexcare-aes-256-gcm-master-encryption-key-32-chars-2026";
         // 1. Try reading standard AES-256-GCM encrypted envelope
         if (fs_1.default.existsSync(ENCRYPTED_FILE)) {
-            const raw = fs_1.default.readFileSync(ENCRYPTED_FILE, "utf-8");
-            const envelope = JSON.parse(raw);
-            const parsed = (0, crypto_js_1.decryptData)(envelope, env_js_1.env.ENCRYPTION_SECRET);
-            hydrateInMemoryStore(parsed);
-            exports.storageEncryptionStatus.lastEncryptedAt = envelope.metadata?.encryptedAt || new Date().toISOString();
-            console.log("🔒 ApexCare Encrypted Storage Engine: Successfully loaded and authenticated AES-256-GCM ciphertext.");
-            return;
+            try {
+                const raw = fs_1.default.readFileSync(ENCRYPTED_FILE, "utf-8");
+                const envelope = JSON.parse(raw);
+                let parsed = null;
+                try {
+                    // Attempt decrypt with current instance key
+                    parsed = (0, crypto_js_1.decryptData)(envelope, env_js_1.env.ENCRYPTION_SECRET);
+                }
+                catch (decryptErr) {
+                    // If instance key differs (e.g. Render generated a random key), try fallback seed key
+                    if (env_js_1.env.ENCRYPTION_SECRET !== DEFAULT_FALLBACK_KEY) {
+                        console.log("🔄 Re-keying encrypted storage with current instance ENCRYPTION_SECRET...");
+                        parsed = (0, crypto_js_1.decryptData)(envelope, DEFAULT_FALLBACK_KEY);
+                        hydrateInMemoryStore(parsed);
+                        saveStorage();
+                        console.log("🔒 Storage successfully re-encrypted and authenticated with instance master key.");
+                        return;
+                    }
+                    throw decryptErr;
+                }
+                if (parsed) {
+                    hydrateInMemoryStore(parsed);
+                    exports.storageEncryptionStatus.lastEncryptedAt = envelope.metadata?.encryptedAt || new Date().toISOString();
+                    console.log("🔒 ApexCare Encrypted Storage Engine: Successfully loaded and authenticated AES-256-GCM ciphertext.");
+                    return;
+                }
+            }
+            catch (err) {
+                console.warn("Notice: Encrypted envelope could not be decrypted with active keys, checking fallback store.json:", err);
+            }
         }
         // 2. Fallback / Migration: If legacy store.json exists, load it and immediately encrypt it
         if (fs_1.default.existsSync(LEGACY_PLAINTEXT_FILE)) {
