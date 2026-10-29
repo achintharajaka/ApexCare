@@ -81,6 +81,7 @@ export default {
         "space-md": "1rem",
         "space-lg": "1.5rem",
         "space-xl": "2rem",
+        "space-gutter": "1rem",
         "space-margin": "1.5rem",
       },
       fontFamily: {
