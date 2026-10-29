@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-canvas: #F8FAFC;
+    --bg-surface: #FFFFFF;
+    --bg-surface-subtle: #F1F5F9;
+    --border-subtle: #E2E8F0;
+    --border-strong: #CBD5E1;
+    --primary-navy: #0F172A;
+    --primary-teal: #0284C7;
+    --primary-teal-hover: #0369A1;
+    --primary-teal-subtle: #E0F2FE;
+    --status-critical: #EF4444;
+    --status-critical-bg: #FEE2E2;
+    --status-warning: #F59E0B;
+    --status-warning-bg: #FEF3C7;
+    --status-success: #10B981;
+    --status-success-bg: #D1FAE5;
+    --status-info: #3B82F6;
+    --status-info-bg: #DBEAFE;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-canvas);
+    color: #0b1c30;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Global Tabular Figures for high-precision clinical scanning */
+  .tabular-nums, [data-tabular="true"] {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Material Symbols alignment fix */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}

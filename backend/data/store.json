@@ -1,0 +1,781 @@
+{
+  "users": [
+    {
+      "id": "usr-admin-01",
+      "tenantId": "tenant-apexcare-01",
+      "username": "superadmin",
+      "passwordHash": "$2a$10$5HeX7bbAkR4OqXqA4NjEseDF0B9840X8jhFqypzGbvd4gjk8opMAi",
+      "fullName": "Achintha Rajaka",
+      "email": "achintharajaka@gmail.com",
+      "role": "ADMIN",
+      "isActive": true,
+      "jobTitle": "Chief Hospital Administrator",
+      "department": "Hospital Administration",
+      "roomNumber": "Admin Suite 101"
+    },
+    {
+      "id": "usr-doctor-01",
+      "tenantId": "tenant-apexcare-01",
+      "username": "doctor1",
+      "passwordHash": "$2a$10$LOyhQ7OQTxoaL.nVS6NTV.PWDtboIxmVgmELvtAwDzwuewe1MzB/S",
+      "fullName": "Dr. Kasun Perera, MD",
+      "email": "dr.kasun@apexcare.lk",
+      "role": "DOCTOR",
+      "isActive": true,
+      "jobTitle": "Consultant Physician & Clinical Director",
+      "department": "Cardiology & Internal Medicine",
+      "roomNumber": "Consultation Suite 204",
+      "consultationFee": 2500,
+      "specialization": "Interventional Cardiology & Critical Care"
+    },
+    {
+      "id": "usr-nurse-01",
+      "tenantId": "tenant-apexcare-01",
+      "username": "nurse1",
+      "passwordHash": "$2a$10$PYG0M//fHOjuBYsL4Ih0auTI/jN31fnIfchZdF1m50/AbWuZNFQpq",
+      "fullName": "Nurse Nimali Fernando, RN",
+      "email": "nimali.f@apexcare.lk",
+      "role": "NURSE",
+      "isActive": true,
+      "jobTitle": "Head Clinical Nursing Officer",
+      "department": "Inpatient Care & ICU",
+      "roomNumber": "Nursing Station 3B",
+      "consultationFee": 0,
+      "specialization": "Emergency & Intensive Care Nursing"
+    },
+    {
+      "id": "usr-reception-01",
+      "tenantId": "tenant-apexcare-01",
+      "username": "receptionist1",
+      "passwordHash": "$2a$10$.Z/E4gEdugdcQH9ua0JEG.KoCfF2HbJ9qoC6Dz.dvRhyLjbQD.4.6",
+      "fullName": "Chaminda Silva",
+      "email": "chaminda.s@apexcare.lk",
+      "role": "RECEPTIONIST",
+      "isActive": true,
+      "jobTitle": "Patient Access & Admissions Officer",
+      "department": "Outpatient Reception",
+      "roomNumber": "Front Desk Counter 1",
+      "consultationFee": 0,
+      "specialization": "Patient Registration & OPD Scheduling"
+    },
+    {
+      "id": "usr-lab-01",
+      "tenantId": "tenant-apexcare-01",
+      "username": "labtech1",
+      "passwordHash": "$2a$10$3whOM4IcxhjFyb3wwRdyfuAgb6OrmJc2H/j5oGrmt6sDHtFpjV1ua",
+      "fullName": "Dr. Dilani Wickramasinghe",
+      "email": "dilani.w@apexcare.lk",
+      "role": "LAB_TECH",
+      "isActive": true,
+      "jobTitle": "Consultant Diagnostic Pathologist",
+      "department": "Clinical Pathology & Diagnostics",
+      "roomNumber": "Diagnostic Lab 102",
+      "consultationFee": 0,
+      "specialization": "Clinical Biochemistry & Hematology"
+    },
+    {
+      "id": "usr-pharmacy-01",
+      "tenantId": "tenant-apexcare-01",
+      "username": "pharmacist1",
+      "passwordHash": "$2a$10$yoP7QmN2MNfjhWDv/xr4ROmKwWOP0INfrnp8X3gC2Vlq0MwbS8v1S",
+      "fullName": "Nuwan Bandara, BPharm",
+      "email": "nuwan.b@apexcare.lk",
+      "role": "PHARMACIST",
+      "isActive": true,
+      "jobTitle": "Chief Pharmacist & Dispensary In-Charge",
+      "department": "Central Dispensary",
+      "roomNumber": "Central Dispensary 104",
+      "consultationFee": 0,
+      "specialization": "Clinical Pharmacology & Medication Safety"
+    },
+    {
+      "id": "usr-account-01",
+      "tenantId": "tenant-apexcare-01",
+      "username": "accountant1",
+      "passwordHash": "$2a$10$zg7kAG8M3WNyTH6cHG9GLuNXTJTJfrh8v7kdWpzAXLaE9AxKzIfOe",
+      "fullName": "Tharindu Jayawardena, ACA",
+      "email": "tharindu.j@apexcare.lk",
+      "role": "ACCOUNTANT",
+      "isActive": true,
+      "jobTitle": "Hospital Revenue & Finance Controller",
+      "department": "Finance & Billing",
+      "roomNumber": "Cashier Office 103",
+      "consultationFee": 0,
+      "specialization": "Healthcare Revenue Cycle & Claims Processing"
+    },
+    {
+      "id": "usr-e87ea99e",
+      "tenantId": "tenant-apexcare-01",
+      "username": "doctor2",
+      "passwordHash": "$2a$10$7wVyCo0wnJevCa4cV0U5SONq2Qg3QfVIWgpmXJPsbsMzaQFp6YUGW",
+      "fullName": "Dr. Ruwan Gunawardena",
+      "email": "ruwan.g@apexcare.lk",
+      "role": "DOCTOR",
+      "isActive": true,
+      "jobTitle": "Consultant Electrophysiologist",
+      "department": "Cardiology & Internal Medicine",
+      "roomNumber": "Suite 205",
+      "consultationFee": 2800,
+      "specialization": "Cardiac Electrophysiology"
+    }
+  ],
+  "staffMembers": [
+    {
+      "id": "usr-admin-01",
+      "employeeId": "EMP-001",
+      "fullName": "Achintha Rajaka",
+      "role": "ADMIN",
+      "department": "Hospital Administration",
+      "jobTitle": "Chief Hospital Administrator",
+      "phoneNumber": "+94 11 269 1111",
+      "attendanceStatus": "Present",
+      "shift": "General Administrative (08:00 - 17:00)",
+      "email": "achintharajaka@gmail.com",
+      "joiningDate": "2024-01-15",
+      "roomNumber": "Admin Suite 101"
+    },
+    {
+      "id": "usr-doctor-01",
+      "employeeId": "EMP-002",
+      "fullName": "Dr. Kasun Perera, MD",
+      "role": "DOCTOR",
+      "department": "Cardiology & Internal Medicine",
+      "jobTitle": "Consultant Physician & Clinical Director",
+      "phoneNumber": "+94 77 123 4567",
+      "attendanceStatus": "Present",
+      "shift": "Day Clinical Shift (08:00 - 16:00)",
+      "email": "dr.kasun@apexcare.lk",
+      "joiningDate": "2024-02-01",
+      "specialization": "Interventional Cardiology & Critical Care",
+      "roomNumber": "Consultation Suite 204",
+      "consultationFee": 2500
+    },
+    {
+      "id": "usr-nurse-01",
+      "employeeId": "EMP-003",
+      "fullName": "Nurse Nimali Fernando, RN",
+      "role": "NURSE",
+      "department": "Inpatient Care & ICU",
+      "jobTitle": "Head Clinical Nursing Officer",
+      "phoneNumber": "+94 71 234 5678",
+      "attendanceStatus": "Present",
+      "shift": "Day Nursing Shift (07:00 - 15:30)",
+      "email": "nimali.f@apexcare.lk",
+      "joiningDate": "2024-02-15",
+      "specialization": "Emergency & Intensive Care Nursing",
+      "roomNumber": "Nursing Station 3B"
+    },
+    {
+      "id": "usr-reception-01",
+      "employeeId": "EMP-004",
+      "fullName": "Chaminda Silva",
+      "role": "RECEPTIONIST",
+      "department": "Outpatient Reception",
+      "jobTitle": "Patient Access & Admissions Officer",
+      "phoneNumber": "+94 76 345 6789",
+      "attendanceStatus": "Present",
+      "shift": "Morning Shift (08:00 - 16:30)",
+      "email": "chaminda.s@apexcare.lk",
+      "joiningDate": "2024-03-01",
+      "roomNumber": "Front Desk Counter 1"
+    },
+    {
+      "id": "usr-lab-01",
+      "employeeId": "EMP-005",
+      "fullName": "Dr. Dilani Wickramasinghe",
+      "role": "LAB_TECH",
+      "department": "Clinical Pathology & Diagnostics",
+      "jobTitle": "Consultant Diagnostic Pathologist",
+      "phoneNumber": "+94 70 456 7890",
+      "attendanceStatus": "Present",
+      "shift": "Diagnostic Laboratory Shift (08:30 - 17:00)",
+      "email": "dilani.w@apexcare.lk",
+      "joiningDate": "2024-03-10",
+      "specialization": "Clinical Biochemistry & Hematology",
+      "roomNumber": "Diagnostic Lab 102"
+    },
+    {
+      "id": "usr-pharmacy-01",
+      "employeeId": "EMP-006",
+      "fullName": "Nuwan Bandara, BPharm",
+      "role": "PHARMACIST",
+      "department": "Central Dispensary",
+      "jobTitle": "Chief Pharmacist & Dispensary In-Charge",
+      "phoneNumber": "+94 75 567 8901",
+      "attendanceStatus": "Present",
+      "shift": "Dispensary Day Shift (08:00 - 16:30)",
+      "email": "nuwan.b@apexcare.lk",
+      "joiningDate": "2024-03-15",
+      "specialization": "Clinical Pharmacology & Medication Safety",
+      "roomNumber": "Central Dispensary 104"
+    },
+    {
+      "id": "usr-account-01",
+      "employeeId": "EMP-007",
+      "fullName": "Tharindu Jayawardena, ACA",
+      "role": "ACCOUNTANT",
+      "department": "Finance & Billing",
+      "jobTitle": "Hospital Revenue & Finance Controller",
+      "phoneNumber": "+94 78 678 9012",
+      "attendanceStatus": "Present",
+      "shift": "Finance Shift (09:00 - 17:30)",
+      "email": "tharindu.j@apexcare.lk",
+      "joiningDate": "2024-04-01",
+      "specialization": "Healthcare Revenue Cycle & Claims Processing",
+      "roomNumber": "Cashier Office 103"
+    },
+    {
+      "id": "emp-d0150bd0",
+      "employeeId": "EMP-008",
+      "fullName": "Dr. Ruwan Gunawardena",
+      "role": "DOCTOR",
+      "department": "Cardiology & Internal Medicine",
+      "jobTitle": "Consultant Electrophysiologist",
+      "phoneNumber": "+94 77 111 2222",
+      "attendanceStatus": "Present",
+      "shift": "Day Shift (08:00 - 16:30)",
+      "email": "ruwan.g@apexcare.lk",
+      "joiningDate": "2026-10-26",
+      "specialization": "Cardiac Electrophysiology",
+      "roomNumber": "Suite 205",
+      "consultationFee": 2800
+    }
+  ],
+  "leaveRecords": [],
+  "patients": [
+    {
+      "id": "pat-64304",
+      "tenantId": "tenant-apexcare-01",
+      "mrn": "MRN-64304",
+      "firstName": "Nuwan",
+      "lastName": "Kulasekara",
+      "dateOfBirth": "1982-07-22",
+      "age": 44,
+      "gender": "Male",
+      "bloodGroup": "B+",
+      "contactNumber": "+94 77 333 4444",
+      "email": "example9@mail.com",
+      "address": "45 Galle Face Terrace, Colombo 03",
+      "wardBed": "Outpatient Clinic Area",
+      "insuranceProvider": "Standard Self-Pay",
+      "insurancePolicyNumber": "N/A",
+      "preAuthNumber": "N/A",
+      "emergencyContact": "Not Provided",
+      "allergies": [],
+      "chronicConditions": [],
+      "status": "Registered - Active",
+      "assignedDoctor": "Dr. Kasun Perera, MD",
+      "createdAt": "2026-10-26T16:30:58.726Z"
+    },
+    {
+      "id": "pat-78401",
+      "tenantId": "tenant-apexcare-01",
+      "mrn": "MRN-78401",
+      "firstName": "Kusal",
+      "lastName": "Mendis",
+      "dateOfBirth": "1992-04-18",
+      "age": 34,
+      "gender": "Male",
+      "bloodGroup": "O+",
+      "contactNumber": "+94 77 234 5678",
+      "email": "example1@mail.com",
+      "address": "No. 45/2, Temple Road, Colombo 03",
+      "wardBed": "General Surgical Ward Bed 08",
+      "insuranceProvider": "Sri Lanka Insurance Corporation",
+      "insurancePolicyNumber": "SLIC-MED-88341",
+      "preAuthNumber": "AUTH-COL-0091",
+      "emergencyContact": "Shani Mendis (Spouse) - +94 77 912 3456",
+      "allergies": [
+        "Penicillin"
+      ],
+      "chronicConditions": [
+        "Hypertension"
+      ],
+      "status": "Admitted - Inpatient",
+      "assignedDoctor": "Dr. Kasun Perera, MD",
+      "createdAt": "2026-10-24T08:30:00.000Z"
+    },
+    {
+      "id": "pat-89102",
+      "tenantId": "tenant-apexcare-01",
+      "mrn": "MRN-89102",
+      "firstName": "Sunethra",
+      "lastName": "Bandara",
+      "dateOfBirth": "1976-11-05",
+      "age": 49,
+      "gender": "Female",
+      "bloodGroup": "B+",
+      "contactNumber": "+94 71 876 5432",
+      "email": "example2@mail.com",
+      "address": "128 Kandy Road, Peradeniya, Kandy",
+      "wardBed": "ICU Unit Bed 03",
+      "insuranceProvider": "Ceylinco General Insurance",
+      "insurancePolicyNumber": "CEY-HLT-49102",
+      "preAuthNumber": "AUTH-KND-0342",
+      "emergencyContact": "Rohan Bandara (Son) - +94 71 345 6789",
+      "allergies": [
+        "Aspirin",
+        "NSAIDs"
+      ],
+      "chronicConditions": [
+        "Type II Diabetes",
+        "Coronary Artery Disease"
+      ],
+      "status": "Critical - ICU Care",
+      "assignedDoctor": "Dr. Kasun Perera, MD",
+      "createdAt": "2026-10-24T10:15:00.000Z"
+    },
+    {
+      "id": "pat-64303",
+      "tenantId": "tenant-apexcare-01",
+      "mrn": "MRN-64303",
+      "firstName": "Dinesh",
+      "lastName": "Chandimal",
+      "dateOfBirth": "1985-08-22",
+      "age": 41,
+      "gender": "Male",
+      "bloodGroup": "A+",
+      "contactNumber": "+94 76 345 6789",
+      "email": "example3@mail.com",
+      "address": "72/B Richmond Hill, Galle",
+      "wardBed": "Emergency Triage Bed 04",
+      "insuranceProvider": "National Insurance Trust Fund (NITF)",
+      "insurancePolicyNumber": "NITF-GOV-90124",
+      "preAuthNumber": "AUTH-GAL-0518",
+      "emergencyContact": "Ishani Chandimal (Wife) - +94 76 890 1234",
+      "allergies": [
+        "Sulfa Drugs"
+      ],
+      "chronicConditions": [
+        "Asthma"
+      ],
+      "status": "Emergency Observation",
+      "assignedDoctor": "Dr. Kasun Perera, MD",
+      "createdAt": "2026-10-25T09:00:00.000Z"
+    },
+    {
+      "id": "pat-52804",
+      "tenantId": "tenant-apexcare-01",
+      "mrn": "MRN-52804",
+      "firstName": "Dilrukshi",
+      "lastName": "Fernando",
+      "dateOfBirth": "1997-03-14",
+      "age": 29,
+      "gender": "Female",
+      "bloodGroup": "O-",
+      "contactNumber": "+94 70 456 7890",
+      "email": "example4@mail.com",
+      "address": "15 Negombo Road, Kurunegala",
+      "wardBed": "Day Patient / OPD Suite 02",
+      "insuranceProvider": "AIA Insurance Lanka",
+      "insurancePolicyNumber": "AIA-LK-66420",
+      "preAuthNumber": "AUTH-KUR-1099",
+      "emergencyContact": "Sujith Fernando (Brother) - +94 70 123 9876",
+      "allergies": [],
+      "chronicConditions": [
+        "Migraine with Aura"
+      ],
+      "status": "Outpatient Active",
+      "assignedDoctor": "Dr. Dilani Wickramasinghe",
+      "createdAt": "2026-10-25T11:45:00.000Z"
+    },
+    {
+      "id": "pat-91505",
+      "tenantId": "tenant-apexcare-01",
+      "mrn": "MRN-91505",
+      "firstName": "Pathum",
+      "lastName": "Nissanka",
+      "dateOfBirth": "1998-05-18",
+      "age": 28,
+      "gender": "Male",
+      "bloodGroup": "AB+",
+      "contactNumber": "+94 75 567 8901",
+      "email": "example5@mail.com",
+      "address": "94 Galle Road, Mount Lavinia, Dehiwala",
+      "wardBed": "General Surgical Ward Bed 14",
+      "insuranceProvider": "Union Assurance PLC",
+      "insurancePolicyNumber": "UA-HEALTH-33910",
+      "preAuthNumber": "AUTH-COL-0882",
+      "emergencyContact": "Chamari Nissanka (Mother) - +94 75 789 4561",
+      "allergies": [
+        "Ciprofloxacin"
+      ],
+      "chronicConditions": [
+        "Acute Appendicitis (Resolved)"
+      ],
+      "status": "Post-Operative Recovery",
+      "assignedDoctor": "Dr. Kasun Perera, MD",
+      "createdAt": "2026-10-25T14:20:00.000Z"
+    },
+    {
+      "id": "pat-33706",
+      "tenantId": "tenant-apexcare-01",
+      "mrn": "MRN-33706",
+      "firstName": "Malini",
+      "lastName": "Fonseka",
+      "dateOfBirth": "1959-12-10",
+      "age": 66,
+      "gender": "Female",
+      "bloodGroup": "A-",
+      "contactNumber": "+94 78 678 9012",
+      "email": "example6@mail.com",
+      "address": "210 Main Street, Gampaha",
+      "wardBed": "General Medical Ward Bed 06",
+      "insuranceProvider": "National Insurance Trust Fund (NITF)",
+      "insurancePolicyNumber": "NITF-PEN-11204",
+      "preAuthNumber": "AUTH-GMP-0419",
+      "emergencyContact": "Gamini Fonseka (Son) - +94 78 901 2345",
+      "allergies": [
+        "Iodine Contrast Media"
+      ],
+      "chronicConditions": [
+        "Osteoarthritis",
+        "Stage 2 Hypertension"
+      ],
+      "status": "Admitted - Inpatient",
+      "assignedDoctor": "Dr. Kasun Perera, MD",
+      "createdAt": "2026-10-26T08:10:00.000Z"
+    },
+    {
+      "id": "pat-44207",
+      "tenantId": "tenant-apexcare-01",
+      "mrn": "MRN-44207",
+      "firstName": "Anura",
+      "lastName": "Jayasuriya",
+      "dateOfBirth": "1970-07-25",
+      "age": 56,
+      "gender": "Male",
+      "bloodGroup": "O+",
+      "contactNumber": "+94 72 789 0123",
+      "email": "example7@mail.com",
+      "address": "38 Hospital Junction, Anuradhapura",
+      "wardBed": "Outpatient Clinic Suite 01",
+      "insuranceProvider": "Self-Pay / Cash",
+      "insurancePolicyNumber": "N/A",
+      "preAuthNumber": "N/A",
+      "emergencyContact": "Pushpa Jayasuriya (Wife) - +94 72 456 7890",
+      "allergies": [],
+      "chronicConditions": [
+        "Hyperlipidemia"
+      ],
+      "status": "Outpatient Active",
+      "assignedDoctor": "Dr. Kasun Perera, MD",
+      "createdAt": "2026-10-26T09:30:00.000Z"
+    },
+    {
+      "id": "pat-12908",
+      "tenantId": "tenant-apexcare-01",
+      "mrn": "MRN-12908",
+      "firstName": "Tharushi",
+      "lastName": "Karunaratne",
+      "dateOfBirth": "2004-09-02",
+      "age": 22,
+      "gender": "Female",
+      "bloodGroup": "B-",
+      "contactNumber": "+94 77 901 2345",
+      "email": "example8@mail.com",
+      "address": "14/A Havelock Road, Colombo 05",
+      "wardBed": "Outpatient Clinic Suite 03",
+      "insuranceProvider": "AIA Insurance Lanka",
+      "insurancePolicyNumber": "AIA-STU-77218",
+      "preAuthNumber": "AUTH-COL-0912",
+      "emergencyContact": "Sunil Karunaratne (Father) - +94 77 654 3210",
+      "allergies": [
+        "Peanuts",
+        "Dust Mites"
+      ],
+      "chronicConditions": [
+        "Allergic Rhinitis"
+      ],
+      "status": "Consultation Scheduled",
+      "assignedDoctor": "Dr. Dilani Wickramasinghe",
+      "createdAt": "2026-10-26T11:00:00.000Z"
+    }
+  ],
+  "appointments": [
+    {
+      "id": "apt-12908",
+      "tenantId": "tenant-apexcare-01",
+      "patientId": "pat-12908",
+      "patientName": "Tharushi Karunaratne",
+      "patientMrn": "MRN-12908",
+      "doctorId": "usr-lab-01",
+      "doctorName": "Dr. Dilani Wickramasinghe",
+      "department": "Clinical Pathology & Diagnostics",
+      "roomNumber": "Diagnostic Lab 102",
+      "appointmentDate": "2026-10-27",
+      "appointmentTime": "09:30 AM",
+      "status": "Scheduled",
+      "reason": "Allergy Profile & Serum IgE Screening",
+      "priority": "Routine",
+      "createdAt": "2026-10-26T11:05:00.000Z"
+    },
+    {
+      "id": "apt-44207",
+      "tenantId": "tenant-apexcare-01",
+      "patientId": "pat-44207",
+      "patientName": "Anura Jayasuriya",
+      "patientMrn": "MRN-44207",
+      "doctorId": "usr-doctor-01",
+      "doctorName": "Dr. Kasun Perera, MD",
+      "department": "Cardiology & Internal Medicine",
+      "roomNumber": "Consultation Suite 204",
+      "appointmentDate": "2026-10-27",
+      "appointmentTime": "10:15 AM",
+      "status": "Scheduled",
+      "reason": "Lipid Profile Review & Statin Titration",
+      "priority": "Routine",
+      "createdAt": "2026-10-26T09:35:00.000Z"
+    }
+  ],
+  "medicalRecords": [
+    {
+      "id": "rec-78401",
+      "tenantId": "tenant-apexcare-01",
+      "patientId": "pat-78401",
+      "doctorId": "usr-doctor-01",
+      "doctorName": "Dr. Kasun Perera, MD",
+      "visitDate": "2026-10-24T09:15:00.000Z",
+      "diagnosis": "Acute Gastroenteritis with Moderate Dehydration",
+      "icdCode": "A09.0",
+      "treatmentHistory": "Administered 1.5L IV Normal Saline and antiemetic infusion.",
+      "clinicalNotes": "<h3>SUBJECTIVE:</h3><p>Patient reports sudden onset of watery diarrhea, nausea, and low-grade pyrexia for 18 hours after food ingestion.</p><h3>OBJECTIVE:</h3><p>BP 112/74 mmHg, Pulse 88 bpm, Temp 37.8°C. Mild abdominal tenderness periumbilically, no peritoneal signs. Decreased skin turgor.</p><h3>ASSESSMENT:</h3><p>Acute infectious gastroenteritis with moderate hypovolemic dehydration.</p><h3>PLAN:</h3><p>IV hydration, oral rehydration therapy, electrolytes monitoring, low-fiber diet.</p>"
+    },
+    {
+      "id": "rec-89102",
+      "tenantId": "tenant-apexcare-01",
+      "patientId": "pat-89102",
+      "doctorId": "usr-doctor-01",
+      "doctorName": "Dr. Kasun Perera, MD",
+      "visitDate": "2026-10-24T11:00:00.000Z",
+      "diagnosis": "Unstable Angina Pectoris with Stage 2 Hypertension",
+      "icdCode": "I20.0",
+      "treatmentHistory": "Admitted directly to ICU Unit Bed 03. Continuous telemetry monitoring established.",
+      "clinicalNotes": "<h3>SUBJECTIVE:</h3><p>Patient experienced substernal chest heaviness radiating to left jaw, diaphoresis, and exertional breathlessness lasting 25 minutes.</p><h3>OBJECTIVE:</h3><p>BP 168/102 mmHg, HR 96 bpm sinus rhythm on ECG with ST depressions in leads V4-V6. Troponin I elevated.</p><h3>ASSESSMENT:</h3><p>Acute coronary syndrome (Unstable Angina / NSTEMI rule-out) in patient with chronic diabetes.</p><h3>PLAN:</h3><p>Dual antiplatelet therapy, high-intensity statin, beta-blocker, cardiac enzyme curve monitoring, echocardiography scheduled.</p>"
+    },
+    {
+      "id": "rec-64303",
+      "tenantId": "tenant-apexcare-01",
+      "patientId": "pat-64303",
+      "doctorId": "usr-doctor-01",
+      "doctorName": "Dr. Kasun Perera, MD",
+      "visitDate": "2026-10-25T09:30:00.000Z",
+      "diagnosis": "Acute Exacerbation of Bronchial Asthma",
+      "icdCode": "J45.901",
+      "treatmentHistory": "Nebulized with Salbutamol + Ipratropium x 2 cycles in Emergency Triage.",
+      "clinicalNotes": "<h3>SUBJECTIVE:</h3><p>Known asthmatic presenting with marked expiratory wheezing, tachypnea, and chest tightness following exposure to dust and seasonal humidity.</p><h3>OBJECTIVE:</h3><p>SpO2 93% on room air, RR 24/min. Bilateral polyphonic expiratory wheezes throughout lung fields.</p><h3>ASSESSMENT:</h3><p>Moderate acute asthma exacerbation.</p><h3>PLAN:</h3><p>Supplementary O2 via nasal cannula (2L/min), oral prednisolone course, meter-dose inhaler spacer reinforcement.</p>"
+    },
+    {
+      "id": "rec-91505",
+      "tenantId": "tenant-apexcare-01",
+      "patientId": "pat-91505",
+      "doctorId": "usr-doctor-01",
+      "doctorName": "Dr. Kasun Perera, MD",
+      "visitDate": "2026-10-25T15:00:00.000Z",
+      "diagnosis": "Post-Laparoscopic Appendectomy Routine Recovery",
+      "icdCode": "K35.80",
+      "treatmentHistory": "Successful laparoscopic appendectomy completed yesterday. Minimal blood loss.",
+      "clinicalNotes": "<h3>SUBJECTIVE:</h3><p>Post-op day 1: Patient ambulating well, tolerating oral liquids, reporting mild umbilical port site soreness.</p><h3>OBJECTIVE:</h3><p>Afebrile, BP 120/78 mmHg. Port wounds clean, dry, and intact with no erythema or discharge. Bowel sounds present.</p><h3>ASSESSMENT:</h3><p>Uncomplicated post-operative recovery.</p><h3>PLAN:</h3><p>Step down from IV to oral analgesics, step up to light diet, plan discharge for tomorrow morning.</p>"
+    }
+  ],
+  "prescriptions": [
+    {
+      "id": "rx-78401",
+      "recordId": "rec-78401",
+      "patientId": "pat-78401",
+      "patientName": "Kusal Mendis",
+      "doctorId": "usr-doctor-01",
+      "doctorName": "Dr. Kasun Perera, MD",
+      "prescriptionDate": "2026-10-24T09:30:00.000Z",
+      "status": "Dispensed",
+      "items": [
+        {
+          "id": "rxi-01",
+          "medicineName": "Oral Rehydration Salts (ORS) Sachets",
+          "dosage": "1 Sachet in 1L Water",
+          "frequency": "Ad Libitum / Drink After Each Loose Motion",
+          "duration": "3 Days",
+          "quantity": 6,
+          "unitPrice": 45,
+          "status": "Dispensed"
+        },
+        {
+          "id": "rxi-02",
+          "medicineName": "Paracetamol 500mg Tablets",
+          "dosage": "1-2 Tablets",
+          "frequency": "Every 6 Hours SOS",
+          "duration": "3 Days",
+          "quantity": 12,
+          "unitPrice": 5,
+          "status": "Dispensed"
+        }
+      ]
+    },
+    {
+      "id": "rx-89102",
+      "recordId": "rec-89102",
+      "patientId": "pat-89102",
+      "patientName": "Sunethra Bandara",
+      "doctorId": "usr-doctor-01",
+      "doctorName": "Dr. Kasun Perera, MD",
+      "prescriptionDate": "2026-10-24T11:15:00.000Z",
+      "status": "Pending",
+      "items": [
+        {
+          "id": "rxi-03",
+          "medicineName": "Atorvastatin 40mg Tablets",
+          "dosage": "40mg",
+          "frequency": "Once Nightly",
+          "duration": "30 Days",
+          "quantity": 30,
+          "unitPrice": 42,
+          "status": "Pending"
+        },
+        {
+          "id": "rxi-04",
+          "medicineName": "Clopidogrel 75mg Tablets",
+          "dosage": "75mg",
+          "frequency": "Once Daily in Morning",
+          "duration": "30 Days",
+          "quantity": 30,
+          "unitPrice": 38,
+          "status": "Pending"
+        },
+        {
+          "id": "rxi-05",
+          "medicineName": "Metoprolol Succinate 50mg Extended Release",
+          "dosage": "50mg",
+          "frequency": "Once Daily in Morning",
+          "duration": "30 Days",
+          "quantity": 30,
+          "unitPrice": 28,
+          "status": "Pending"
+        }
+      ]
+    }
+  ],
+  "laboratoryTests": [
+    {
+      "id": "lab-78401",
+      "patientId": "pat-78401",
+      "patientName": "Kusal Mendis",
+      "patientMrn": "MRN-78401",
+      "doctorId": "usr-doctor-01",
+      "doctorName": "Dr. Kasun Perera, MD",
+      "testName": "Full Blood Count (FBC)",
+      "sampleStatus": "Completed",
+      "isStatUrgent": false,
+      "charge": 950,
+      "createdAt": "2026-10-24T09:20:00.000Z",
+      "completedAt": "2026-10-24T10:45:00.000Z",
+      "resultData": {
+        "pathologistNotes": "Mild leukocytosis consistent with acute infectious gastroenteritis. Platelets and hemoglobin normal.",
+        "parameters": [
+          {
+            "name": "White Blood Cell Count (WBC)",
+            "value": "11.8",
+            "unit": "10^3/uL",
+            "referenceRange": "4.0 - 11.0",
+            "flag": "HIGH"
+          },
+          {
+            "name": "Hemoglobin (Hb)",
+            "value": "14.6",
+            "unit": "g/dL",
+            "referenceRange": "13.0 - 17.0",
+            "flag": "NORMAL"
+          },
+          {
+            "name": "Platelet Count",
+            "value": "265",
+            "unit": "10^3/uL",
+            "referenceRange": "150 - 450",
+            "flag": "NORMAL"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lab-89102",
+      "patientId": "pat-89102",
+      "patientName": "Sunethra Bandara",
+      "patientMrn": "MRN-89102",
+      "doctorId": "usr-doctor-01",
+      "doctorName": "Dr. Kasun Perera, MD",
+      "testName": "High Sensitivity Cardiac Troponin I (STAT)",
+      "sampleStatus": "Completed",
+      "isStatUrgent": true,
+      "charge": 3200,
+      "createdAt": "2026-10-24T11:10:00.000Z",
+      "completedAt": "2026-10-24T11:40:00.000Z",
+      "resultData": {
+        "pathologistNotes": "Elevated troponin value above 99th percentile URL. Urgent cardiology review recommended.",
+        "parameters": [
+          {
+            "name": "Cardiac Troponin I (hs-cTnI)",
+            "value": "78.4",
+            "unit": "ng/L",
+            "referenceRange": "< 14.0",
+            "flag": "CRITICAL"
+          }
+        ]
+      }
+    }
+  ],
+  "bills": [
+    {
+      "id": "inv-78401",
+      "tenantId": "tenant-apexcare-01",
+      "patientId": "pat-78401",
+      "patientName": "Kusal Mendis",
+      "patientMrn": "MRN-78401",
+      "accountantId": "usr-account-01",
+      "accountantName": "Tharindu Jayawardena, ACA",
+      "invoiceDate": "2026-10-24T10:50:00.000Z",
+      "totalAmount": 3450,
+      "discount": 0,
+      "netPayable": 3450,
+      "paymentStatus": "Paid",
+      "items": [
+        {
+          "id": "bi-01",
+          "serviceType": "Consultation",
+          "description": "Emergency Physician Assessment - Dr. Kasun Perera",
+          "unitPrice": 2500,
+          "quantity": 1,
+          "lineTotal": 2500
+        },
+        {
+          "id": "bi-02",
+          "serviceType": "Laboratory",
+          "description": "Full Blood Count (FBC)",
+          "unitPrice": 950,
+          "quantity": 1,
+          "lineTotal": 950
+        }
+      ],
+      "payments": [
+        {
+          "id": "pay-01",
+          "amountPaid": 3450,
+          "paymentMethod": "Credit Card",
+          "transactionRef": "TXN-SL-908124",
+          "paidAt": "2026-10-24T10:55:00.000Z"
+        }
+      ]
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "aud-001",
+      "tenantId": "tenant-apexcare-01",
+      "userId": "usr-admin-01",
+      "userName": "Namal Kumara",
+      "action": "SYSTEM_INITIALIZED",
+      "resource": "SystemCore",
+      "recordId": "tenant-apexcare-01",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-10-26T16:30:21.575Z"
+    }
+  ]
+}
