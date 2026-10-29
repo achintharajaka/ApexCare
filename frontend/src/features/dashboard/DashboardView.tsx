@@ -173,7 +173,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       </div>
 
       {/* 4 Primary Top KPI Metric Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-gutter">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-space-md">
         {/* KPI 1: Active Patients */}
         <div className="kpi-card bg-bg-surface p-space-md rounded-xl border border-border-subtle shadow-xs hover:border-primary-teal-subtle transition-all">
           <div className="flex items-center justify-between">
@@ -271,7 +271,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       </div>
 
       {/* Main Content Grid (65% / 35% Split) */}
-      <div className="grid grid-cols-1 xl:grid-cols-12 gap-space-gutter items-start">
+      <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 sm:gap-space-md items-start">
         {/* LEFT COLUMN (65% - 8 cols on xl) */}
         <div className="xl:col-span-8 flex flex-col gap-space-md">
           {/* Today's Clinical Appointments Queue */}
