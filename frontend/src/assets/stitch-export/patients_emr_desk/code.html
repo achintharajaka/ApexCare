@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"inverse-primary":"#93ccff","on-secondary-fixed-variant":"#3f465c","error-container":"#ffdad6","primary-fixed":"#cce5ff","surface-container-lowest":"#ffffff","on-surface-variant":"#3f4850","on-tertiary":"#ffffff","border-strong":"#CBD5E1","outline-variant":"#bfc7d2","tertiary-container":"#00855b","tertiary-fixed-dim":"#4edea3","on-error-container":"#93000a","status-info-bg":"#DBEAFE","surface-tint":"#006398","on-primary-fixed":"#001d31","primary-container":"#007bb9","secondary":"#565e74","status-success-bg":"#D1FAE5","surface-container":"#e5eeff","tertiary":"#006947","on-secondary-fixed":"#131b2e","inverse-on-surface":"#eaf1ff","background":"#f8f9ff","on-secondary-container":"#5c647a","on-tertiary-container":"#f5fff6","primary-fixed-dim":"#93ccff","on-primary-container":"#fdfcff","on-background":"#0b1c30","surface-container-low":"#eff4ff","status-critical-bg":"#FEE2E2","status-warning":"#F59E0B","on-tertiary-fixed-variant":"#005236","outline":"#707881","secondary-container":"#dae2fd","surface-container-high":"#dce9ff","surface-variant":"#d3e4fe","surface-dim":"#cbdbf5","tertiary-fixed":"#6ffbbe","surface":"#f8f9ff","on-primary-fixed-variant":"#004b73","on-primary":"#ffffff","status-success":"#10B981","on-secondary":"#ffffff","border-subtle":"#E2E8F0","on-tertiary-fixed":"#002113","bg-canvas":"#F8FAFC","inverse-surface":"#213145","error":"#ba1a1a","surface-bright":"#f8f9ff","bg-surface-subtle":"#F1F5F9","primary-teal-hover":"#0369A1","on-surface":"#0b1c30","on-error":"#ffffff","bg-surface":"#FFFFFF","secondary-fixed-dim":"#bec6e0","primary":"#006194","secondary-fixed":"#dae2fd","status-info":"#3B82F6","primary-teal-subtle":"#E0F2FE","status-warning-bg":"#FEF3C7","surface-container-highest":"#d3e4fe","status-critical":"#EF4444"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1rem","margin":"1.5rem","space-sm":"0.5rem","space-lg":"1.5rem","space-xl":"2rem","space-md":"1rem","space-xs":"0.25rem"},"fontFamily":{"title-sm":["Inter"],"caption":["Inter"],"display-kpi":["Inter"],"headline-lg":["Inter"],"label-tabular":["Inter"],"badge-sm":["Inter"],"body-default":["Inter"],"headline-md":["Inter"],"body-medium":["Inter"]},"fontSize":{"title-sm":["14px",{"lineHeight":"20px","fontWeight":"600"}],"caption":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"500"}],"display-kpi":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-tabular":["14px",{"lineHeight":"20px","fontWeight":"500"}],"badge-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"body-default":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-medium":["14px",{"lineHeight":"20px","fontWeight":"500"}]}}}};</script></head><body class="bg-bg-canvas font-body-default text-body-default text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-[260px] bg-inverse-surface text-inverse-on-surface z-50 flex flex-col justify-between select-none shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col min-h-0 flex-1"><div class="h-16 px-space-md flex items-center gap-space-sm border-b border-border-strong/10"><img alt="ApexCare HMS Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wg2oeyweT6z0qlw1Z19fd7E_AC660MDci0WTOGxg7y9nX63yXBjqa-_tJhHDMbQaqk_JiGLn89WwqmT0D8V4hPICSsSgVA8pUntrizns1fF4Z_8VJC-S3tlrzjnjWLUFRqXKLrFSR-4HsoxG2ItaUYASN7AED4jaXPzkFwV_CLKqI1ronjGX_DeC2IUFkknXtY0JGny0v0i_2SSF-qMg8NP4ClqEAg8GcCZcfEWbOlYatRjsyHaixWu3M"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-inverse-on-surface tracking-tight leading-none">ApexCare</span><span class="font-caption text-caption text-inverse-on-surface/60 uppercase tracking-widest">Hospital Core</span></div></div><nav class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-body-medium rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-body-medium text-body-medium">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="patients-and-emr" href="#"><span class="material-symbols-outlined text-[20px]">personal_injury</span><span class="font-body-medium text-body-medium">Patients & EMR</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="appointments" href="#"><span class="material-symbols-outlined text-[20px]">calendar_clock</span><span class="font-body-medium text-body-medium">Appointments</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="billing-and-payments" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-body-medium text-body-medium">Billing & Payments</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="laboratory" href="#"><span class="material-symbols-outlined text-[20px]">chips</span><span class="font-body-medium text-body-medium">Laboratory</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="pharmacy" href="#"><span class="material-symbols-outlined text-[20px]">medication</span><span class="font-body-medium text-body-medium">Pharmacy</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="staff-and-doctors" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-body-medium text-body-medium">Staff & Doctors</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="reports-and-analytics" href="#"><span class="material-symbols-outlined text-[20px]">insights</span><span class="font-body-medium text-body-medium">Reports & Analytics</span></a></nav></div><div class="p-space-sm border-t border-border-strong/10 bg-inverse-surface/40"><div class="flex items-center gap-space-sm p-space-xs rounded-lg hover:bg-surface-container/10 transition-colors"><div class="relative flex-shrink-0"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY9g7ovPAXqKTNMf1we6b0uyMj7Xmowj-wz3g3yzRSPYcXnF4ks6zQFXo4iyB-UZpb4BS0vgO-iaaI9aUgtstac3DYxUmMU4euxj_11gbUYukS4y7HCAlYFCi7XbiXPublEog4cFv7WQ0NpoZ7acwpNeiqp8DnHOl0N819M2PoIU6M6BSvjzkojFEbnhAhRTczfjSsT_X1KgxEOhsBGJo50DBX5A_XTSbyJsVCsy8vq9sQi3Mi2IQYbA"/><span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-status-success rounded-full ring-2 ring-inverse-surface"></span></div><div class="flex flex-col min-w-0 flex-1"><span class="font-title-sm text-title-sm text-inverse-on-surface truncate">Dr. Arthur Vance</span><span class="font-caption text-caption text-inverse-on-surface/60 truncate">Chief Medical Officer</span></div></div></div></aside><div class="pl-[260px]"><header class="fixed top-0 left-[260px] right-0 h-16 bg-bg-surface border-b border-border-subtle z-40 flex items-center justify-between px-space-margin"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-outline">search</span><input class="w-full h-[38px] pl-9 pr-4 rounded-lg bg-bg-surface-subtle border border-border-strong text-body-default font-body-default placeholder:text-outline text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-teal-subtle transition-all" placeholder="Search patients by MRN, name, doctor, or bill ID... [⌘K]" type="text"/></div></div><div class="flex items-center gap-space-md"><div class="hidden lg:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-status-success-bg text-on-tertiary-container"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-success opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-status-success"></span></span><span class="font-badge-sm text-badge-sm text-tertiary">Morning Shift (08:00 - 16:00)</span></div><button class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg bg-status-critical-bg text-status-critical hover:bg-status-critical hover:text-on-error transition-colors" title="STAT Emergency Alerts" type="button"><span class="material-symbols-outlined text-[18px]">warning</span><span class="font-title-sm text-title-sm">STAT Alerts</span><span class="inline-flex items-center justify-center px-1.5 py-0.2 text-[11px] font-bold rounded-full bg-status-critical text-on-error">3</span></button><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-bg-surface-subtle hover:text-on-surface transition-colors" title="Notifications" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-status-warning rounded-full"></span></button><button class="flex items-center gap-space-xs h-[38px] px-space-md rounded-lg bg-primary hover:bg-primary-teal-hover text-on-primary font-title-sm text-title-sm shadow-sm transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">person_add</span><span>+ Quick Admission</span></button><div class="flex items-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-border-subtle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY9g7ovPAXqKTNMf1we6b0uyMj7Xmowj-wz3g3yzRSPYcXnF4ks6zQFXo4iyB-UZpb4BS0vgO-iaaI9aUgtstac3DYxUmMU4euxj_11gbUYukS4y7HCAlYFCi7XbiXPublEog4cFv7WQ0NpoZ7acwpNeiqp8DnHOl0N819M2PoIU6M6BSvjzkojFEbnhAhRTczfjSsT_X1KgxEOhsBGJo50DBX5A_XTSbyJsVCsy8vq9sQi3Mi2IQYbA"/></div></div></header><main class="relative pt-16 bg-bg-canvas min-h-screen p-space-margin"><div class="flex flex-col w-full gap-space-margin">
+<!-- Sticky Clinical Patient Header Banner -->
+<section class="sticky top-16 z-30 bg-bg-surface rounded-xl shadow-md p-space-md flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<!-- Patient Profile Core Details -->
+<div class="flex flex-wrap items-center gap-space-md min-w-0">
+<div class="relative flex-shrink-0">
+<img class="w-14 h-14 rounded-full object-cover shadow-sm" data-alt="Close-up clinical portrait of Eleanor Vance, a 42-year-old female patient with light brown shoulder-length hair looking calm and composed in hospital outpatient lighting, neutral background, professional medical photography with crisp focus and natural skin tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbBjEL0mp7E2WCadYXWLauSKvYJVLr2WzbT5p9ZkuJ-kXSSW4QKZvStg4R2-A24cZzKwzia6pGERvsKeKhlfX7KQa8149TvQnx9nucnRu9SbtlgNltjMdSHywWVmqYoIPPR7nv-AKhjmrlndaf5ytfeR5maVMG1cYCYMRc1xZ1iz9Rf_ZN4kjysNzzA3rRiawSp_GtXrhsfnMBnaDxt4kL_MPYgoiABSsiBdYQidEa0OH47TDC5qLsLg"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-status-success rounded-full ring-2 ring-bg-surface" title="Outpatient Active Today"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Eleanor Vance</h1>
+<span class="font-label-tabular text-label-tabular px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant font-medium">42 yrs (12/04/1982)</span>
+<span class="font-label-tabular text-label-tabular px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant">Female</span>
+<span class="font-label-tabular text-label-tabular px-space-xs py-0.5 rounded bg-primary-teal-subtle text-primary font-semibold">MRN: #MRN-84920</span>
+<span class="font-label-tabular text-label-tabular px-2 py-0.5 rounded-full bg-status-critical-bg text-status-critical font-bold">O+ (Rh Positive)</span>
+</div>
+<div class="flex items-center gap-space-md text-on-surface-variant text-caption font-caption mt-1">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">call</span>+1 (555) 392-8104</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">location_on</span>Ward 3B - Bed 14 (Day Observation)</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">verified_user</span>BlueCross Pre-Auth #88219</span>
+</div>
+</div>
+</div>
+<!-- Right Side Actions & Clinical Severity Badges -->
+<div class="flex flex-col lg:items-end gap-space-sm flex-shrink-0">
+<!-- High-visibility Severity Badges -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-status-critical-bg text-status-critical font-badge-sm text-badge-sm font-semibold shadow-sm animate-pulse">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span>ALLERGY: Penicillin (Severe Anaphylaxis)</span>
+</div>
+<div class="flex items-center gap-1 px-space-sm py-1 rounded-full bg-status-warning-bg text-status-warning font-badge-sm text-badge-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">emergency</span>
+<span>Chronic: Type II Diabetes Mellitus</span>
+</div>
+<div class="flex items-center gap-1 px-space-sm py-1 rounded-full bg-status-info-bg text-status-info font-badge-sm text-badge-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">monitor_heart</span>
+<span>Hypertension Stage 1</span>
+</div>
+</div>
+<!-- Quick Clinical Action Triggers -->
+<div class="flex flex-wrap items-center gap-space-xs mt-1">
+<button class="flex items-center gap-1 h-9 px-space-md rounded-lg bg-primary hover:bg-primary-teal-hover text-on-primary font-title-sm text-title-sm shadow-sm transition-all transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">prescriptions</span>
+<span>+ Prescribe Medication</span>
+</button>
+<button class="flex items-center gap-1 h-9 px-space-sm rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-title-sm text-title-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">chips</span>
+<span>+ Order Lab</span>
+</button>
+<button class="flex items-center gap-1 h-9 px-space-sm rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-title-sm text-title-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">transfer_within_a_station</span>
+<span>Transfer / Admit</span>
+</button>
+<button class="flex items-center justify-center h-9 w-9 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant transition-colors" title="Print Patient Summary PDF" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Split Workspace: 60% Left / 40% Right -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-gutter items-start">
+<!-- LEFT PANEL: Clinical Notes, SOAP Timeline & Diagnosis (60% approx -> 7 cols on lg, 8 cols on xl) -->
+<div class="lg:col-span-7 xl:col-span-7 flex flex-col gap-space-gutter">
+<!-- Workspace Navigation Tabs -->
+<div class="bg-bg-surface rounded-xl shadow-sm p-1.5 flex items-center justify-between overflow-x-auto">
+<div class="flex items-center gap-1 min-w-max">
+<button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-primary text-on-primary font-title-sm text-title-sm shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+<span>Clinical Notes & SOAP</span>
+</button>
+<button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-title-sm text-title-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+<span>Diagnosis & ICD-11</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-highest text-on-surface-variant text-caption">2</span>
+</button>
+<button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-title-sm text-title-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span>Treatment History</span>
+</button>
+<button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-title-sm text-title-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">vaccines</span>
+<span>Allergies & Immunizations</span>
+</button>
+</div>
+<div class="hidden sm:flex items-center gap-2 pr-2 text-caption font-caption text-on-surface-variant">
+<span class="inline-block w-2 h-2 rounded-full bg-status-success animate-ping"></span>
+<span>Live EMR Sync</span>
+</div>
+</div>
+<!-- Real-time Vital Sparkline & Metric Bar -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+<div class="bg-bg-surface p-space-sm rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant font-caption text-caption uppercase">
+<span>Blood Pressure</span>
+<span class="material-symbols-outlined text-[16px] text-status-warning">speed</span>
+</div>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">138/84</span>
+<span class="font-caption text-caption text-on-surface-variant">mmHg</span>
+</div>
+<div class="h-6 w-full">
+<svg class="w-full h-full text-status-warning" fill="none" viewbox="0 0 100 24">
+<path d="M0 16 L20 14 L40 18 L60 9 L80 15 L100 11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="bg-bg-surface p-space-sm rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant font-caption text-caption uppercase">
+<span>Heart Rate</span>
+<span class="material-symbols-outlined text-[16px] text-status-success">favorite</span>
+</div>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">74</span>
+<span class="font-caption text-caption text-on-surface-variant">bpm</span>
+</div>
+<div class="h-6 w-full">
+<svg class="w-full h-full text-status-success" fill="none" viewbox="0 0 100 24">
+<path d="M0 12 L15 12 L22 3 L30 21 L37 12 L50 12 L58 5 L65 19 L72 12 L100 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="bg-bg-surface p-space-sm rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant font-caption text-caption uppercase">
+<span>Blood Oxygen</span>
+<span class="material-symbols-outlined text-[16px] text-primary">air</span>
+</div>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">98%</span>
+<span class="font-caption text-caption text-on-surface-variant">SpO2</span>
+</div>
+<div class="h-6 w-full flex items-center">
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 98%;"></div>
+</div>
+</div>
+</div>
+<div class="bg-bg-surface p-space-sm rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant font-caption text-caption uppercase">
+<span>Random Glucose</span>
+<span class="material-symbols-outlined text-[16px] text-status-warning">bloodtype</span>
+</div>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-headline-md text-headline-md font-bold text-status-warning">142</span>
+<span class="font-caption text-caption text-on-surface-variant">mg/dL</span>
+</div>
+<div class="flex items-center gap-1 text-[11px] font-caption text-status-warning font-semibold">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+14 vs Baseline</span>
+</div>
+</div>
+</div>
+<!-- Structured SOAP Clinical Consultation Timeline Card -->
+<article class="bg-bg-surface rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Card Header with Doctor & Date Info -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="p-2 rounded-lg bg-primary-teal-subtle text-primary">
+<span class="material-symbols-outlined text-[24px]">medical_services</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Follow-up Consultation</span>
+<span class="px-2 py-0.5 rounded-full bg-status-success-bg text-tertiary text-badge-sm font-badge-sm">Active Session</span>
+</div>
+<p class="font-caption text-caption text-on-surface-variant mt-0.5">
+                Oct 24, 2024 (09:40 AM) • Attending: <span class="font-semibold text-on-surface">Dr. Arthur Vance, MD (Cardiology)</span>
+</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-caption text-caption px-2 py-1 rounded bg-bg-surface text-secondary font-medium">Encounter #ENC-9921</span>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" title="Expand Full Record" type="button">
+<span class="material-symbols-outlined text-[20px]">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- Structured SOAP Breakdown -->
+<div class="p-space-md flex flex-col gap-space-md">
+<!-- Subjective (S) -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-1.5 transition-all hover:bg-surface-container-low/40">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="flex items-center justify-center w-6 h-6 rounded bg-primary-teal-subtle text-primary font-bold text-caption">S</span>
+<h3 class="font-title-sm text-title-sm text-on-surface tracking-wide uppercase">Subjective</h3>
+</div>
+<span class="font-caption text-caption text-on-surface-variant">Reported by Patient</span>
+</div>
+<p class="font-body-default text-body-default text-on-surface leading-relaxed pl-8">
+              Patient presents with a 3-day history of recurrent mild dizziness and morning fatigue. Denies chest pain, palpitation, or shortness of breath. Notes compliance with bedtime antihypertensives has been erratic due to work travels. Daily glucose self-monitoring logs indicate a persistent fasting average of <strong class="font-medium text-status-warning">142 mg/dL</strong> over the last two weeks.
+            </p>
+</div>
+<!-- Objective (O) -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all hover:bg-surface-container-low/40">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="flex items-center justify-center w-6 h-6 rounded bg-status-info-bg text-status-info font-bold text-caption">O</span>
+<h3 class="font-title-sm text-title-sm text-on-surface tracking-wide uppercase">Objective</h3>
+</div>
+<span class="font-caption text-caption text-on-surface-variant">Physical Examination & Triage</span>
+</div>
+<!-- Structured Vital Snapshot Pill Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pl-8">
+<div class="p-2 rounded-lg bg-bg-canvas flex flex-col">
+<span class="font-caption text-caption text-outline">BP (Sitting)</span>
+<span class="font-label-tabular text-label-tabular text-on-surface font-semibold">138/84 mmHg</span>
+</div>
+<div class="p-2 rounded-lg bg-bg-canvas flex flex-col">
+<span class="font-caption text-caption text-outline">Pulse / Rhythm</span>
+<span class="font-label-tabular text-label-tabular text-on-surface font-semibold">74 bpm (Reg)</span>
+</div>
+<div class="p-2 rounded-lg bg-bg-canvas flex flex-col">
+<span class="font-caption text-caption text-outline">Temp / SpO2</span>
+<span class="font-label-tabular text-label-tabular text-on-surface font-semibold">98.4°F | 98% RA</span>
+</div>
+<div class="p-2 rounded-lg bg-bg-canvas flex flex-col">
+<span class="font-caption text-caption text-outline">BMI / Weight</span>
+<span class="font-label-tabular text-label-tabular text-on-surface font-semibold">27.2 | 71.4 kg</span>
+</div>
+</div>
+<p class="font-body-default text-body-default text-on-surface leading-relaxed pl-8">
+              Cardiovascular exam reveals normal S1 and S2 heart sounds with no murmurs, rubs, or gallops. Peripheral pulses are intact bilaterally (+2 radial and dorsalis pedis). No peripheral edema noted in lower extremities. Chest clear to auscultation bilaterally with vesicular breath sounds throughout.
+            </p>
+</div>
+<!-- Assessment (A) -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all hover:bg-surface-container-low/40">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="flex items-center justify-center w-6 h-6 rounded bg-status-warning-bg text-status-warning font-bold text-caption">A</span>
+<h3 class="font-title-sm text-title-sm text-on-surface tracking-wide uppercase">Assessment</h3>
+</div>
+<span class="font-caption text-caption text-on-surface-variant">Differential & Clinical Reasoning</span>
+</div>
+<div class="pl-8 flex flex-col gap-2">
+<div class="flex items-start gap-2">
+<span class="font-semibold text-primary">1.</span>
+<div class="flex-1">
+<span class="font-body-medium text-body-medium text-on-surface font-semibold">Type 2 Diabetes Mellitus with sub-optimal glycemic control</span>
+<span class="inline-block ml-2 px-2 py-0.5 rounded bg-surface-container-high text-primary font-caption text-caption font-semibold">ICD-11: 5A11</span>
+<p class="font-body-default text-body-default text-on-surface-variant text-sm mt-0.5">Mildly elevated fasting values indicate progressive insulin resistance or insufficient dosage with current Metformin single agent.</p>
+</div>
+</div>
+<div class="flex items-start gap-2">
+<span class="font-semibold text-primary">2.</span>
+<div class="flex-1">
+<span class="font-body-medium text-body-medium text-on-surface font-semibold">Primary Essential Hypertension, stable</span>
+<span class="inline-block ml-2 px-2 py-0.5 rounded bg-surface-container-high text-primary font-caption text-caption font-semibold">ICD-11: BA00</span>
+<p class="font-body-default text-body-default text-on-surface-variant text-sm mt-0.5">Mildly elevated today likely secondary to erratic adherence. Target systolic remains < 130 mmHg.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Plan (P) -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-2 transition-all hover:bg-surface-container-low/40">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="flex items-center justify-center w-6 h-6 rounded bg-status-success-bg text-tertiary font-bold text-caption">P</span>
+<h3 class="font-title-sm text-title-sm text-on-surface tracking-wide uppercase">Plan</h3>
+</div>
+<span class="font-caption text-caption text-on-surface-variant">Action & Follow-up Protocol</span>
+</div>
+<ol class="list-decimal list-inside pl-8 space-y-1.5 font-body-default text-body-default text-on-surface">
+<li><strong class="font-medium text-primary">Adjust Medication:</strong> Increase Metformin HCl from 500mg to 850mg BID taken with meals. Continue Lisinopril 10mg daily.</li>
+<li><strong class="font-medium text-primary">Diagnostic Orders:</strong> STAT Glycated Hemoglobin (HbA1c), Comprehensive Metabolic Panel (CMP) to assess eGFR & creatinine, and fasting lipid profile.</li>
+<li><strong class="font-medium text-primary">Patient Education:</strong> Counseled on dietary carbohydrate regulation, hydration, and maintaining daily digital blood glucose log.</li>
+<li><strong class="font-medium text-primary">Follow-up:</strong> Clinic follow-up scheduled in 4 weeks; patient instructed to visit Urgent Care if dizziness intensifies.</li>
+</ol>
+</div>
+</div>
+<!-- ICD Diagnostic Code Selector Widget -->
+<div class="p-space-md bg-surface-container-low/50 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-title-sm text-title-sm text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">bookmark_manager</span>
+<span>Assigned ICD-11 Diagnostic Codes</span>
+</label>
+<span class="font-caption text-caption text-on-surface-variant">Search or Click to Remove</span>
+</div>
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-outline">search</span>
+<input class="w-full h-10 pl-9 pr-24 rounded-lg bg-bg-surface shadow-inner text-body-default font-body-default placeholder:text-outline text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-teal-subtle transition-all" placeholder="Type ICD-11 diagnosis code or description (e.g., 5A11, Diabetic retinopathy)..." type="text"/>
+<button class="absolute right-1.5 top-1/2 -translate-y-1/2 px-2.5 py-1 rounded bg-primary text-on-primary font-caption text-caption font-semibold hover:bg-primary-teal-hover transition-colors" type="button">
+              + Add Code
+            </button>
+</div>
+<!-- Active Code Tags -->
+<div class="flex flex-wrap items-center gap-2 mt-1">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-bg-surface shadow-sm text-on-surface text-body-medium font-body-medium">
+<span class="w-2 h-2 rounded-full bg-status-warning"></span>
+<span class="font-bold text-primary">5A11</span>
+<span>Type 2 Diabetes Mellitus</span>
+<button class="text-outline hover:text-status-critical transition-colors" title="Remove diagnosis" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-bg-surface shadow-sm text-on-surface text-body-medium font-body-medium">
+<span class="w-2 h-2 rounded-full bg-status-info"></span>
+<span class="font-bold text-primary">BA00</span>
+<span>Essential Hypertension</span>
+<button class="text-outline hover:text-status-critical transition-colors" title="Remove diagnosis" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-high text-on-surface-variant hover:text-on-surface text-caption font-caption transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span>
+<span>Add Differential</span>
+</button>
+</div>
+</div>
+<!-- Physician Clinical Notes Editor Toolbar & Quick Templates -->
+<div class="p-space-md bg-bg-surface flex flex-col gap-space-sm">
+<div class="flex items-center justify-between flex-wrap gap-2">
+<div class="flex items-center gap-1 p-1 rounded-lg bg-surface-container-low">
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant font-bold text-xs w-7 h-7 flex items-center justify-center" title="Bold" type="button">B</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant italic text-xs w-7 h-7 flex items-center justify-center" title="Italic" type="button">I</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant underline text-xs w-7 h-7 flex items-center justify-center" title="Underline" type="button">U</button>
+<div class="w-px h-4 bg-outline-variant/40 mx-1"></div>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant w-7 h-7 flex items-center justify-center" title="Bullet List" type="button">
+<span class="material-symbols-outlined text-[16px]">format_list_bulleted</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant w-7 h-7 flex items-center justify-center" title="Numbered List" type="button">
+<span class="material-symbols-outlined text-[16px]">format_list_numbered</span>
+</button>
+<div class="w-px h-4 bg-outline-variant/40 mx-1"></div>
+<!-- Clinical Macros Dropdown Trigger -->
+<div class="relative">
+<button class="flex items-center gap-1 px-2 py-1 rounded bg-bg-surface text-on-surface text-caption font-caption shadow-sm hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary">auto_stories</span>
+<span>Clinical Templates</span>
+<span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-caption font-caption text-on-surface-variant">Auto-saved at 09:42 AM</span>
+<button class="flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-title-sm text-title-sm shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Save Consultation Notes</span>
+</button>
+</div>
+</div>
+<textarea class="w-full p-space-sm rounded-lg bg-surface-container-low text-body-default font-body-default placeholder:text-outline text-on-surface focus:outline-none focus:bg-bg-surface focus:ring-2 focus:ring-primary-teal-subtle transition-all resize-y" placeholder="Add supplemental physician impressions, confidential provider annotations, or differential notes here..." rows="3"></textarea>
+</div>
+</article>
+</div>
+<!-- RIGHT PANEL: Prescriptions, Laboratory Investigations & Documents (40% approx -> 5 cols on lg/xl) -->
+<div class="lg:col-span-5 xl:col-span-5 flex flex-col gap-space-gutter">
+<!-- Section A: Active Prescriptions & Pharmacy Dispense State -->
+<section class="bg-bg-surface rounded-xl shadow-sm p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<div class="p-1.5 rounded-lg bg-primary-teal-subtle text-primary">
+<span class="material-symbols-outlined text-[20px]">medication</span>
+</div>
+<div>
+<h2 class="font-title-sm text-title-sm text-on-surface">Active Prescriptions & Dispense</h2>
+<p class="font-caption text-caption text-on-surface-variant">Pharmacy core status for current cycle</p>
+</div>
+</div>
+<button class="text-primary hover:text-primary-teal-hover text-caption font-caption font-semibold flex items-center gap-0.5" type="button">
+<span>+ Add Rx</span>
+</button>
+</div>
+<!-- Medication List -->
+<div class="flex flex-col gap-2.5">
+<!-- Metformin Card -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm hover:shadow transition-all flex flex-col gap-1">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Metformin HCl 850mg</span>
+<span class="block font-caption text-caption text-on-surface-variant">1 tablet BID with meals • Oral</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-success-bg text-tertiary font-badge-sm text-badge-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+<span>Dispensed (Oct 24)</span>
+</span>
+</div>
+<div class="flex items-center justify-between text-caption font-caption text-on-surface-variant pt-1">
+<span>Qty: 60 tabs (30-day supply)</span>
+<span class="font-label-tabular text-label-tabular text-outline">Rx# RX-28491</span>
+</div>
+</div>
+<!-- Lisinopril Card -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm hover:shadow transition-all flex flex-col gap-1">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Lisinopril 10mg</span>
+<span class="block font-caption text-caption text-on-surface-variant">1 tablet daily morning • Oral</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-success-bg text-tertiary font-badge-sm text-badge-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+<span>Dispensed</span>
+</span>
+</div>
+<div class="flex items-center justify-between text-caption font-caption text-on-surface-variant pt-1">
+<span>Qty: 30 tabs (Refills: 2 remaining)</span>
+<span class="font-label-tabular text-label-tabular text-outline">Rx# RX-19044</span>
+</div>
+</div>
+<!-- Atorvastatin Card (Pending) -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm hover:shadow transition-all flex flex-col gap-1">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Atorvastatin 20mg</span>
+<span class="block font-caption text-caption text-on-surface-variant">1 tablet at bedtime • Lipid lowering</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-warning-bg text-status-warning font-badge-sm text-badge-sm font-semibold">
+<span class="material-symbols-outlined text-[13px] animate-spin">sync</span>
+<span>Pending Pharmacy Dispense</span>
+</span>
+</div>
+<div class="flex items-center justify-between text-caption font-caption text-on-surface-variant pt-1">
+<span>Awaiting Pharmacist Clinical Check</span>
+<button class="text-primary hover:underline font-semibold" type="button">Track Queue</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section B: Diagnostic Laboratory Investigations -->
+<section class="bg-bg-surface rounded-xl shadow-sm p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<div class="p-1.5 rounded-lg bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[20px]">science</span>
+</div>
+<div>
+<h2 class="font-title-sm text-title-sm text-on-surface">Diagnostic Lab Investigations</h2>
+<p class="font-caption text-caption text-on-surface-variant">LIS integration with instant telemetry</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-caption text-caption font-semibold">3 Active</span>
+</div>
+<div class="flex flex-col gap-2">
+<!-- Test 1: In Lab -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Glycated Hemoglobin (HbA1c)</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-info-bg text-status-info font-badge-sm text-badge-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-status-info animate-pulse"></span>
+<span>Sample In Lab</span>
+</span>
+</div>
+<div class="flex items-center justify-between text-caption font-caption text-on-surface-variant">
+<span>Ordered Today 09:15 by Dr. Vance</span>
+<span class="font-semibold text-status-info">Result ETA: ~2h</span>
+</div>
+<!-- Progress bar -->
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden mt-0.5">
+<div class="bg-status-info h-full rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<!-- Test 2: Abnormal Completed -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Fasting Lipid Profile</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-warning-bg text-status-warning font-badge-sm text-badge-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">warning</span>
+<span>Abnormal: LDL 142 mg/dL</span>
+</span>
+</div>
+<div class="flex items-center justify-between text-caption font-caption text-on-surface-variant">
+<span>Ordered Oct 18 • Validated: Dr. M. Stone</span>
+<a class="text-primary font-medium hover:underline flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[14px]">picture_as_pdf</span>
+<span>View PDF Report</span>
+</a>
+</div>
+</div>
+<!-- Test 3: Normal Completed -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface">Complete Blood Count (CBC)</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-status-success-bg text-tertiary font-badge-sm text-badge-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">check</span>
+<span>Normal</span>
+</span>
+</div>
+<div class="flex items-center justify-between text-caption font-caption text-on-surface-variant">
+<span>Ordered Sep 12 • Validated: Lab Core</span>
+<a class="text-primary font-medium hover:underline flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[14px]">picture_as_pdf</span>
+<span>View PDF Report</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Section C: Uploaded Medical Imaging & Documents -->
+<section class="bg-bg-surface rounded-xl shadow-sm p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<div class="p-1.5 rounded-lg bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[20px]">folder_shared</span>
+</div>
+<div>
+<h2 class="font-title-sm text-title-sm text-on-surface">Medical Imaging & Records</h2>
+<p class="font-caption text-caption text-on-surface-variant">PACS viewer & digital chart archives</p>
+</div>
+</div>
+<button class="text-primary hover:text-primary-teal-hover text-caption font-caption font-semibold flex items-center gap-0.5" type="button">
+<span>+ Upload</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<!-- Imaging Item: Chest X-ray -->
+<div class="group relative rounded-xl bg-surface-container-lowest shadow-sm p-space-sm flex flex-col gap-2 hover:shadow transition-all">
+<div class="relative w-full h-28 rounded-lg overflow-hidden bg-inverse-surface">
+<img class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" data-alt="Digital diagnostic Chest X-Ray PA radiograph view showing clear bilateral lung fields, normal cardiothoracic ratio, crisp bony thorax architecture on standard medical viewing light box display." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUbspivZ4r2dpo9OU5jsa-jdKF4eMwYjDNQEyrMw_QqkrzSKfueYC832T1t0LDhFpwJi-7SHusWhWRVRXCXX-RxtAEbBrVl77mOkE8H9tRbM-nEwGp1e8WFt2BTejDbsqDhUlW_E0UCnn0MmeYkZWWwR4TP7-Tuw98KZJGcBiewMEiZ_SCKLl_XHeT46K-ciQcbG4B91Mt4P4ADTMVQZ1anfOd4DivBW9_EtAwm2Uc8HkCZJOWGO07w"/>
+<span class="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-inverse-surface/80 text-inverse-on-surface font-caption text-[10px] uppercase font-bold tracking-wider">DICOM</span>
+<button class="absolute bottom-2 right-2 p-1.5 rounded-md bg-bg-surface/90 text-on-surface hover:bg-bg-surface shadow flex items-center justify-center transition-colors" title="Open in PACS Viewer" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-medium text-body-medium font-semibold text-on-surface truncate">Chest X-Ray PA View</span>
+<span class="font-caption text-caption text-on-surface-variant">Oct 10, 2024 • Verified: Dr. E. Zhang</span>
+</div>
+</div>
+<!-- Referral Document Item -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-sm flex flex-col justify-between hover:shadow transition-all">
+<div class="flex flex-col gap-1.5">
+<div class="w-10 h-10 rounded-lg bg-status-critical-bg text-status-critical flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">description</span>
+</div>
+<span class="font-body-medium text-body-medium font-semibold text-on-surface line-clamp-2">External Cardiology Referral Summary</span>
+<span class="font-caption text-caption text-on-surface-variant">Uploaded Sep 28 • 2.4 MB (PDF)</span>
+</div>
+<div class="pt-2 flex items-center justify-between">
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-caption text-caption font-semibold transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">download</span>
+<span>Download</span>
+</button>
+<button class="text-primary hover:text-primary-teal-hover font-caption text-caption font-semibold" type="button">
+                Preview
+              </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div></main></div></body></html>

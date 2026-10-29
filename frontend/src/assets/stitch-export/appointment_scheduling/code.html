@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"inverse-primary":"#93ccff","on-secondary-fixed-variant":"#3f465c","error-container":"#ffdad6","primary-fixed":"#cce5ff","surface-container-lowest":"#ffffff","on-surface-variant":"#3f4850","on-tertiary":"#ffffff","border-strong":"#CBD5E1","outline-variant":"#bfc7d2","tertiary-container":"#00855b","tertiary-fixed-dim":"#4edea3","on-error-container":"#93000a","status-info-bg":"#DBEAFE","surface-tint":"#006398","on-primary-fixed":"#001d31","primary-container":"#007bb9","secondary":"#565e74","status-success-bg":"#D1FAE5","surface-container":"#e5eeff","tertiary":"#006947","on-secondary-fixed":"#131b2e","inverse-on-surface":"#eaf1ff","background":"#f8f9ff","on-secondary-container":"#5c647a","on-tertiary-container":"#f5fff6","primary-fixed-dim":"#93ccff","on-primary-container":"#fdfcff","on-background":"#0b1c30","surface-container-low":"#eff4ff","status-critical-bg":"#FEE2E2","status-warning":"#F59E0B","on-tertiary-fixed-variant":"#005236","outline":"#707881","secondary-container":"#dae2fd","surface-container-high":"#dce9ff","surface-variant":"#d3e4fe","surface-dim":"#cbdbf5","tertiary-fixed":"#6ffbbe","surface":"#f8f9ff","on-primary-fixed-variant":"#004b73","on-primary":"#ffffff","status-success":"#10B981","on-secondary":"#ffffff","border-subtle":"#E2E8F0","on-tertiary-fixed":"#002113","bg-canvas":"#F8FAFC","inverse-surface":"#213145","error":"#ba1a1a","surface-bright":"#f8f9ff","bg-surface-subtle":"#F1F5F9","primary-teal-hover":"#0369A1","on-surface":"#0b1c30","on-error":"#ffffff","bg-surface":"#FFFFFF","secondary-fixed-dim":"#bec6e0","primary":"#006194","secondary-fixed":"#dae2fd","status-info":"#3B82F6","primary-teal-subtle":"#E0F2FE","status-warning-bg":"#FEF3C7","surface-container-highest":"#d3e4fe","status-critical":"#EF4444"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1rem","margin":"1.5rem","space-sm":"0.5rem","space-lg":"1.5rem","space-xl":"2rem","space-md":"1rem","space-xs":"0.25rem"},"fontFamily":{"title-sm":["Inter"],"caption":["Inter"],"display-kpi":["Inter"],"headline-lg":["Inter"],"label-tabular":["Inter"],"badge-sm":["Inter"],"body-default":["Inter"],"headline-md":["Inter"],"body-medium":["Inter"]},"fontSize":{"title-sm":["14px",{"lineHeight":"20px","fontWeight":"600"}],"caption":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"500"}],"display-kpi":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-tabular":["14px",{"lineHeight":"20px","fontWeight":"500"}],"badge-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"body-default":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-medium":["14px",{"lineHeight":"20px","fontWeight":"500"}]}}}};</script></head><body class="bg-bg-canvas font-body-default text-body-default text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-[260px] bg-inverse-surface text-inverse-on-surface z-50 flex flex-col justify-between select-none shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col min-h-0 flex-1"><div class="h-16 px-space-md flex items-center gap-space-sm border-b border-border-strong/10"><img alt="ApexCare HMS Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wg2oeyweT6z0qlw1Z19fd7E_AC660MDci0WTOGxg7y9nX63yXBjqa-_tJhHDMbQaqk_JiGLn89WwqmT0D8V4hPICSsSgVA8pUntrizns1fF4Z_8VJC-S3tlrzjnjWLUFRqXKLrFSR-4HsoxG2ItaUYASN7AED4jaXPzkFwV_CLKqI1ronjGX_DeC2IUFkknXtY0JGny0v0i_2SSF-qMg8NP4ClqEAg8GcCZcfEWbOlYatRjsyHaixWu3M"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-inverse-on-surface tracking-tight leading-none">ApexCare</span><span class="font-caption text-caption text-inverse-on-surface/60 uppercase tracking-widest">Hospital Core</span></div></div><nav class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-body-medium rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-body-medium text-body-medium">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="patients-and-emr" href="#"><span class="material-symbols-outlined text-[20px]">personal_injury</span><span class="font-body-medium text-body-medium">Patients & EMR</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm transition-colors bg-primary-container text-on-primary-container font-body-medium rounded-lg" data-path="appointments" href="#"><span class="material-symbols-outlined text-[20px]">calendar_clock</span><span class="font-body-medium text-body-medium">Appointments</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="billing-and-payments" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-body-medium text-body-medium">Billing & Payments</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="laboratory" href="#"><span class="material-symbols-outlined text-[20px]">chips</span><span class="font-body-medium text-body-medium">Laboratory</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="pharmacy" href="#"><span class="material-symbols-outlined text-[20px]">medication</span><span class="font-body-medium text-body-medium">Pharmacy</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="staff-and-doctors" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-body-medium text-body-medium">Staff & Doctors</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-inverse-on-surface/75 hover:bg-surface-container/10 hover:text-inverse-on-surface transition-colors" data-path="reports-and-analytics" href="#"><span class="material-symbols-outlined text-[20px]">insights</span><span class="font-body-medium text-body-medium">Reports & Analytics</span></a></nav></div><div class="p-space-sm border-t border-border-strong/10 bg-inverse-surface/40"><div class="flex items-center gap-space-sm p-space-xs rounded-lg hover:bg-surface-container/10 transition-colors"><div class="relative flex-shrink-0"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY9g7ovPAXqKTNMf1we6b0uyMj7Xmowj-wz3g3yzRSPYcXnF4ks6zQFXo4iyB-UZpb4BS0vgO-iaaI9aUgtstac3DYxUmMU4euxj_11gbUYukS4y7HCAlYFCi7XbiXPublEog4cFv7WQ0NpoZ7acwpNeiqp8DnHOl0N819M2PoIU6M6BSvjzkojFEbnhAhRTczfjSsT_X1KgxEOhsBGJo50DBX5A_XTSbyJsVCsy8vq9sQi3Mi2IQYbA"/><span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-status-success rounded-full ring-2 ring-inverse-surface"></span></div><div class="flex flex-col min-w-0 flex-1"><span class="font-title-sm text-title-sm text-inverse-on-surface truncate">Dr. Arthur Vance</span><span class="font-caption text-caption text-inverse-on-surface/60 truncate">Chief Medical Officer</span></div></div></div></aside><div class="pl-[260px]"><header class="fixed top-0 left-[260px] right-0 h-16 bg-bg-surface border-b border-border-subtle z-40 flex items-center justify-between px-space-margin"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-outline">search</span><input class="w-full h-[38px] pl-9 pr-4 rounded-lg bg-bg-surface-subtle border border-border-strong text-body-default font-body-default placeholder:text-outline text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-teal-subtle transition-all" placeholder="Search patients by MRN, name, doctor, or bill ID... [⌘K]" type="text"/></div></div><div class="flex items-center gap-space-md"><div class="hidden lg:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-status-success-bg text-on-tertiary-container"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-success opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-status-success"></span></span><span class="font-badge-sm text-badge-sm text-tertiary">Morning Shift (08:00 - 16:00)</span></div><button class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg bg-status-critical-bg text-status-critical hover:bg-status-critical hover:text-on-error transition-colors" title="STAT Emergency Alerts" type="button"><span class="material-symbols-outlined text-[18px]">warning</span><span class="font-title-sm text-title-sm">STAT Alerts</span><span class="inline-flex items-center justify-center px-1.5 py-0.2 text-[11px] font-bold rounded-full bg-status-critical text-on-error">3</span></button><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-bg-surface-subtle hover:text-on-surface transition-colors" title="Notifications" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-status-warning rounded-full"></span></button><button class="flex items-center gap-space-xs h-[38px] px-space-md rounded-lg bg-primary hover:bg-primary-teal-hover text-on-primary font-title-sm text-title-sm shadow-sm transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">person_add</span><span>+ Quick Admission</span></button><div class="flex items-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-border-subtle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY9g7ovPAXqKTNMf1we6b0uyMj7Xmowj-wz3g3yzRSPYcXnF4ks6zQFXo4iyB-UZpb4BS0vgO-iaaI9aUgtstac3DYxUmMU4euxj_11gbUYukS4y7HCAlYFCi7XbiXPublEog4cFv7WQ0NpoZ7acwpNeiqp8DnHOl0N819M2PoIU6M6BSvjzkojFEbnhAhRTczfjSsT_X1KgxEOhsBGJo50DBX5A_XTSbyJsVCsy8vq9sQi3Mi2IQYbA"/></div></div></header><main class="relative pt-16 bg-bg-canvas min-h-screen p-space-margin"><div class="flex flex-col w-full">
+<!-- Top Command Toolbar -->
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs text-secondary mb-1">
+<span class="font-caption text-caption uppercase tracking-wider">Outpatient Operations</span>
+<span class="text-secondary/40 text-[10px]">/</span>
+<span class="font-caption text-caption text-primary font-medium">Departmental Roster</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Appointment Scheduling & Outpatient Matrix</h1>
+</div>
+<!-- Central Controls & Actions -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Date Navigator -->
+<div class="flex items-center bg-bg-surface rounded-lg shadow-sm p-1">
+<button class="p-1.5 rounded text-secondary hover:text-on-surface hover:bg-bg-surface-subtle transition-colors" id="prevDateBtn" title="Previous Week">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="px-space-sm py-1 font-body-medium text-body-medium text-on-surface flex items-center gap-1.5 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_today</span>
+<span>Oct 21 – Oct 25, 2024</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-caption bg-surface-container text-primary font-semibold">Today: Oct 24</span>
+</button>
+<button class="p-1.5 rounded text-secondary hover:text-on-surface hover:bg-bg-surface-subtle transition-colors" id="nextDateBtn" title="Next Week">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<!-- View Selector -->
+<div class="flex items-center bg-surface-container-low p-1 rounded-lg">
+<button class="px-3 py-1 text-caption font-caption rounded text-secondary hover:text-on-surface transition-colors">Day</button>
+<button class="px-3 py-1 text-caption font-caption rounded-md bg-bg-surface shadow-sm text-primary font-semibold">Week View</button>
+<button class="px-3 py-1 text-caption font-caption rounded text-secondary hover:text-on-surface transition-colors">Month</button>
+<button class="px-3 py-1 text-caption font-caption rounded text-secondary hover:text-on-surface transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">view_column</span> Matrix
+        </button>
+</div>
+<!-- Quick Search -->
+<div class="relative w-64 hidden xl:block">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[16px] text-outline">search</span>
+<input class="w-full h-[36px] pl-8 pr-3 bg-bg-surface rounded-lg text-body-default font-body-default placeholder:text-outline text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-xs" placeholder="Filter patient, MRN, doctor..." type="text"/>
+</div>
+<!-- Primary Action -->
+<button class="flex items-center gap-1.5 h-[36px] px- space-md px-4 rounded-lg bg-primary hover:bg-primary-teal-hover text-on-primary font-title-sm text-title-sm shadow-sm transition-all transform active:scale-95" onclick="document.getElementById('bookingDrawer').classList.toggle('translate-x-full')">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Book New Appointment</span>
+</button>
+</div>
+</div>
+<!-- Dual-Pane Scheduling Canvas -->
+<div class="relative flex flex-col xl:flex-row gap-space-gutter items-start">
+<!-- LEFT CONTROL PANEL (300px desktop anchor) -->
+<aside class="w-full xl:w-[300px] flex-shrink-0 flex flex-col gap-space-md">
+<!-- Mini Monthly Calendar Widget -->
+<div class="bg-bg-surface rounded-xl shadow-sm p-space-md">
+<div class="flex items-center justify-between mb-3">
+<span class="font-title-sm text-title-sm text-on-surface">October 2024</span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded hover:bg-bg-surface-subtle text-secondary transition-colors"><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-bg-surface-subtle text-secondary transition-colors"><span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center font-caption text-caption text-secondary/70 mb-2">
+<span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center font-caption text-caption text-on-surface">
+<!-- Wk 1 -->
+<span class="py-1 text-secondary/30">29</span>
+<span class="py-1 text-secondary/30">30</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">1</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">2</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">3</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">4</span>
+<span class="py-1 text-secondary/50">5</span>
+<!-- Wk 2 -->
+<span class="py-1 text-secondary/50">6</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">7</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">8</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer relative">9<span class="w-1 h-1 bg-status-info rounded-full absolute bottom-0.5 left-1/2 -translate-x-1/2"></span></span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">10</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer relative">11<span class="w-1 h-1 bg-status-warning rounded-full absolute bottom-0.5 left-1/2 -translate-x-1/2"></span></span>
+<span class="py-1 text-secondary/50">12</span>
+<!-- Wk 3 -->
+<span class="py-1 text-secondary/50">13</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">14</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">15</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer relative">16<span class="w-1 h-1 bg-status-info rounded-full absolute bottom-0.5 left-1/2 -translate-x-1/2"></span></span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">17</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">18</span>
+<span class="py-1 text-secondary/50">19</span>
+<!-- Wk 4 (Current) -->
+<span class="py-1 text-secondary/50">20</span>
+<span class="py-1 bg-surface-container-low rounded font-semibold text-primary">21</span>
+<span class="py-1 bg-surface-container-low rounded font-semibold text-primary">22</span>
+<span class="py-1 bg-surface-container-low rounded font-semibold text-primary">23</span>
+<span class="py-1 bg-primary text-on-primary rounded font-bold shadow-sm relative">24<span class="w-1 h-1 bg-on-primary rounded-full absolute bottom-0.5 left-1/2 -translate-x-1/2"></span></span>
+<span class="py-1 bg-surface-container-low rounded font-semibold text-primary">25</span>
+<span class="py-1 text-secondary/50">26</span>
+<!-- Wk 5 -->
+<span class="py-1 text-secondary/50">27</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">28</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer relative">29<span class="w-1 h-1 bg-status-critical rounded-full absolute bottom-0.5 left-1/2 -translate-x-1/2"></span></span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">30</span>
+<span class="py-1 hover:bg-surface-container rounded cursor-pointer">31</span>
+<span class="py-1 text-secondary/30">1</span>
+<span class="py-1 text-secondary/30">2</span>
+</div>
+<div class="flex items-center justify-between mt-3 pt-2 text-[10px] text-secondary">
+<div class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-status-info"></span> Moderate</div>
+<div class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-status-warning"></span> High Load</div>
+<div class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-status-critical"></span> Capacity STAT</div>
+</div>
+</div>
+<!-- Outpatient Live Stats -->
+<div class="bg-bg-surface rounded-xl shadow-sm p-space-md">
+<div class="flex items-center justify-between mb-3">
+<span class="font-title-sm text-title-sm text-on-surface">Queue & Slot Metrics</span>
+<span class="material-symbols-outlined text-[16px] text-outline">analytics</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-surface-container-low p-2 rounded-lg text-center">
+<span class="font-caption text-caption text-secondary block">Total</span>
+<span class="font-display-kpi text-[20px] leading-6 text-on-surface font-bold">86</span>
+</div>
+<div class="bg-status-success-bg p-2 rounded-lg text-center">
+<span class="font-caption text-caption text-tertiary block">In-Clinic</span>
+<span class="font-display-kpi text-[20px] leading-6 text-tertiary font-bold">34</span>
+</div>
+<div class="bg-status-critical-bg p-2 rounded-lg text-center">
+<span class="font-caption text-caption text-status-critical block">No-shows</span>
+<span class="font-display-kpi text-[20px] leading-6 text-status-critical font-bold">2</span>
+</div>
+</div>
+</div>
+<!-- Department Filter Section -->
+<div class="bg-bg-surface rounded-xl shadow-sm p-space-md">
+<div class="flex items-center justify-between mb-3">
+<span class="font-title-sm text-title-sm text-on-surface">Specialty Department</span>
+<button class="font-caption text-caption text-primary hover:underline">Select All</button>
+</div>
+<div class="space-y-2 font-body-default text-body-default text-xs">
+<label class="flex items-center justify-between p-1.5 rounded hover:bg-surface-container-low cursor-pointer">
+<div class="flex items-center gap-2">
+<input checked="" class="rounded text-primary focus:ring-0 w-4 h-4 cursor-pointer accent-primary" type="checkbox"/>
+<span class="text-on-surface font-medium">Cardiology</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-caption text-[11px] text-primary font-semibold">18</span>
+</label>
+<label class="flex items-center justify-between p-1.5 rounded hover:bg-surface-container-low cursor-pointer">
+<div class="flex items-center gap-2">
+<input checked="" class="rounded text-primary focus:ring-0 w-4 h-4 cursor-pointer accent-primary" type="checkbox"/>
+<span class="text-on-surface font-medium">General Medicine</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-caption text-[11px] text-primary font-semibold">24</span>
+</label>
+<label class="flex items-center justify-between p-1.5 rounded hover:bg-surface-container-low cursor-pointer">
+<div class="flex items-center gap-2">
+<input class="rounded text-primary focus:ring-0 w-4 h-4 cursor-pointer accent-primary" type="checkbox"/>
+<span class="text-secondary font-normal">Pediatrics</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-bg-surface-subtle font-caption text-[11px] text-secondary">14</span>
+</label>
+<label class="flex items-center justify-between p-1.5 rounded hover:bg-surface-container-low cursor-pointer">
+<div class="flex items-center gap-2">
+<input class="rounded text-primary focus:ring-0 w-4 h-4 cursor-pointer accent-primary" type="checkbox"/>
+<span class="text-secondary font-normal">Orthopedics</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-bg-surface-subtle font-caption text-[11px] text-secondary">12</span>
+</label>
+<label class="flex items-center justify-between p-1.5 rounded hover:bg-surface-container-low cursor-pointer">
+<div class="flex items-center gap-2">
+<input class="rounded text-primary focus:ring-0 w-4 h-4 cursor-pointer accent-primary" type="checkbox"/>
+<span class="text-secondary font-normal">Neurology</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-bg-surface-subtle font-caption text-[11px] text-secondary">8</span>
+</label>
+</div>
+</div>
+<!-- Attending Doctor Roster List -->
+<div class="bg-bg-surface rounded-xl shadow-sm p-space-md">
+<div class="flex items-center justify-between mb-3">
+<span class="font-title-sm text-title-sm text-on-surface">Physician Availability</span>
+<span class="font-caption text-caption text-secondary">Today</span>
+</div>
+<div class="space-y-2.5">
+<!-- Doctor 1: Vance -->
+<div class="p-2.5 rounded-lg bg-surface-container-low/60 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-2">
+<div class="relative">
+<div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">AV</div>
+<span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-status-success ring-2 ring-bg-surface"></span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-xs text-on-surface font-semibold leading-tight">Dr. Arthur Vance</span>
+<span class="text-[11px] text-secondary">Chief Cardiologist</span>
+</div>
+</div>
+<input checked="" class="accent-primary cursor-pointer h-3.5 w-3.5" title="Toggle doctor calendar" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between text-[11px]">
+<span class="font-caption text-on-tertiary-fixed-variant bg-status-success-bg px-1.5 py-0.5 rounded-full">In Clinic</span>
+<span class="text-secondary font-medium"><span class="text-on-surface font-bold">6</span> booked / 2 open</span>
+</div>
+</div>
+<!-- Doctor 2: Lin -->
+<div class="p-2.5 rounded-lg bg-surface-container-low/60 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-2">
+<div class="relative">
+<div class="w-8 h-8 rounded-full bg-status-warning/10 text-status-warning flex items-center justify-center font-bold text-xs">SL</div>
+<span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-status-success ring-2 ring-bg-surface"></span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-xs text-on-surface font-semibold leading-tight">Dr. Sarah Lin</span>
+<span class="text-[11px] text-secondary">Pediatrics Lead</span>
+</div>
+</div>
+<input checked="" class="accent-primary cursor-pointer h-3.5 w-3.5" title="Toggle doctor calendar" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between text-[11px]">
+<span class="font-caption text-on-tertiary-fixed-variant bg-status-success-bg px-1.5 py-0.5 rounded-full">In Clinic</span>
+<span class="text-status-critical font-medium">8 booked (Full)</span>
+</div>
+</div>
+<!-- Doctor 3: Chen -->
+<div class="p-2.5 rounded-lg bg-surface-container-low/60 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-2">
+<div class="relative">
+<div class="w-8 h-8 rounded-full bg-status-info/10 text-status-info flex items-center justify-center font-bold text-xs">MC</div>
+<span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-status-info ring-2 ring-bg-surface"></span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-xs text-on-surface font-semibold leading-tight">Dr. Marcus Chen</span>
+<span class="text-[11px] text-secondary">Orthopedic Surgeon</span>
+</div>
+</div>
+<input checked="" class="accent-primary cursor-pointer h-3.5 w-3.5" title="Toggle doctor calendar" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between text-[11px]">
+<span class="font-caption text-status-info bg-status-info-bg px-1.5 py-0.5 rounded-full">Available</span>
+<span class="text-secondary font-medium"><span class="text-on-surface font-bold">4</span> booked / 4 open</span>
+</div>
+</div>
+<!-- Doctor 4: Watson -->
+<div class="p-2.5 rounded-lg bg-surface-container-low/30 hover:bg-surface-container-low transition-colors opacity-80">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center gap-2">
+<div class="relative">
+<div class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-bold text-xs">EW</div>
+<span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-status-warning ring-2 ring-bg-surface"></span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-xs text-on-surface font-semibold leading-tight">Dr. Emily Watson</span>
+<span class="text-[11px] text-secondary">Neurology</span>
+</div>
+</div>
+<input class="accent-primary cursor-pointer h-3.5 w-3.5" title="Toggle doctor calendar" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between text-[11px]">
+<span class="font-caption text-status-warning bg-status-warning-bg px-1.5 py-0.5 rounded-full">On Rounds</span>
+<span class="text-secondary text-[10px]">Open @ 14:00</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- RIGHT TIMETABLE MATRIX (Weekly Grid View) -->
+<section class="flex-1 w-full overflow-hidden bg-bg-surface rounded-xl shadow-sm flex flex-col">
+<!-- Timetable Header Bar with Days of Week -->
+<div class="grid grid-cols-[70px_repeat(5,1fr)] bg-surface-container-low/70 border-b border-surface-container text-xs font-semibold select-none">
+<div class="py-3 px-2 text-center font-caption text-secondary border-r border-surface-container">TIME</div>
+<div class="py-3 px-3 text-center border-r border-surface-container">
+<span class="text-secondary font-caption uppercase block text-[10px]">Mon</span>
+<span class="text-on-surface font-title-sm">Oct 21</span>
+</div>
+<div class="py-3 px-3 text-center border-r border-surface-container">
+<span class="text-secondary font-caption uppercase block text-[10px]">Tue</span>
+<span class="text-on-surface font-title-sm">Oct 22</span>
+</div>
+<div class="py-3 px-3 text-center border-r border-surface-container">
+<span class="text-secondary font-caption uppercase block text-[10px]">Wed</span>
+<span class="text-on-surface font-title-sm">Oct 23</span>
+</div>
+<!-- Highlighted Active Day -->
+<div class="py-3 px-3 text-center bg-primary-teal-subtle/40 border-r border-surface-container">
+<div class="inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="text-primary font-caption uppercase block text-[10px] font-bold">Thu (Today)</span>
+</div>
+<span class="text-primary font-title-sm font-bold block">Oct 24</span>
+</div>
+<div class="py-3 px-3 text-center">
+<span class="text-secondary font-caption uppercase block text-[10px]">Fri</span>
+<span class="text-on-surface font-title-sm">Oct 25</span>
+</div>
+</div>
+<!-- Schedule Time Slots Canvas -->
+<div class="relative overflow-y-auto max-h-[720px] divide-y divide-surface-container/50">
+<!-- 08:00 - 08:30 Block -->
+<div class="grid grid-cols-[70px_repeat(5,1fr)] min-h-[58px] group">
+<div class="px-2 py-1 text-center font-caption text-caption text-secondary/80 border-r border-surface-container flex items-start justify-center pt-2">
+            08:00
+          </div>
+<div class="p-1 border-r border-surface-container">
+<div class="h-full rounded bg-surface-container-low/40 p-1.5 flex flex-col justify-center">
+<span class="font-caption text-[11px] font-semibold text-secondary truncate">Morning Huddle</span>
+<span class="text-[10px] text-secondary/70">Cardio Dept</span>
+</div>
+</div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs font-medium">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs font-medium">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<!-- Today 08:00 Slot -->
+<div class="p-1 border-r border-surface-container bg-primary-teal-subtle/10 hover:bg-primary-teal-subtle/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs font-medium">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs font-medium">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+</div>
+<!-- 08:30 - 09:00 Block -->
+<div class="grid grid-cols-[70px_repeat(5,1fr)] min-h-[58px] group">
+<div class="px-2 py-1 text-center font-caption text-caption text-secondary/80 border-r border-surface-container flex items-start justify-center pt-2">
+            08:30
+          </div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 border-r border-surface-container">
+<div class="h-full rounded bg-surface-container-highest/60 p-1.5 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-title-sm text-xs text-on-surface truncate">David Kim</span>
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+</div>
+<span class="text-[10px] text-secondary">General Exam</span>
+</div>
+</div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<!-- Today 08:30 Slot -->
+<div class="p-1 border-r border-surface-container bg-primary-teal-subtle/10 hover:bg-primary-teal-subtle/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+</div>
+<!-- 09:00 - 09:30 Block -->
+<div class="grid grid-cols-[70px_repeat(5,1fr)] min-h-[64px] group">
+<div class="px-2 py-1 text-center font-caption text-caption text-secondary/80 border-r border-surface-container flex items-start justify-center pt-2">
+            09:00
+          </div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 border-r border-surface-container">
+<div class="h-full rounded bg-surface-container-low p-1.5 flex flex-col justify-between">
+<span class="font-title-sm text-xs text-on-surface truncate">Emma Davis</span>
+<span class="text-[10px] text-secondary">Pre-Op Consult</span>
+</div>
+</div>
+<!-- Today 09:00 Slot: Eleanor Vance (In-Progress) -->
+<div class="p-1 border-r border-surface-container bg-primary-teal-subtle/10">
+<div class="h-full rounded-lg bg-status-warning-bg/60 p-2 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow cursor-pointer">
+<div class="flex items-center justify-between gap-1">
+<span class="font-title-sm text-xs text-on-surface font-bold truncate">Eleanor Vance</span>
+<span class="px-1.5 py-0.2 rounded-full font-caption text-[10px] bg-status-warning text-on-surface font-semibold tracking-tight">In-Progress</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span class="font-label-tabular text-[10px] text-secondary">#MRN-84920</span>
+<span class="text-[10px] font-semibold text-primary truncate">Dr. Vance · Cardio</span>
+</div>
+</div>
+</div>
+<div class="p-1 hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+</div>
+<!-- 09:30 - 10:00 Block -->
+<div class="grid grid-cols-[70px_repeat(5,1fr)] min-h-[64px] group">
+<div class="px-2 py-1 text-center font-caption text-caption text-secondary/80 border-r border-surface-container flex items-start justify-center pt-2">
+            09:30
+          </div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<!-- Today 09:30 Slot: Michael Chang (Confirmed) -->
+<div class="p-1 border-r border-surface-container bg-primary-teal-subtle/10">
+<div class="h-full rounded-lg bg-status-success-bg/70 p-2 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow cursor-pointer">
+<div class="flex items-center justify-between gap-1">
+<span class="font-title-sm text-xs text-on-surface font-bold truncate">Michael Chang</span>
+<span class="px-1.5 py-0.2 rounded-full font-caption text-[10px] bg-status-success text-on-tertiary font-semibold tracking-tight">Confirmed</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span class="font-label-tabular text-[10px] text-secondary">#MRN-55210</span>
+<span class="text-[10px] font-semibold text-tertiary truncate">Dr. Lin · Ped Wellness</span>
+</div>
+</div>
+</div>
+<div class="p-1 hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+</div>
+<!-- 10:00 - 10:30 Block -->
+<div class="grid grid-cols-[70px_repeat(5,1fr)] min-h-[64px] group">
+<div class="px-2 py-1 text-center font-caption text-caption text-secondary/80 border-r border-surface-container flex items-start justify-center pt-2">
+            10:00
+          </div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<!-- Today 10:00 Slot: Robert Taylor (Checked-in) -->
+<div class="p-1 border-r border-surface-container bg-primary-teal-subtle/10">
+<div class="h-full rounded-lg bg-status-info-bg/70 p-2 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow cursor-pointer">
+<div class="flex items-center justify-between gap-1">
+<span class="font-title-sm text-xs text-on-surface font-bold truncate">Robert Taylor</span>
+<span class="px-1.5 py-0.2 rounded-full font-caption text-[10px] bg-status-info text-on-primary font-semibold tracking-tight">Checked-in</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span class="font-label-tabular text-[10px] text-secondary">#MRN-41908</span>
+<span class="text-[10px] font-semibold text-primary truncate">Dr. Vance · Post-Angio</span>
+</div>
+</div>
+</div>
+<div class="p-1 hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+</div>
+<!-- 10:30 - 11:00 Block -->
+<div class="grid grid-cols-[70px_repeat(5,1fr)] min-h-[58px] group">
+<div class="px-2 py-1 text-center font-caption text-caption text-secondary/80 border-r border-surface-container flex items-start justify-center pt-2">
+            10:30
+          </div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 border-r border-surface-container">
+<div class="h-full rounded bg-surface-container-high/60 p-1.5 flex flex-col justify-between">
+<span class="font-title-sm text-xs text-on-surface truncate">Hannah Lee</span>
+<span class="text-[10px] text-secondary">Lab Review</span>
+</div>
+</div>
+<!-- Today 10:30 Open Slot -->
+<div class="p-1 border-r border-surface-container bg-primary-teal-subtle/10 group/slot">
+<button class="w-full h-full rounded-md border border-dashed border-primary/40 hover:bg-primary/5 flex items-center justify-center gap-1 text-[11px] text-primary font-medium transition-all" onclick="document.getElementById('bookingDrawer').classList.remove('translate-x-full')">
+<span class="material-symbols-outlined text-[14px]">add_circle</span> Book 10:30
+            </button>
+</div>
+<div class="p-1 hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+</div>
+<!-- 11:00 - 11:30 Block -->
+<div class="grid grid-cols-[70px_repeat(5,1fr)] min-h-[64px] group">
+<div class="px-2 py-1 text-center font-caption text-caption text-secondary/80 border-r border-surface-container flex items-start justify-center pt-2">
+            11:00
+          </div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+<!-- Today 11:00 Slot: Sophia Martinez (Scheduled) -->
+<div class="p-1 border-r border-surface-container bg-primary-teal-subtle/10">
+<div class="h-full rounded-lg bg-surface-container-highest/80 p-2 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow cursor-pointer">
+<div class="flex items-center justify-between gap-1">
+<span class="font-title-sm text-xs text-on-surface font-bold truncate">Sophia Martinez</span>
+<span class="px-1.5 py-0.2 rounded-full font-caption text-[10px] bg-primary text-on-primary font-semibold tracking-tight">Scheduled</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span class="font-label-tabular text-[10px] text-secondary">#MRN-92144</span>
+<span class="text-[10px] font-semibold text-secondary truncate">Dr. Chen · Arthroscopy</span>
+</div>
+</div>
+</div>
+<div class="p-1 hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+</div>
+<!-- 11:30 - 12:00 Block -->
+<div class="grid grid-cols-[70px_repeat(5,1fr)] min-h-[58px] group">
+<div class="px-2 py-1 text-center font-caption text-caption text-secondary/80 border-r border-surface-container flex items-start justify-center pt-2">
+            11:30
+          </div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+<div class="p-1 border-r border-surface-container bg-primary-teal-subtle/10 group/slot">
+<button class="w-full h-full rounded-md border border-dashed border-primary/40 hover:bg-primary/5 flex items-center justify-center gap-1 text-[11px] text-primary font-medium transition-all" onclick="document.getElementById('bookingDrawer').classList.remove('translate-x-full')">
+<span class="material-symbols-outlined text-[14px]">add_circle</span> Book 11:30
+            </button>
+</div>
+<div class="p-1 hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+</div>
+<!-- 12:00 - 13:00 Lunch Recess Bar -->
+<div class="grid grid-cols-[70px_1fr] bg-bg-surface-subtle/80 py-2 border-y border-surface-container">
+<div class="text-center font-caption text-[11px] text-secondary font-medium">12:00</div>
+<div class="flex items-center justify-center gap-2 text-secondary/60 text-xs font-caption uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">restaurant</span>
+<span>Clinical Ward Lunch Recess & Charting Period (12:00 – 13:00)</span>
+</div>
+</div>
+<!-- 13:00 - 13:30 Block: STAT EMERGENCY RESERVED -->
+<div class="grid grid-cols-[70px_repeat(5,1fr)] min-h-[64px] group">
+<div class="px-2 py-1 text-center font-caption text-caption text-secondary/80 border-r border-surface-container flex items-start justify-center pt-2">
+            13:00
+          </div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+<!-- Emergency Slot Hold -->
+<div class="p-1 border-r border-surface-container bg-primary-teal-subtle/10">
+<div class="h-full rounded-lg bg-status-critical-bg p-2 shadow-sm flex flex-col justify-between border-l-4 border-status-critical">
+<div class="flex items-center justify-between gap-1">
+<div class="flex items-center gap-1 text-status-critical font-bold text-xs">
+<span class="material-symbols-outlined text-[14px]">emergency</span>
+<span>Cardiac STAT Hold</span>
+</div>
+<span class="px-1.5 py-0.2 rounded-full font-caption text-[10px] bg-status-critical text-on-error font-bold">Reserved</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-status-critical/80">
+<span class="font-caption text-[10px]">Triage Priority #1</span>
+<span class="text-[10px] font-medium">Duty On-Call Room 3</span>
+</div>
+</div>
+</div>
+<div class="p-1 hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+</div>
+<!-- 13:30 - 14:00 Block -->
+<div class="grid grid-cols-[70px_repeat(5,1fr)] min-h-[58px] group">
+<div class="px-2 py-1 text-center font-caption text-caption text-secondary/80 border-r border-surface-container flex items-start justify-center pt-2">
+            13:30
+          </div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+<!-- Today 13:30 Open Slot -->
+<div class="p-1 border-r border-surface-container bg-primary-teal-subtle/10 group/slot">
+<button class="w-full h-full rounded-md border border-dashed border-primary/40 hover:bg-primary/5 flex items-center justify-center gap-1 text-[11px] text-primary font-medium transition-all" onclick="document.getElementById('bookingDrawer').classList.remove('translate-x-full')">
+<span class="material-symbols-outlined text-[14px]">add_circle</span> Book 13:30
+            </button>
+</div>
+<div class="p-1 hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+</div>
+<!-- 14:00 - 14:30 Block -->
+<div class="grid grid-cols-[70px_repeat(5,1fr)] min-h-[58px] group">
+<div class="px-2 py-1 text-center font-caption text-caption text-secondary/80 border-r border-surface-container flex items-start justify-center pt-2">
+            14:00
+          </div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+<div class="p-1 border-r border-surface-container hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+<!-- Target Selected Slot for drawer (14:00) -->
+<div class="p-1 border-r border-surface-container bg-primary/10 relative">
+<div class="w-full h-full rounded-md border-2 border-primary bg-bg-surface p-1.5 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="font-title-sm text-xs text-primary font-bold">Selected Slot (30m)</span>
+</div>
+<span class="font-caption text-[11px] text-secondary">Ready to assign</span>
+</div>
+</div>
+<div class="p-1 hover:bg-surface-container-low/30 cursor-pointer flex items-center justify-center text-secondary/30 hover:text-primary transition-colors text-xs"><span class="material-symbols-outlined text-[14px]">add</span></div>
+</div>
+</div>
+</section>
+<!-- SLIDE-OVER QUICK BOOKING MODAL / TRAY -->
+<div class="fixed right-0 top-16 bottom-0 w-[380px] bg-bg-surface shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col border-l border-surface-container" id="bookingDrawer">
+<!-- Drawer Header -->
+<div class="px-space-md py-4 bg-surface-container-low/70 flex items-center justify-between border-b border-surface-container">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">event_available</span>
+</div>
+<div>
+<h3 class="font-title-sm text-title-sm text-on-surface">Book Appointment</h3>
+<span class="font-caption text-caption text-secondary">Rapid Outpatient Registration</span>
+</div>
+</div>
+<button class="p-1.5 rounded-lg text-secondary hover:bg-bg-surface-subtle hover:text-on-surface transition-colors" onclick="document.getElementById('bookingDrawer').classList.add('translate-x-full')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Drawer Form Body -->
+<div class="flex-1 overflow-y-auto p-space-md space-y-4">
+<!-- Patient Lookup -->
+<div class="space-y-1.5">
+<label class="font-caption text-caption uppercase text-secondary font-medium tracking-wide">Patient Identification</label>
+<div class="relative">
+<input class="w-full h-[38px] px-3 bg-surface-container-low text-body-default font-body-default text-on-surface rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 font-medium" type="text" value="Eleanor Vance (#MRN-84920)"/>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-[18px] text-tertiary">check_circle</span>
+</div>
+<div class="flex items-center gap-2 text-[11px] text-secondary">
+<span>DOB: 12/04/1968</span>
+<span>•</span>
+<span class="text-status-critical font-medium">Penicillin Allergy</span>
+</div>
+</div>
+<!-- Attending Doctor & Department (Pre-filled) -->
+<div class="space-y-1.5">
+<label class="font-caption text-caption uppercase text-secondary font-medium tracking-wide">Attending Physician & Dept</label>
+<div class="p-2.5 rounded-lg bg-surface-container-low/60 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs">AV</div>
+<div>
+<span class="font-title-sm text-xs text-on-surface block">Dr. Arthur Vance</span>
+<span class="font-caption text-[11px] text-secondary">Cardiology Department</span>
+</div>
+</div>
+<button class="font-caption text-primary hover:underline text-xs">Change</button>
+</div>
+</div>
+<!-- Slot Details -->
+<div class="p-3 rounded-lg bg-primary-teal-subtle/30 space-y-2">
+<div class="flex items-center justify-between text-xs">
+<span class="text-secondary font-medium">Selected Date:</span>
+<span class="font-title-sm text-on-surface">Thursday, Oct 24, 2024</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-secondary font-medium">Time Slot:</span>
+<span class="font-title-sm text-primary font-bold">14:00 – 14:30 (30 mins)</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-secondary font-medium">Facility / Clinic:</span>
+<span class="font-body-default text-on-surface text-xs">Cardio Suite 302, Wing B</span>
+</div>
+</div>
+<!-- Visit Type Selection -->
+<div class="space-y-1.5">
+<label class="font-caption text-caption uppercase text-secondary font-medium tracking-wide">Visit Classification</label>
+<div class="grid grid-cols-3 gap-2">
+<label class="border-2 border-primary/20 bg-primary/5 rounded-lg p-2 text-center cursor-pointer hover:bg-primary/10 transition-colors">
+<input checked="" class="hidden" name="visit_type" type="radio"/>
+<span class="material-symbols-outlined text-[18px] text-primary block mx-auto mb-1">stethoscope</span>
+<span class="font-caption text-[11px] font-semibold text-primary block">Consult</span>
+</label>
+<label class="border border-surface-container bg-bg-surface rounded-lg p-2 text-center cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="hidden" name="visit_type" type="radio"/>
+<span class="material-symbols-outlined text-[18px] text-secondary block mx-auto mb-1">replay</span>
+<span class="font-caption text-[11px] text-secondary block">Follow-up</span>
+</label>
+<label class="border border-surface-container bg-bg-surface rounded-lg p-2 text-center cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="hidden" name="visit_type" type="radio"/>
+<span class="material-symbols-outlined text-[18px] text-status-critical block mx-auto mb-1">e911_emergency</span>
+<span class="font-caption text-[11px] text-status-critical block">STAT Urgent</span>
+</label>
+</div>
+</div>
+<!-- Clinical Notes / Chief Complaint -->
+<div class="space-y-1.5">
+<label class="font-caption text-caption uppercase text-secondary font-medium tracking-wide">Chief Complaint / Referral Note</label>
+<textarea class="w-full p-2.5 bg-surface-container-low text-body-default font-body-default text-on-surface rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 text-xs resize-none" placeholder="Enter clinical reason or referral diagnosis..." rows="3">Cardiology evaluation following post-exercise palpitations and elevated ambulatory blood pressure reading.</textarea>
+</div>
+<!-- Notifications & SMS Reminder -->
+<div class="pt-1">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="accent-primary rounded w-4 h-4 cursor-pointer" type="checkbox"/>
+<span class="font-caption text-xs text-on-surface">Send automated SMS & Portal confirmation</span>
+</label>
+</div>
+</div>
+<!-- Drawer Action Footer -->
+<div class="p-space-md bg-surface-container-low/50 border-t border-surface-container flex items-center justify-between gap-space-sm">
+<button class="flex-1 h-[38px] rounded-lg bg-bg-surface hover:bg-bg-surface-subtle font-title-sm text-title-sm text-secondary transition-colors" onclick="document.getElementById('bookingDrawer').classList.add('translate-x-full')">
+          Cancel
+        </button>
+<button class="flex-1 h-[38px] rounded-lg bg-primary hover:bg-primary-teal-hover text-on-primary font-title-sm text-title-sm shadow-sm transition-all" onclick="document.getElementById('bookingDrawer').classList.add('translate-x-full'); alert('Appointment Confirmed & Slotted for Eleanor Vance (#MRN-84920)')">
+          Confirm Slot
+        </button>
+</div>
+</div>
+</div>
+</div></main></div></body></html>
