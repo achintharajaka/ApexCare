@@ -73,4 +73,5 @@ Thumbs.db
 .codex/
 *.tmp
 *.bak
+*.backup
 
