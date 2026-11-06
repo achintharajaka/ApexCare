@@ -122,17 +122,27 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 backdrop-blur-xs p-4 animate-fadeIn">
-      <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-lg overflow-hidden">
+    <div
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) handleClose();
+      }}
+    >
+      <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-lg max-h-[92vh] sm:max-h-[88vh] overflow-hidden flex flex-col">
+        {/* Mobile Drag Indicator Handle */}
+        <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+          <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+        </div>
+
         {/* Header */}
-        <div className="px-6 py-4 bg-primary-navy text-white flex items-center justify-between">
+        <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
-              <span className="material-symbols-outlined text-[20px]">mark_email_read</span>
+            <div className="w-8 h-8 rounded-xl bg-cyan-950 text-cyan-400 border border-cyan-800/60 flex items-center justify-center">
+              <span className="material-symbols-outlined text-[18px]">mark_email_read</span>
             </div>
             <div>
-              <h2 className="text-base font-semibold tracking-tight">Self-Service Password Recovery</h2>
-              <p className="text-[11px] text-slate-300">
+              <h2 className="text-sm sm:text-base font-bold tracking-tight">Self-Service Password Recovery</h2>
+              <p className="text-[11px] text-slate-400">
                 {step === 'request'
                   ? 'Request an email verification code to reset your account credentials'
                   : 'Enter the verification code dispatched to your email'}
@@ -141,7 +151,7 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
           </div>
           <button
             onClick={handleClose}
-            className="text-slate-300 hover:text-white transition-colors p-1 rounded-md"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 tap-press transition-colors"
             title="Close"
           >
             <span className="material-symbols-outlined text-[20px]">close</span>

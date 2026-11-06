@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { RealtimeProvider, useRealtime } from './context/RealtimeContext';
 import { Sidebar } from './components/layout/Sidebar';
 import { Header } from './components/layout/Header';
+import { MobileNav } from './components/layout/MobileNav';
 import { DashboardView } from './features/dashboard/DashboardView';
 import { PatientsView } from './features/patients/PatientsView';
 import { EmrDeskView } from './features/emr/EmrDeskView';
@@ -112,8 +113,8 @@ const MainLayout: React.FC = () => {
           statAlertsCount={(telemetry?.kpis?.laboratory?.urgent || 0) + (telemetry?.kpis?.pharmacy?.alerts || 0)}
         />
 
-        {/* Dynamic Main Workspace Container - responsive mobile gutters */}
-        <main className="pt-20 pb-12 px-3 sm:px-6 lg:px-8 min-h-[calc(100vh-64px)] max-w-7xl mx-auto w-full">
+        {/* Dynamic Main Workspace Container - responsive mobile gutters with bottom padding for mobile bar */}
+        <main className="pt-20 pb-24 lg:pb-12 px-3 sm:px-6 lg:px-8 min-h-[calc(100vh-64px)] max-w-7xl mx-auto w-full">
           {currentPath === 'dashboard' && (
             <DashboardView
               onNavigateToEmr={handleOpenEmr}
@@ -165,6 +166,18 @@ const MainLayout: React.FC = () => {
 
           {currentPath === 'audit-logs' && <AuditLogsView />}
         </main>
+
+        {/* Mobile Persistent Bottom Navigation Bar */}
+        <MobileNav
+          currentPath={currentPath}
+          onNavigate={(path) => {
+            setCurrentPath(path);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onOpenMobileMenu={() => setIsMobileNavOpen(true)}
+          onOpenQuickAdmission={() => setIsQuickAdmissionOpen(true)}
+          statAlertsCount={(telemetry?.kpis?.laboratory?.urgent || 0) + (telemetry?.kpis?.pharmacy?.alerts || 0)}
+        />
       </div>
 
       {/* Rapid Triage Admission Modal */}

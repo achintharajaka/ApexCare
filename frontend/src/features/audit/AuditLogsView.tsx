@@ -72,8 +72,8 @@ export const AuditLogsView: React.FC = () => {
       </div>
 
       {/* Audit Log Table */}
-      <div className="bg-bg-surface rounded-xl border border-border-subtle shadow-xs overflow-hidden">
-        <div className="overflow-x-auto">
+      <div className="bg-bg-surface rounded-2xl border border-border-subtle shadow-xs overflow-hidden">
+        <div className="table-scroll-container">
           <table className="w-full text-left border-collapse text-sm min-w-[700px]">
             <thead>
               <tr className="bg-bg-surface-subtle text-caption font-caption text-slate-500 uppercase border-b border-border-subtle">

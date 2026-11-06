@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
-import { appointments, patients, users, logAudit, saveStorage } from "../../db/store.js";
+import { appointments, patients, users, staffMembers, logAudit, saveStorage } from "../../db/store.js";
 import { notifyChange } from "../realtime/realtime.service.js";
 
 export const appointmentsRouter = Router();
@@ -16,7 +16,11 @@ appointmentsRouter.get("/", (req: Request, res: Response) => {
   }
 
   if (doctorId && doctorId !== "All") {
-    filtered = filtered.filter((a) => a.doctorId === doctorId);
+    const docObj = users.find((u) => u.id === doctorId) || staffMembers.find((s) => s.id === doctorId);
+    const docName = docObj?.fullName?.toLowerCase();
+    filtered = filtered.filter(
+      (a) => a.doctorId === doctorId || (docName && a.doctorName?.toLowerCase() === docName)
+    );
   }
 
   if (department && department !== "All") {
@@ -31,24 +35,100 @@ appointmentsRouter.get("/", (req: Request, res: Response) => {
 });
 
 // Doctor roster list with availability badges
-appointmentsRouter.get("/roster", (_req: Request, res: Response) => {
-  const doctors = users
-    .filter((u) => u.role === "DOCTOR" || u.role === "ADMIN")
-    .map((doc) => {
-      const activeCount = appointments.filter((a) => a.doctorId === doc.id && a.status !== "Cancelled").length;
-      return {
-        id: doc.id,
-        fullName: doc.fullName,
-        department: doc.department || "Internal Medicine",
-        specialization: (doc as any).specialization || "Clinical Physician",
-        roomNumber: (doc as any).roomNumber || "Room 101",
-        consultationFee: (doc as any).consultationFee || 150.0,
-        availableSlots: Math.max(0, 8 - activeCount),
-        isOnline: true,
-      };
-    });
+appointmentsRouter.get("/roster", (req: Request, res: Response) => {
+  const { department } = req.query;
 
-  return res.json(doctors);
+  const normalizeDocName = (name: string): string => {
+    if (!name) return "";
+    return name
+      .toLowerCase()
+      .replace(/,\s*(md|mbbs|ms|frcs|frcp|frcpath|bpharm|rn|aca|facc).*/gi, "")
+      .replace(/^dr\.\s*|^dr\s*/gi, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  };
+
+  // STRICT RULE: Only include clinical DOCTOR roles (never administrators)
+  const doctorsMap = new Map<string, any>();
+  const seenNormNames = new Set<string>();
+
+  // 1. Doctors from users
+  for (const u of users) {
+    if (u.role === "DOCTOR") {
+      const norm = normalizeDocName(u.fullName);
+      if (!seenNormNames.has(norm)) {
+        seenNormNames.add(norm);
+        doctorsMap.set(u.id, {
+          id: u.id,
+          fullName: u.fullName,
+          department: u.department || "Cardiology & Internal Medicine",
+          specialization: (u as any).specialization || "Clinical Physician",
+          roomNumber: (u as any).roomNumber || "Consultation Room",
+          consultationFee: (u as any).consultationFee || 2500,
+        });
+      }
+    }
+  }
+
+  // 2. Doctors from staffMembers
+  for (const sm of staffMembers) {
+    if (sm.role === "DOCTOR") {
+      const norm = normalizeDocName(sm.fullName);
+      if (!seenNormNames.has(norm)) {
+        seenNormNames.add(norm);
+        doctorsMap.set(sm.id, {
+          id: sm.id,
+          fullName: sm.fullName,
+          department: sm.department || "General Surgery",
+          specialization: sm.specialization || "Consultant Specialist",
+          roomNumber: sm.roomNumber || "Consultation Room",
+          consultationFee: sm.consultationFee || 2500,
+        });
+      }
+    }
+  }
+
+  // 3. Ensure any doctors referenced in historical appointments remain tracked
+  for (const a of appointments) {
+    if (a.doctorName) {
+      const norm = normalizeDocName(a.doctorName);
+      if (!seenNormNames.has(norm)) {
+        seenNormNames.add(norm);
+        const docId = a.doctorId || `doc-${norm.replace(/[^a-z0-9]/g, "")}`;
+        doctorsMap.set(docId, {
+          id: docId,
+          fullName: a.doctorName,
+          department: a.department || "Cardiology & Internal Medicine",
+          specialization: "Attending Physician",
+          roomNumber: a.roomNumber || "Consultation Room",
+          consultationFee: 2500,
+        });
+      }
+    }
+  }
+
+  let doctorsList = Array.from(doctorsMap.values()).map((doc) => {
+    const docNorm = normalizeDocName(doc.fullName);
+    const activeCount = appointments.filter(
+      (a) =>
+        (a.doctorId === doc.id || (a.doctorName && normalizeDocName(a.doctorName) === docNorm)) &&
+        a.status !== "Cancelled"
+    ).length;
+
+    return {
+      ...doc,
+      availableSlots: Math.max(0, 8 - activeCount),
+      isOnline: true,
+    };
+  });
+
+  if (department && department !== "All") {
+    doctorsList = doctorsList.filter((d) =>
+      d.department.toLowerCase().includes((department as string).toLowerCase())
+    );
+  }
+
+  return res.json(doctorsList);
 });
 
 // Book new appointment
@@ -60,7 +140,7 @@ appointmentsRouter.post("/", (req: Request, res: Response) => {
   }
 
   const patient = patients.find((p) => p.id === patientId || p.mrn.toLowerCase() === patientId.toLowerCase());
-  const doctor = users.find((u) => u.id === doctorId);
+  const doctor = users.find((u) => u.id === doctorId) || staffMembers.find((s) => s.id === doctorId);
 
   if (!patient) {
     return res.status(404).json({ error: "Patient not found" });

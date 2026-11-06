@@ -421,7 +421,7 @@ export const StaffView: React.FC = () => {
           </div>
 
           {/* Staff Table */}
-          <div className="overflow-x-auto">
+          <div className="table-scroll-container">
             <table className="w-full text-left border-collapse text-sm min-w-[750px]">
               <thead>
                 <tr className="bg-bg-surface-subtle text-caption font-caption text-slate-500 uppercase border-b border-border-subtle">
@@ -519,7 +519,7 @@ export const StaffView: React.FC = () => {
                         </td>
                         <td className="py-3 px-4 text-slate-700 font-mono">{emp.phoneNumber}</td>
                         <td className="py-3 px-4">
-                          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-sky-100 text-sky-800">
+                          <span className="inline-block px-2 py-0.5 rounded-md text-[11px] font-semibold bg-sky-50 text-sky-800 border border-sky-200/70">
                             {emp.shift}
                           </span>
                         </td>
@@ -595,7 +595,7 @@ export const StaffView: React.FC = () => {
             </span>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="table-scroll-container">
             <table className="w-full text-left border-collapse text-sm">
               <thead>
                 <tr className="bg-bg-surface-subtle text-caption font-caption text-slate-500 uppercase border-b border-border-subtle">
@@ -634,16 +634,29 @@ export const StaffView: React.FC = () => {
                       </span>
                     </td>
                     <td className="py-3 px-4 text-right">
-                      <button
-                        onClick={() => handleToggleAttendance(emp.id, emp.attendanceStatus)}
-                        className={`px-2.5 py-1 rounded text-xs font-semibold ${
-                          emp.attendanceStatus === 'Present'
-                            ? 'bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200'
-                            : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200'
-                        }`}
-                      >
-                        {emp.attendanceStatus === 'Present' ? 'Mark Absent' : 'Clock In'}
-                      </button>
+                      <div className="flex items-center justify-end gap-1.5">
+                        {isSuperAdmin && (
+                          <button
+                            type="button"
+                            onClick={() => handleOpenEditModal(emp)}
+                            className="px-2.5 py-1 rounded-md text-xs font-semibold bg-sky-50 text-sky-700 hover:bg-sky-100 border border-sky-200/80 flex items-center gap-1 tap-press transition-colors"
+                            title="Edit Staff Duty Shift"
+                          >
+                            <span className="material-symbols-outlined text-[14px]">schedule</span>
+                            <span>Edit Shift</span>
+                          </button>
+                        )}
+                        <button
+                          onClick={() => handleToggleAttendance(emp.id, emp.attendanceStatus)}
+                          className={`px-2.5 py-1 rounded-md text-xs font-semibold tap-press transition-colors ${
+                            emp.attendanceStatus === 'Present'
+                              ? 'bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200'
+                              : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200'
+                          }`}
+                        >
+                          {emp.attendanceStatus === 'Present' ? 'Mark Absent' : 'Clock In'}
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 )))}
@@ -660,7 +673,7 @@ export const StaffView: React.FC = () => {
             <h2 className="text-sm font-semibold text-slate-900">Hospital Staff Leave Requests & Approvals</h2>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="table-scroll-container">
             <table className="w-full text-left border-collapse text-sm">
               <thead>
                 <tr className="bg-bg-surface-subtle text-caption font-caption text-slate-500 uppercase border-b border-border-subtle">
@@ -859,20 +872,34 @@ export const StaffView: React.FC = () => {
                 <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
                   Assigned Duty Shift
                 </label>
-                <select
-                  value={staffForm.shift}
-                  onChange={(e) => setStaffForm({ ...staffForm, shift: e.target.value })}
-                  className="w-full h-10 px-3 text-xs rounded-lg border border-slate-300 bg-white focus:outline-none focus:border-primary-teal cursor-pointer"
-                >
-                  <option value="Day Clinical Shift (08:00 - 16:00)">Day Clinical Shift (08:00 - 16:00)</option>
-                  <option value="Morning Shift (08:00 - 16:30)">Morning Shift (08:00 - 16:30)</option>
-                  <option value="Day Nursing Shift (07:00 - 15:30)">Day Nursing Shift (07:00 - 15:30)</option>
-                  <option value="Diagnostic Laboratory Shift (08:30 - 17:00)">Diagnostic Laboratory Shift (08:30 - 17:00)</option>
-                  <option value="Dispensary Day Shift (08:00 - 16:30)">Dispensary Day Shift (08:00 - 16:30)</option>
-                  <option value="Finance Shift (09:00 - 17:30)">Finance Shift (09:00 - 17:30)</option>
-                  <option value="Evening Shift (14:00 - 22:00)">Evening Shift (14:00 - 22:00)</option>
-                  <option value="Night Emergency Shift (22:00 - 06:00)">Night Emergency Shift (22:00 - 06:00)</option>
-                </select>
+                <div className="space-y-2">
+                  <select
+                    value={staffForm.shift}
+                    onChange={(e) => setStaffForm({ ...staffForm, shift: e.target.value })}
+                    className="w-full h-10 px-3 text-xs rounded-lg border border-slate-300 bg-white focus:outline-none focus:border-primary-teal cursor-pointer"
+                  >
+                    <option value="Day Clinical Shift (08:00 - 16:00)">Day Clinical Shift (08:00 - 16:00)</option>
+                    <option value="Morning Shift (08:00 - 16:30)">Morning Shift (08:00 - 16:30)</option>
+                    <option value="Day Nursing Shift (07:00 - 15:30)">Day Nursing Shift (07:00 - 15:30)</option>
+                    <option value="Diagnostic Laboratory Shift (08:30 - 17:00)">Diagnostic Laboratory Shift (08:30 - 17:00)</option>
+                    <option value="Dispensary Day Shift (08:00 - 16:30)">Dispensary Day Shift (08:00 - 16:30)</option>
+                    <option value="Finance Shift (09:00 - 17:30)">Finance Shift (09:00 - 17:30)</option>
+                    <option value="Evening Shift (14:00 - 22:00)">Evening Shift (14:00 - 22:00)</option>
+                    <option value="Night Emergency Shift (22:00 - 06:00)">Night Emergency Shift (22:00 - 06:00)</option>
+                  </select>
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-500 mb-0.5">
+                      Or Custom Shift Hours (e.g. "08:30 - 17:00" or "On-Call Emergency 24h")
+                    </label>
+                    <input
+                      type="text"
+                      value={staffForm.shift}
+                      onChange={(e) => setStaffForm({ ...staffForm, shift: e.target.value })}
+                      placeholder="Type custom shift hours..."
+                      className="w-full h-9 px-3 text-xs rounded-lg border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:border-primary-teal font-mono"
+                    />
+                  </div>
+                </div>
               </div>
 
               {/* Doctor Specific Details */}
@@ -1119,20 +1146,34 @@ export const StaffView: React.FC = () => {
                 <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
                   Assigned Duty Shift
                 </label>
-                <select
-                  value={editForm.shift}
-                  onChange={(e) => setEditForm({ ...editForm, shift: e.target.value })}
-                  className="w-full h-10 px-3 text-xs rounded-lg border border-slate-300 bg-white focus:outline-none focus:border-primary-teal cursor-pointer"
-                >
-                  <option value="Day Clinical Shift (08:00 - 16:00)">Day Clinical Shift (08:00 - 16:00)</option>
-                  <option value="Morning Shift (08:00 - 16:30)">Morning Shift (08:00 - 16:30)</option>
-                  <option value="Day Nursing Shift (07:00 - 15:30)">Day Nursing Shift (07:00 - 15:30)</option>
-                  <option value="Diagnostic Laboratory Shift (08:30 - 17:00)">Diagnostic Laboratory Shift (08:30 - 17:00)</option>
-                  <option value="Dispensary Day Shift (08:00 - 16:30)">Dispensary Day Shift (08:00 - 16:30)</option>
-                  <option value="Finance Shift (09:00 - 17:30)">Finance Shift (09:00 - 17:30)</option>
-                  <option value="Evening Shift (14:00 - 22:00)">Evening Shift (14:00 - 22:00)</option>
-                  <option value="Night Emergency Shift (22:00 - 06:00)">Night Emergency Shift (22:00 - 06:00)</option>
-                </select>
+                <div className="space-y-2">
+                  <select
+                    value={editForm.shift}
+                    onChange={(e) => setEditForm({ ...editForm, shift: e.target.value })}
+                    className="w-full h-10 px-3 text-xs rounded-lg border border-slate-300 bg-white focus:outline-none focus:border-primary-teal cursor-pointer"
+                  >
+                    <option value="Day Clinical Shift (08:00 - 16:00)">Day Clinical Shift (08:00 - 16:00)</option>
+                    <option value="Morning Shift (08:00 - 16:30)">Morning Shift (08:00 - 16:30)</option>
+                    <option value="Day Nursing Shift (07:00 - 15:30)">Day Nursing Shift (07:00 - 15:30)</option>
+                    <option value="Diagnostic Laboratory Shift (08:30 - 17:00)">Diagnostic Laboratory Shift (08:30 - 17:00)</option>
+                    <option value="Dispensary Day Shift (08:00 - 16:30)">Dispensary Day Shift (08:00 - 16:30)</option>
+                    <option value="Finance Shift (09:00 - 17:30)">Finance Shift (09:00 - 17:30)</option>
+                    <option value="Evening Shift (14:00 - 22:00)">Evening Shift (14:00 - 22:00)</option>
+                    <option value="Night Emergency Shift (22:00 - 06:00)">Night Emergency Shift (22:00 - 06:00)</option>
+                  </select>
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-500 mb-0.5">
+                      Or Custom Shift Hours (e.g. "08:30 - 17:00" or "On-Call Emergency 24h")
+                    </label>
+                    <input
+                      type="text"
+                      value={editForm.shift}
+                      onChange={(e) => setEditForm({ ...editForm, shift: e.target.value })}
+                      placeholder="Type custom shift hours..."
+                      className="w-full h-9 px-3 text-xs rounded-lg border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:border-primary-teal font-mono"
+                    />
+                  </div>
+                </div>
               </div>
 
               {/* Doctor Specific Details */}

@@ -1,3 +1,5 @@
+@import "./styles/transitions.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,11 +32,38 @@
     background-color: var(--bg-canvas);
     color: #0b1c30;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headings balanced, body pretty wrapping */
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+  }
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Browser surface theming (Impeccable craft floor) */
+  ::selection {
+    background-color: #E0F2FE;
+    color: #0369A1;
+  }
+
+  input, textarea, select {
+    caret-color: var(--primary-teal);
   }
 
   /* Global Tabular Figures for high-precision clinical scanning */
-  .tabular-nums, [data-tabular="true"] {
+  .tabular-nums, [data-tabular="true"], th, td {
     font-variant-numeric: tabular-nums;
+  }
+
+  /* Accessible Focus Rings with proper offset */
+  :focus-visible {
+    outline: 2px solid var(--primary-teal);
+    outline-offset: 2px;
   }
 }
 

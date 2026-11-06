@@ -339,10 +339,10 @@ export const ReportsView: React.FC = () => {
         }
       `}</style>
 
-      {/* Export Toast Notification */}
+      {/* Export Toast Notification with transitions.dev .t-toast */}
       {exportFeedback && (
         <div
-          className={`px-4 py-3 rounded-xl border flex items-center justify-between text-xs font-semibold shadow-xs transition-all ${
+          className={`t-toast is-open px-4 py-3 rounded-xl border flex items-center justify-between text-xs font-semibold shadow-xs ${
             exportFeedback.type === 'success'
               ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
               : 'bg-rose-50 text-rose-800 border-rose-200'
@@ -354,7 +354,7 @@ export const ReportsView: React.FC = () => {
             </span>
             <span>{exportFeedback.message}</span>
           </div>
-          <button onClick={() => setExportFeedback(null)} className="text-slate-400 hover:text-slate-700">
+          <button onClick={() => setExportFeedback(null)} className="text-slate-400 hover:text-slate-700 tap-press">
             <span className="material-symbols-outlined text-[16px]">close</span>
           </button>
         </div>
@@ -625,10 +625,20 @@ export const ReportsView: React.FC = () => {
       {/* FORMAL EXECUTIVE REPORT PREVIEW & PDF PRINT MODAL     */}
       {/* ---------------------------------------------------- */}
       {showPdfModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 backdrop-blur-xs p-3 sm:p-5 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-4xl max-h-[94vh] flex flex-col overflow-hidden">
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-5 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowPdfModal(false);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-4xl max-h-[94vh] sm:max-h-[90vh] flex flex-col overflow-hidden">
+            {/* Mobile Drag Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+              <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+            </div>
+
             {/* Modal Top Bar (Hidden during print) */}
-            <div className="no-print px-5 py-4 bg-primary-navy text-white flex items-center justify-between flex-shrink-0">
+            <div className="no-print px-5 py-4 bg-slate-900 text-white flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[22px] text-teal-400">picture_as_pdf</span>
                 <div>

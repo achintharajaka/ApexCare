@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { appointments, patients, pharmacyInventory, laboratoryTests, wardBedCensus, bills } from "../../db/store.js";
+import { appointments, patients, pharmacyInventory, laboratoryTests, wardBedCensus, bills, hospitalShiftConfig } from "../../db/store.js";
 
 export const dashboardRouter = Router();
 
@@ -39,9 +39,19 @@ dashboardRouter.get("/summary", (_req: Request, res: Response) => {
   const totalBeds = wardBedCensus.totalBeds || 160;
   const occupancyPercentage = totalBeds > 0 ? Number(((occupiedBeds / totalBeds) * 100).toFixed(1)) : 0;
 
+  const hour = new Date().getHours();
+  let activeShiftName = `${hospitalShiftConfig.morning.name} (${hospitalShiftConfig.morning.hours})`;
+  if (hospitalShiftConfig.activeOverride) {
+    activeShiftName = hospitalShiftConfig.activeOverride;
+  } else if (hour >= hospitalShiftConfig.evening.startHour && hour < hospitalShiftConfig.evening.endHour) {
+    activeShiftName = `${hospitalShiftConfig.evening.name} (${hospitalShiftConfig.evening.hours})`;
+  } else if (hour >= hospitalShiftConfig.night.startHour && hour < hospitalShiftConfig.night.endHour) {
+    activeShiftName = `${hospitalShiftConfig.night.name} (${hospitalShiftConfig.night.hours})`;
+  }
+
   const responseData = {
     shift: {
-      name: "Morning Shift (08:00 - 16:00)",
+      name: activeShiftName,
       station: "Station 04",
       triageLevel: "ER Triage: Level 1 (Ready)",
       capacityStatus: "Operational Capacity: Normal",
