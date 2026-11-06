@@ -396,10 +396,10 @@ export const LaboratoryView: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full space-y-space-md">
-      {/* Feedback Toast */}
+      {/* Feedback Toast with transitions.dev .t-toast */}
       {crudFeedback && (
         <div
-          className={`px-4 py-3 rounded-xl border flex items-center justify-between text-xs font-semibold shadow-xs transition-all ${
+          className={`t-toast is-open px-4 py-3 rounded-xl border flex items-center justify-between text-xs font-semibold shadow-xs ${
             crudFeedback.type === 'success'
               ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
               : 'bg-rose-50 text-rose-800 border-rose-200'
@@ -411,7 +411,7 @@ export const LaboratoryView: React.FC = () => {
             </span>
             <span>{crudFeedback.message}</span>
           </div>
-          <button onClick={() => setCrudFeedback(null)} className="text-slate-400 hover:text-slate-700">
+          <button onClick={() => setCrudFeedback(null)} className="text-slate-400 hover:text-slate-700 tap-press">
             <span className="material-symbols-outlined text-[16px]">close</span>
           </button>
         </div>
@@ -656,14 +656,14 @@ export const LaboratoryView: React.FC = () => {
                     {/* Sample Stage */}
                     <td className="py-3 px-4">
                       <span
-                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold ${
+                        className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[11px] font-semibold ${
                           test.sampleStatus === 'Completed'
-                            ? 'bg-emerald-100 text-emerald-800 border border-emerald-200'
+                            ? 'bg-emerald-50 text-emerald-800 border border-emerald-200/80'
                             : test.sampleStatus === 'In-Analysis'
-                            ? 'bg-amber-100 text-amber-800 border border-amber-200'
+                            ? 'bg-amber-50 text-amber-800 border border-amber-200/80'
                             : test.sampleStatus === 'Sample Collected'
-                            ? 'bg-sky-100 text-sky-800 border border-sky-200'
-                            : 'bg-purple-100 text-purple-800 border border-purple-200'
+                            ? 'bg-sky-50 text-sky-800 border border-sky-200/80'
+                            : 'bg-purple-50 text-purple-800 border border-purple-200/80'
                         }`}
                       >
                         <span

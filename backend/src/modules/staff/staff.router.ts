@@ -1,10 +1,75 @@
 import { Router, Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcryptjs";
-import { staffMembers, leaveRecords, users, tenant, logAudit, StaffMember, User, saveStorage } from "../../db/store.js";
+import { staffMembers, leaveRecords, users, tenant, logAudit, StaffMember, User, saveStorage, hospitalShiftConfig } from "../../db/store.js";
 import { notifyChange } from "../realtime/realtime.service.js";
 
 export const staffRouter = Router();
+
+// Hospital-wide operational shift schedule configuration
+staffRouter.get("/shifts/config", (_req: Request, res: Response) => {
+  return res.json(hospitalShiftConfig);
+});
+
+staffRouter.put("/shifts/config", (req: Request, res: Response) => {
+  const { morning, evening, night, activeOverride } = req.body;
+
+  if (morning) {
+    hospitalShiftConfig.morning = {
+      ...hospitalShiftConfig.morning,
+      ...morning,
+      hours: morning.hours || `${morning.startTime || "08:00"} - ${morning.endTime || "16:00"}`,
+    };
+  }
+  if (evening) {
+    hospitalShiftConfig.evening = {
+      ...hospitalShiftConfig.evening,
+      ...evening,
+      hours: evening.hours || `${evening.startTime || "16:00"} - ${evening.endTime || "00:00"}`,
+    };
+  }
+  if (night) {
+    hospitalShiftConfig.night = {
+      ...hospitalShiftConfig.night,
+      ...night,
+      hours: night.hours || `${night.startTime || "00:00"} - ${night.endTime || "08:00"}`,
+    };
+  }
+  if (activeOverride !== undefined) {
+    hospitalShiftConfig.activeOverride = activeOverride;
+  }
+
+  saveStorage();
+  notifyChange("shifts", "update", hospitalShiftConfig);
+  logAudit("SHIFT_SCHEDULE_UPDATED", "HospitalShiftConfig", "hospital-shifts", (req as any).user?.id || "usr-admin-01", req.ip);
+
+  return res.json({
+    message: "Hospital operational shift configuration updated successfully.",
+    config: hospitalShiftConfig,
+  });
+});
+
+// Update individual staff member's shift time directly
+staffRouter.patch("/:id/shift", (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { shift } = req.body;
+
+  const staff = staffMembers.find((s) => s.id === id || s.employeeId === id);
+  if (!staff) {
+    return res.status(404).json({ error: "Staff member not found" });
+  }
+
+  if (!shift || !shift.trim()) {
+    return res.status(400).json({ error: "Shift time description is required." });
+  }
+
+  staff.shift = shift.trim();
+  saveStorage();
+  notifyChange("staff", "shift_update", staff);
+  logAudit("STAFF_SHIFT_MODIFIED", "StaffMember", staff.id, (req as any).user?.id || "usr-admin-01", req.ip);
+
+  return res.json({ message: `Shift updated for ${staff.fullName}`, staff });
+});
 
 // 1. READ: Get hospital staff directory (enhanced with associated username)
 staffRouter.get("/", (req: Request, res: Response) => {

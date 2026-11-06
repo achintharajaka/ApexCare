@@ -488,7 +488,7 @@ export const EmrDeskView: React.FC<EmrDeskViewProps> = ({
               </button>
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="table-scroll-container">
               <table className="w-full text-left text-xs">
                 <thead>
                   <tr className="text-slate-500 font-semibold border-b border-slate-100 pb-1">
@@ -795,12 +795,22 @@ export const EmrDeskView: React.FC<EmrDeskViewProps> = ({
 
       {/* Prescribe Medication Modal */}
       {showPrescribeModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-3 sm:p-4 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden">
-            <div className="px-5 py-4 bg-primary-navy text-white flex items-center justify-between flex-shrink-0">
-              <h2 className="text-base font-semibold">Prescribe Outpatient Medication</h2>
-              <button onClick={() => setShowPrescribeModal(false)} className="text-slate-300 hover:text-white">
-                <span className="material-symbols-outlined">close</span>
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowPrescribeModal(false);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-lg max-h-[92vh] sm:max-h-[88vh] flex flex-col overflow-hidden">
+            {/* Mobile Drag Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+              <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+            </div>
+
+            <div className="px-5 py-4 bg-slate-900 text-white flex items-center justify-between flex-shrink-0">
+              <h2 className="text-base font-bold">Prescribe Outpatient Medication</h2>
+              <button onClick={() => setShowPrescribeModal(false)} className="p-1 rounded-lg text-slate-300 hover:text-white tap-press">
+                <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 
@@ -884,12 +894,22 @@ export const EmrDeskView: React.FC<EmrDeskViewProps> = ({
 
       {/* Order Laboratory Test Modal */}
       {showOrderLabModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-3 sm:p-4 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden">
-            <div className="px-5 py-4 bg-primary-navy text-white flex items-center justify-between flex-shrink-0">
-              <h2 className="text-base font-semibold">Order Diagnostic Laboratory Investigation</h2>
-              <button onClick={() => setShowOrderLabModal(false)} className="text-slate-300 hover:text-white">
-                <span className="material-symbols-outlined">close</span>
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowOrderLabModal(false);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-lg max-h-[92vh] sm:max-h-[88vh] flex flex-col overflow-hidden">
+            {/* Mobile Drag Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+              <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+            </div>
+
+            <div className="px-5 py-4 bg-slate-900 text-white flex items-center justify-between flex-shrink-0">
+              <h2 className="text-base font-bold">Order Diagnostic Laboratory Investigation</h2>
+              <button onClick={() => setShowOrderLabModal(false)} className="p-1 rounded-lg text-slate-300 hover:text-white tap-press">
+                <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 

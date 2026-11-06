@@ -45,46 +45,61 @@ export const StatAlertsModal: React.FC<StatAlertsModalProps> = ({
   const totalAlerts = alerts.urgentLabs.length + alerts.pharmacyAlerts.length;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-3 sm:p-4 animate-fadeIn">
-      <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-xl max-h-[90vh] flex flex-col overflow-hidden">
+    <div
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-xl max-h-[92vh] sm:max-h-[88vh] flex flex-col overflow-hidden">
+        {/* Mobile Drag Indicator Handle */}
+        <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+          <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+        </div>
+
         {/* Modal Header */}
         <div
           className={`px-5 py-4 text-white flex items-center justify-between flex-shrink-0 ${
-            totalAlerts > 0 ? 'bg-status-critical' : 'bg-primary-navy'
+            totalAlerts > 0 ? 'bg-status-critical' : 'bg-slate-900'
           }`}
         >
-          <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-white">
-              {totalAlerts > 0 ? 'warning' : 'verified_user'}
+          <div className="flex items-center gap-2.5">
+            <span className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center text-white">
+              <span className="material-symbols-outlined text-[18px]">
+                {totalAlerts > 0 ? 'warning' : 'verified_user'}
+              </span>
             </span>
             <div>
-              <h2 className="text-base sm:text-lg font-semibold tracking-tight">Active STAT Emergency & Diagnostic Alerts</h2>
-              <p className="text-xs text-slate-200">
+              <h2 className="text-sm sm:text-base font-bold tracking-tight">Active STAT Emergency & Diagnostic Alerts</h2>
+              <p className="text-xs text-white/80">
                 {totalAlerts > 0
                   ? `${totalAlerts} Priority conditions require workstation action`
                   : 'All operational hospital telemetry is within normal parameters'}
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={fetchAlerts}
               disabled={loading}
-              className="p-1 rounded text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+              className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 tap-press transition-colors"
               title="Refresh Alerts"
             >
               <span className={`material-symbols-outlined text-[18px] ${loading ? 'animate-spin' : ''}`}>
                 refresh
               </span>
             </button>
-            <button onClick={onClose} className="text-slate-200 hover:text-white transition-colors">
-              <span className="material-symbols-outlined">close</span>
+            <button
+              onClick={onClose}
+              className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 tap-press transition-colors"
+            >
+              <span className="material-symbols-outlined text-[20px]">close</span>
             </button>
           </div>
         </div>
 
         {/* Alerts Content */}
-        <div className="p-4 sm:p-6 space-y-3 overflow-y-auto max-h-[calc(90vh-130px)]">
+        <div className="p-4 sm:p-6 space-y-3 overflow-y-auto flex-1">
           {totalAlerts === 0 ? (
             <div className="py-8 text-center text-xs text-slate-500">
               <div className="flex flex-col items-center justify-center gap-2">
@@ -100,19 +115,19 @@ export const StatAlertsModal: React.FC<StatAlertsModalProps> = ({
               {alerts.urgentLabs.map((lab) => (
                 <div
                   key={lab.id}
-                  className="p-3.5 rounded-lg border border-red-200 bg-red-50 flex items-start justify-between gap-3"
+                  className="p-3.5 rounded-xl border border-red-200 bg-red-50/70 flex items-start justify-between gap-3 card-interactive"
                 >
                   <div className="flex items-start gap-2.5">
                     <span className="material-symbols-outlined text-red-600 mt-0.5">monitor_heart</span>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-sm text-red-900">{lab.testName}</span>
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-red-600 text-white uppercase">
+                        <span className="font-bold text-sm text-red-900">{lab.testName}</span>
+                        <span className="px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-red-600 text-white uppercase">
                           STAT Urgent
                         </span>
                       </div>
                       <p className="text-xs text-red-800 mt-0.5">
-                        Patient: {lab.patientName} ({lab.patientMrn}) • Doctor: {lab.doctorName}
+                        Patient: <strong>{lab.patientName}</strong> ({lab.patientMrn}) • Doctor: {lab.doctorName}
                       </p>
                       <p className="text-[11px] text-red-600 mt-1">Status: {lab.sampleStatus}</p>
                     </div>
@@ -122,7 +137,7 @@ export const StatAlertsModal: React.FC<StatAlertsModalProps> = ({
                       onClose();
                       onNavigateToLab();
                     }}
-                    className="px-2.5 py-1 text-xs font-semibold rounded bg-red-600 text-white hover:bg-red-700 transition-colors whitespace-nowrap"
+                    className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-red-600 text-white hover:bg-red-700 tap-press transition-colors whitespace-nowrap shadow-xs"
                   >
                     Process Lab
                   </button>
@@ -132,14 +147,14 @@ export const StatAlertsModal: React.FC<StatAlertsModalProps> = ({
               {alerts.pharmacyAlerts.map((med) => (
                 <div
                   key={med.id}
-                  className="p-3.5 rounded-lg border border-amber-200 bg-amber-50 flex items-start justify-between gap-3"
+                  className="p-3.5 rounded-xl border border-amber-200 bg-amber-50/70 flex items-start justify-between gap-3 card-interactive"
                 >
                   <div className="flex items-start gap-2.5">
                     <span className="material-symbols-outlined text-amber-600 mt-0.5">medication</span>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-sm text-amber-900">{med.medicineName}</span>
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-600 text-white uppercase">
+                        <span className="font-bold text-sm text-amber-900">{med.medicineName}</span>
+                        <span className="px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-amber-600 text-white uppercase">
                           {med.severity}
                         </span>
                       </div>
@@ -156,7 +171,7 @@ export const StatAlertsModal: React.FC<StatAlertsModalProps> = ({
                       onClose();
                       onNavigateToPharmacy();
                     }}
-                    className="px-2.5 py-1 text-xs font-semibold rounded bg-amber-600 text-white hover:bg-amber-700 transition-colors whitespace-nowrap"
+                    className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-600 text-white hover:bg-amber-700 tap-press transition-colors whitespace-nowrap shadow-xs"
                   >
                     Restock
                   </button>
@@ -167,10 +182,10 @@ export const StatAlertsModal: React.FC<StatAlertsModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-3 bg-slate-50 border-t border-slate-100 flex justify-end">
+        <div className="px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex justify-end pb-safe sm:pb-3.5">
           <button
             onClick={onClose}
-            className="px-4 py-1.5 text-xs font-semibold rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 transition-colors"
+            className="px-4 py-2 text-xs font-semibold rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 tap-press transition-colors"
           >
             Acknowledge & Close
           </button>

@@ -335,8 +335,8 @@ export const PharmacyView: React.FC = () => {
           </div>
 
           {/* Catalog Table */}
-          <div className="bg-bg-surface rounded-xl border border-border-subtle shadow-xs overflow-hidden">
-            <div className="overflow-x-auto">
+          <div className="bg-bg-surface rounded-2xl border border-border-subtle shadow-xs overflow-hidden">
+            <div className="table-scroll-container">
               <table className="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
                   <tr className="border-b border-border-subtle bg-bg-surface-subtle text-slate-500 font-title-sm">
@@ -394,8 +394,12 @@ export const PharmacyView: React.FC = () => {
                           </td>
                           <td className="py-3 px-4 text-center">
                             <span
-                              className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
-                                isCritical ? 'bg-rose-100 text-rose-800' : isLow ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'
+                              className={`inline-block px-2 py-0.5 rounded-md text-[10px] font-bold border ${
+                                isCritical
+                                  ? 'bg-rose-50 text-rose-800 border-rose-200'
+                                  : isLow
+                                  ? 'bg-amber-50 text-amber-800 border-amber-200'
+                                  : 'bg-emerald-50 text-emerald-800 border-emerald-200'
                               }`}
                             >
                               {isCritical ? 'STOCK OUT' : isLow ? 'LOW STOCK' : 'IN STOCK'}
@@ -533,15 +537,25 @@ export const PharmacyView: React.FC = () => {
 
       {/* VIEW MEDICINE MODAL */}
       {viewingMed && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-lg overflow-hidden flex flex-col">
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setViewingMed(null);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-lg overflow-hidden max-h-[92vh] sm:max-h-[88vh] flex flex-col">
+            {/* Mobile Drag Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+              <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+            </div>
+
             <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
               <div>
                 <h2 className="text-base font-bold">{viewingMed.medicineName}</h2>
                 <p className="text-xs text-cyan-300 font-mono">Drug Code: {viewingMed.drugCode}</p>
               </div>
-              <button onClick={() => setViewingMed(null)} className="text-slate-400 hover:text-white">
-                <span className="material-symbols-outlined">close</span>
+              <button onClick={() => setViewingMed(null)} className="p-1 rounded-lg text-slate-400 hover:text-white tap-press">
+                <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 

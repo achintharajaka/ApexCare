@@ -65,7 +65,9 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
         axios.get('/api/appointments', {
           params: { department: selectedDept, doctorId: selectedDoctorId },
         }),
-        axios.get('/api/appointments/roster'),
+        axios.get('/api/appointments/roster', {
+          params: { department: selectedDept },
+        }),
       ]);
       setAppointments(aptRes.data);
       setRoster(rosterRes.data);
@@ -217,10 +219,10 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
 
   return (
     <div className="flex flex-col w-full space-y-space-md">
-      {/* Toast Feedback */}
+      {/* Toast Feedback with transitions.dev .t-toast */}
       {crudFeedback && (
         <div
-          className={`flex items-center justify-between p-3.5 rounded-lg border text-xs font-semibold shadow-xs animate-fadeIn ${
+          className={`t-toast is-open flex items-center justify-between p-3.5 rounded-xl border text-xs font-semibold shadow-xs ${
             crudFeedback.type === 'success'
               ? 'bg-emerald-50 text-emerald-900 border-emerald-200'
               : 'bg-rose-50 text-rose-900 border-rose-200'
@@ -232,38 +234,38 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
             </span>
             <span>{crudFeedback.message}</span>
           </div>
-          <button onClick={() => setCrudFeedback(null)} className="text-slate-400 hover:text-slate-700">
+          <button onClick={() => setCrudFeedback(null)} className="text-slate-400 hover:text-slate-700 tap-press">
             <span className="material-symbols-outlined text-[16px]">close</span>
           </button>
         </div>
       )}
 
       {/* Top Command Toolbar */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md bg-bg-surface p-space-md rounded-xl border border-border-subtle shadow-xs">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs">
         <div className="flex flex-col">
-          <div className="flex items-center gap-space-xs text-slate-500 mb-0.5">
-            <span className="font-caption text-caption uppercase tracking-wider">Outpatient Operations</span>
+          <div className="flex items-center gap-1.5 text-slate-500 mb-0.5">
+            <span className="text-xs uppercase tracking-wider font-bold">Outpatient Operations</span>
             <span className="text-slate-300 text-[10px]">/</span>
-            <span className="font-caption text-caption text-primary-teal font-medium">Departmental Appointments</span>
+            <span className="text-xs text-primary-teal font-semibold">Departmental Appointments</span>
             {isSuperAdmin && (
-              <span className="ml-2 px-2 py-0.2 rounded text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
+              <span className="ml-2 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300">
                 Super Admin CRUD
               </span>
             )}
           </div>
-          <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
             Appointment Scheduling & Outpatient Matrix
           </h1>
         </div>
 
         {/* Central Controls & Actions */}
-        <div className="flex flex-wrap items-center gap-space-sm">
-          {/* View Selector (Matrix vs Table) */}
-          <div className="flex items-center bg-slate-100 p-1 rounded-lg">
+        <div className="flex flex-wrap items-center gap-3">
+          {/* View Selector with .t-tabs */}
+          <div className="t-tabs">
             <button
               onClick={() => setViewMode('matrix')}
-              className={`flex items-center gap-1 px-3 py-1 text-xs rounded transition-colors ${
-                viewMode === 'matrix' ? 'bg-white shadow-xs text-primary-teal font-bold' : 'text-slate-600'
+              className={`t-tab tap-press flex items-center gap-1.5 ${
+                viewMode === 'matrix' ? 'is-active bg-white shadow-xs text-primary-teal font-bold' : 'text-slate-600'
               }`}
             >
               <span className="material-symbols-outlined text-[16px]">grid_view</span>
@@ -271,8 +273,8 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`flex items-center gap-1 px-3 py-1 text-xs rounded transition-colors ${
-                viewMode === 'list' ? 'bg-white shadow-xs text-primary-teal font-bold' : 'text-slate-600'
+              className={`t-tab tap-press flex items-center gap-1.5 ${
+                viewMode === 'list' ? 'is-active bg-white shadow-xs text-primary-teal font-bold' : 'text-slate-600'
               }`}
             >
               <span className="material-symbols-outlined text-[16px]">format_list_bulleted</span>
@@ -284,7 +286,7 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
           <button
             onClick={fetchData}
             disabled={loading}
-            className="flex items-center gap-1.5 h-[36px] px-3 rounded-lg border border-border-subtle bg-bg-surface hover:bg-bg-surface-subtle text-slate-700 font-title-sm text-xs sm:text-sm shadow-xs transition-colors"
+            className="flex items-center gap-1.5 h-10 px-3.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs shadow-2xs tap-press transition-colors"
             title="Refresh appointments and physician roster"
           >
             <span className={`material-symbols-outlined text-[18px] text-primary-teal ${loading ? 'animate-spin' : ''}`}>
@@ -297,7 +299,7 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
           {canBook && (
             <button
               onClick={() => setShowBookingDrawer(true)}
-              className="flex items-center gap-1.5 h-[36px] px-3 sm:px-4 rounded-lg bg-primary-teal hover:bg-primary-teal-hover text-white font-title-sm text-title-sm shadow-xs transition-all transform active:scale-95"
+              className="flex items-center gap-1.5 h-10 px-3.5 sm:px-4 rounded-xl bg-primary-teal hover:bg-primary-teal-hover text-white font-semibold text-xs sm:text-sm shadow-xs tap-press transition-all"
             >
               <span className="material-symbols-outlined text-[18px]">add_circle</span>
               <span className="hidden sm:inline">Book New Appointment</span>
@@ -310,7 +312,7 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
       {/* Roster & Grid Workspace */}
       <div className="flex flex-col lg:flex-row gap-space-md items-start w-full">
         {/* LEFT COLUMN: ACTIVE CLINICIANS ROSTER */}
-        <aside className="w-full lg:w-72 flex-shrink-0 bg-bg-surface rounded-xl shadow-xs border border-border-subtle p-space-md space-y-space-md">
+        <aside className="w-full lg:w-80 flex-shrink-0 bg-bg-surface rounded-xl shadow-xs border border-border-subtle p-space-md space-y-space-md">
           <div className="flex items-center justify-between border-b border-border-subtle pb-space-sm">
             <h2 className="font-title-sm text-title-sm text-on-surface flex items-center gap-space-xs">
               <span className="material-symbols-outlined text-primary-teal text-[18px]">badge</span>
@@ -325,7 +327,7 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
             <select
               value={selectedDept}
               onChange={(e) => setSelectedDept(e.target.value)}
-              className="w-full text-xs h-9 px-2 rounded-lg bg-bg-surface-subtle border border-border-strong text-on-surface"
+              className="w-full text-xs h-9 px-2 rounded-lg bg-bg-surface-subtle border border-border-strong text-on-surface focus:outline-none focus:border-primary-teal"
             >
               <option value="All">All Departments</option>
               <option value="Cardiology & Internal Medicine">Cardiology & Internal Medicine</option>
@@ -336,44 +338,64 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
           </div>
 
           {/* Doctor List */}
-          <div className="space-y-2 max-h-[480px] overflow-y-auto pr-1">
+          <div className="space-y-2 max-h-[260px] sm:max-h-[360px] lg:max-h-[520px] overflow-y-auto pr-1">
             <div
               onClick={() => setSelectedDoctorId('All')}
-              className={`p-2.5 rounded-lg border cursor-pointer text-xs transition-colors ${
+              className={`p-2.5 rounded-xl border cursor-pointer text-xs transition-colors flex items-center justify-between ${
                 selectedDoctorId === 'All'
-                  ? 'border-primary-teal bg-sky-50/70 text-primary-teal font-bold'
-                  : 'border-slate-200 hover:bg-slate-50'
+                  ? 'border-primary-teal bg-sky-50/70 text-primary-teal font-bold shadow-xs'
+                  : 'border-slate-200 hover:bg-slate-50 text-slate-700'
               }`}
             >
-              All Attending Physicians ({roster.length})
+              <span>{selectedDept === 'All' ? 'All Attending Physicians' : `${selectedDept} Doctors`}</span>
+              <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200/80">
+                {roster.length} Active
+              </span>
             </div>
 
-            {roster.map((doc) => (
-              <div
-                key={doc.id}
-                onClick={() => setSelectedDoctorId(doc.id)}
-                className={`p-2.5 rounded-lg border cursor-pointer transition-colors ${
-                  selectedDoctorId === doc.id
-                    ? 'border-primary-teal bg-sky-50/50 shadow-xs'
-                    : 'border-slate-200 hover:bg-slate-50'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold text-xs">
-                      {doc.fullName.split(' ').map((n: string) => n[0]).join('').substring(0, 2)}
+            {roster.length === 0 ? (
+              <div className="p-4 text-center text-xs text-slate-400 bg-slate-50/50 rounded-xl border border-dashed border-slate-200">
+                No attending physicians registered in this department.
+              </div>
+            ) : (
+              roster.map((doc) => (
+                <div
+                  key={doc.id}
+                  onClick={() => setSelectedDoctorId(doc.id)}
+                  className={`p-2.5 rounded-xl border cursor-pointer transition-all ${
+                    selectedDoctorId === doc.id
+                      ? 'border-primary-teal bg-sky-50/50 shadow-xs'
+                      : 'border-slate-200 hover:bg-slate-50'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2.5">
+                    <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                      <div className="w-8 h-8 rounded-lg bg-slate-800 text-white flex items-center justify-center font-bold text-xs flex-shrink-0 ring-1 ring-slate-900/10">
+                        {doc.fullName.split(' ').map((n: string) => n[0]).join('').substring(0, 2)}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-semibold text-slate-900 truncate">{doc.fullName}</p>
+                        <p className="text-[10px] text-slate-500 truncate">{doc.department}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-xs font-semibold text-slate-900 truncate">{doc.fullName}</p>
-                      <p className="text-[10px] text-slate-500">{doc.department}</p>
+                    <div
+                      className={`flex-shrink-0 flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold border tabular-nums whitespace-nowrap ${
+                        doc.availableSlots > 0
+                          ? 'bg-emerald-50 text-emerald-800 border-emerald-200/80'
+                          : 'bg-slate-100 text-slate-600 border-slate-200'
+                      }`}
+                    >
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
+                          doc.availableSlots > 0 ? 'bg-emerald-500' : 'bg-slate-400'
+                        }`}
+                      ></span>
+                      <span>{doc.availableSlots} {doc.availableSlots === 1 ? 'slot' : 'slots'}</span>
                     </div>
                   </div>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
-                    {doc.availableSlots} slots
-                  </span>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </aside>
 
@@ -431,14 +453,14 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
                             <select
                               value={apt.status}
                               onChange={(e) => handleUpdateStatus(apt.id, e.target.value)}
-                              className={`text-[11px] font-bold px-2 py-0.5 rounded-full border outline-none cursor-pointer ${
+                              className={`text-[11px] font-bold px-2 py-1 rounded-lg border outline-none cursor-pointer transition-colors ${
                                 apt.status === 'Completed'
-                                  ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                                  ? 'bg-emerald-50 text-emerald-800 border-emerald-300 hover:bg-emerald-100'
                                   : apt.status === 'In-Progress'
-                                  ? 'bg-amber-100 text-amber-800 border-amber-300'
+                                  ? 'bg-amber-50 text-amber-800 border-amber-300 hover:bg-amber-100'
                                   : apt.status === 'Cancelled'
-                                  ? 'bg-rose-100 text-rose-800 border-rose-300'
-                                  : 'bg-sky-100 text-sky-800 border-sky-300'
+                                  ? 'bg-rose-50 text-rose-800 border-rose-300 hover:bg-rose-100'
+                                  : 'bg-sky-50 text-sky-800 border-sky-300 hover:bg-sky-100'
                               }`}
                             >
                               <option value="Scheduled">Scheduled</option>
@@ -508,8 +530,8 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
                 </div>
               </div>
 
-              {/* Time increment grid */}
-              <div className="overflow-x-auto">
+              {/* Time increment grid with responsive table scroll container */}
+              <div className="table-scroll-container">
                 <div className="min-w-[700px]">
                   {/* Day headers */}
                   <div className="grid grid-cols-6 border-b border-slate-200 pb-2 text-xs font-semibold text-slate-600">
@@ -541,7 +563,7 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
                                 {dayApt ? (
                                   <div
                                     onClick={() => setViewingApt(dayApt)}
-                                    className={`w-full p-2 rounded-lg text-left text-xs transition-shadow shadow-xs border-l-4 cursor-pointer hover:shadow-md ${
+                                    className={`group relative w-full p-2 rounded-lg text-left text-xs transition-shadow shadow-xs border-l-4 cursor-pointer hover:shadow-md ${
                                       dayApt.status === 'Completed'
                                         ? 'bg-emerald-50 border-emerald-500 text-emerald-950'
                                         : dayApt.status === 'In-Progress'
@@ -551,7 +573,24 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
                                         : 'bg-sky-50 border-sky-500 text-sky-950'
                                     }`}
                                   >
-                                    <div className="font-semibold truncate">{dayApt.patientName}</div>
+                                    <div className="flex items-start justify-between gap-1">
+                                      <div className="font-semibold truncate flex-1 min-w-0">{dayApt.patientName}</div>
+                                      {canDelete && (
+                                        <button
+                                          type="button"
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            setDeletingApt(dayApt);
+                                            setHardDeleteMode(false);
+                                          }}
+                                          className="opacity-0 group-hover:opacity-100 p-0.5 -mt-0.5 -mr-0.5 rounded text-rose-600 hover:bg-rose-100 hover:text-rose-800 transition-opacity flex-shrink-0"
+                                          title="Cancel or Delete appointment"
+                                          aria-label="Cancel or Delete appointment"
+                                        >
+                                          <span className="material-symbols-outlined text-[15px]">delete</span>
+                                        </button>
+                                      )}
+                                    </div>
                                     <div className="text-[10px] text-slate-600 truncate">{dayApt.doctorName} • {dayApt.roomNumber}</div>
                                   </div>
                                 ) : (
@@ -581,15 +620,25 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
 
       {/* VIEW APPOINTMENT MODAL */}
       {viewingApt && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-lg overflow-hidden flex flex-col">
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setViewingApt(null);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-lg overflow-hidden max-h-[92vh] sm:max-h-[88vh] flex flex-col">
+            {/* Mobile Drag Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+              <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+            </div>
+
             <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
               <div>
                 <h2 className="text-base font-bold">Appointment Dossier</h2>
                 <p className="text-xs text-slate-300 font-mono">Reference: {viewingApt.id}</p>
               </div>
-              <button onClick={() => setViewingApt(null)} className="text-slate-400 hover:text-white">
-                <span className="material-symbols-outlined">close</span>
+              <button onClick={() => setViewingApt(null)} className="p-1 rounded-lg text-slate-400 hover:text-white tap-press">
+                <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 
@@ -638,15 +687,31 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
                 </p>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-slate-200">
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-slate-200">
                 <button
                   type="button"
                   onClick={() => setViewingApt(null)}
-                  className="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 text-xs"
+                  className="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 text-xs tap-press"
                 >
                   Close
                 </button>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  {canDelete && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const target = viewingApt;
+                        setViewingApt(null);
+                        setDeletingApt(target);
+                        setHardDeleteMode(false);
+                      }}
+                      className="px-3.5 py-2 rounded-lg border border-rose-200 bg-rose-50 text-rose-700 font-semibold hover:bg-rose-100 text-xs flex items-center gap-1.5 tap-press transition-colors"
+                      title="Cancel or Delete appointment"
+                    >
+                      <span className="material-symbols-outlined text-[16px]">delete</span>
+                      <span>Cancel / Delete</span>
+                    </button>
+                  )}
                   {canEdit && (
                     <button
                       type="button"
@@ -655,9 +720,10 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
                         setViewingApt(null);
                         handleOpenEdit(target);
                       }}
-                      className="px-3.5 py-2 rounded-lg border border-amber-300 bg-amber-50 text-amber-900 font-semibold hover:bg-amber-100 text-xs"
+                      className="px-3.5 py-2 rounded-lg border border-amber-300 bg-amber-50 text-amber-900 font-semibold hover:bg-amber-100 text-xs flex items-center gap-1.5 tap-press transition-colors"
                     >
-                      Reschedule / Edit
+                      <span className="material-symbols-outlined text-[16px]">edit</span>
+                      <span>Reschedule / Edit</span>
                     </button>
                   )}
                   <button
@@ -667,9 +733,10 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
                       setViewingApt(null);
                       onOpenEmr(pid);
                     }}
-                    className="px-4 py-2 rounded-lg bg-primary-teal text-white font-semibold hover:bg-primary-teal-hover text-xs"
+                    className="px-4 py-2 rounded-lg bg-primary-teal text-white font-semibold hover:bg-primary-teal-hover text-xs flex items-center gap-1.5 shadow-xs tap-press transition-colors"
                   >
-                    Open Patient EMR
+                    <span className="material-symbols-outlined text-[16px]">folder_shared</span>
+                    <span>Open Patient EMR</span>
                   </button>
                 </div>
               </div>
@@ -680,15 +747,25 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
 
       {/* EDIT / RESCHEDULE APPOINTMENT MODAL */}
       {editingApt && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-lg overflow-hidden flex flex-col">
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setEditingApt(null);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-lg overflow-hidden max-h-[92vh] sm:max-h-[88vh] flex flex-col">
+            {/* Mobile Drag Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-amber-600">
+              <div className="w-10 h-1 rounded-full bg-amber-400"></div>
+            </div>
+
             <div className="px-6 py-4 bg-amber-600 text-white flex items-center justify-between">
               <div>
                 <h2 className="text-base font-bold">Edit / Reschedule Appointment</h2>
                 <p className="text-xs text-amber-100 font-mono">Reference: {editingApt.id}</p>
               </div>
-              <button onClick={() => setEditingApt(null)} className="text-amber-100 hover:text-white">
-                <span className="material-symbols-outlined">close</span>
+              <button onClick={() => setEditingApt(null)} className="p-1 rounded-lg text-amber-100 hover:text-white tap-press">
+                <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 
@@ -805,15 +882,25 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
 
       {/* CANCEL / DELETE APPOINTMENT MODAL */}
       {deletingApt && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-md overflow-hidden flex flex-col">
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setDeletingApt(null);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-md overflow-hidden flex flex-col">
+            {/* Mobile Drag Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-rose-600">
+              <div className="w-10 h-1 rounded-full bg-rose-400"></div>
+            </div>
+
             <div className="px-6 py-4 bg-rose-600 text-white flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[20px]">event_busy</span>
                 <h2 className="text-base font-bold">Cancel / Delete Appointment</h2>
               </div>
-              <button onClick={() => setDeletingApt(null)} className="text-rose-100 hover:text-white">
-                <span className="material-symbols-outlined">close</span>
+              <button onClick={() => setDeletingApt(null)} className="p-1 rounded-lg text-rose-100 hover:text-white tap-press">
+                <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 
@@ -877,12 +964,22 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
 
       {/* BOOKING DRAWER / MODAL */}
       {showBookingDrawer && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-3 sm:p-4 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden">
-            <div className="px-5 py-4 bg-primary-navy text-white flex items-center justify-between flex-shrink-0">
-              <h2 className="text-base font-semibold">Book Outpatient Consultation Slot</h2>
-              <button onClick={() => setShowBookingDrawer(false)} className="text-slate-300 hover:text-white">
-                <span className="material-symbols-outlined">close</span>
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowBookingDrawer(false);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-lg max-h-[92vh] sm:max-h-[88vh] flex flex-col overflow-hidden">
+            {/* Mobile Drag Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+              <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+            </div>
+
+            <div className="px-5 py-4 bg-slate-900 text-white flex items-center justify-between flex-shrink-0">
+              <h2 className="text-base font-bold">Book Outpatient Consultation Slot</h2>
+              <button onClick={() => setShowBookingDrawer(false)} className="p-1 rounded-lg text-slate-400 hover:text-white tap-press">
+                <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 

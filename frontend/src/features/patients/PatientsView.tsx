@@ -336,8 +336,8 @@ export const PatientsView: React.FC<PatientsViewProps> = ({
       </div>
 
       {/* Main Patients Table */}
-      <div className="bg-bg-surface rounded-xl border border-border-subtle shadow-xs overflow-hidden">
-        <div className="overflow-x-auto">
+      <div className="bg-bg-surface rounded-2xl border border-border-subtle shadow-xs overflow-hidden">
+        <div className="table-scroll-container">
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
               <tr className="border-b border-border-subtle bg-bg-surface-subtle text-outline font-title-sm">
@@ -422,19 +422,19 @@ export const PatientsView: React.FC<PatientsViewProps> = ({
                       </div>
                     </td>
                     <td className="py-3 px-4 font-label-tabular font-medium text-slate-800">
-                      <span className="px-2 py-0.5 rounded-full bg-slate-100 text-xs font-semibold">
+                      <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-800 text-xs font-semibold border border-slate-200/60 tabular-nums">
                         {p.bloodGroup}
                       </span>
                     </td>
                     <td className="py-3 px-4 text-slate-700">{p.assignedDoctor || 'Kasun Perera'}</td>
                     <td className="py-3 px-4">
                       <span
-                        className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        className={`inline-block px-2.5 py-0.5 rounded-md text-xs font-semibold border ${
                           p.status?.toLowerCase().includes('icu')
-                            ? 'bg-rose-100 text-rose-800 font-bold'
+                            ? 'bg-rose-50 text-rose-800 border-rose-200 font-bold'
                             : p.status?.toLowerCase().includes('admit')
-                            ? 'bg-amber-100 text-amber-800'
-                            : 'bg-emerald-100 text-emerald-800'
+                            ? 'bg-amber-50 text-amber-800 border-amber-200'
+                            : 'bg-emerald-50 text-emerald-800 border-emerald-200'
                         }`}
                       >
                         {p.status}
@@ -510,8 +510,18 @@ export const PatientsView: React.FC<PatientsViewProps> = ({
 
       {/* VIEW PATIENT DETAILS MODAL */}
       {viewingPatient && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-2xl overflow-hidden max-h-[90vh] flex flex-col">
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setViewingPatient(null);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-2xl overflow-hidden max-h-[92vh] sm:max-h-[88vh] flex flex-col">
+            {/* Mobile Drag Indicator Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+              <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+            </div>
+
             <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-cyan-700 text-white flex items-center justify-center font-bold text-base ring-2 ring-cyan-200">
@@ -532,7 +542,7 @@ export const PatientsView: React.FC<PatientsViewProps> = ({
               </div>
               <button
                 onClick={() => setViewingPatient(null)}
-                className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 tap-press transition-colors"
               >
                 <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
@@ -660,8 +670,18 @@ export const PatientsView: React.FC<PatientsViewProps> = ({
 
       {/* EDIT PATIENT MODAL */}
       {editingPatient && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-xl overflow-hidden max-h-[90vh] flex flex-col">
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setEditingPatient(null);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-xl overflow-hidden max-h-[92vh] sm:max-h-[88vh] flex flex-col">
+            {/* Mobile Drag Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-amber-600">
+              <div className="w-10 h-1 rounded-full bg-amber-400"></div>
+            </div>
+
             <div className="px-6 py-4 bg-amber-600 text-white flex items-center justify-between flex-shrink-0">
               <div>
                 <h2 className="text-base font-bold">Edit Patient Details</h2>
@@ -669,8 +689,8 @@ export const PatientsView: React.FC<PatientsViewProps> = ({
                   MRN: <span className="font-mono font-bold text-white">{editingPatient.mrn}</span>
                 </p>
               </div>
-              <button onClick={() => setEditingPatient(null)} className="text-amber-100 hover:text-white">
-                <span className="material-symbols-outlined">close</span>
+              <button onClick={() => setEditingPatient(null)} className="p-1 rounded-lg text-amber-100 hover:text-white tap-press">
+                <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 
@@ -870,15 +890,25 @@ export const PatientsView: React.FC<PatientsViewProps> = ({
 
       {/* DELETE PATIENT MODAL */}
       {deletingPatient && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-md overflow-hidden flex flex-col">
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setDeletingPatient(null);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-md overflow-hidden flex flex-col">
+            {/* Mobile Drag Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-rose-600">
+              <div className="w-10 h-1 rounded-full bg-rose-400"></div>
+            </div>
+
             <div className="px-6 py-4 bg-rose-600 text-white flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[20px]">warning</span>
                 <h2 className="text-base font-bold">Delete Patient Record</h2>
               </div>
-              <button onClick={() => setDeletingPatient(null)} className="text-rose-100 hover:text-white">
-                <span className="material-symbols-outlined">close</span>
+              <button onClick={() => setDeletingPatient(null)} className="p-1 rounded-lg text-rose-100 hover:text-white tap-press">
+                <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 
@@ -917,12 +947,22 @@ export const PatientsView: React.FC<PatientsViewProps> = ({
 
       {/* Registration Modal */}
       {showRegisterModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-xl overflow-hidden max-h-[90vh] flex flex-col">
-            <div className="px-6 py-4 bg-primary-navy text-white flex items-center justify-between flex-shrink-0">
-              <h2 className="text-base sm:text-lg font-semibold">Register New Hospital Patient</h2>
-              <button onClick={() => setShowRegisterModal(false)} className="text-slate-300 hover:text-white">
-                <span className="material-symbols-outlined">close</span>
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowRegisterModal(false);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-xl overflow-hidden max-h-[92vh] sm:max-h-[88vh] flex flex-col">
+            {/* Mobile Drag Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+              <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+            </div>
+
+            <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between flex-shrink-0">
+              <h2 className="text-base sm:text-lg font-bold">Register New Hospital Patient</h2>
+              <button onClick={() => setShowRegisterModal(false)} className="p-1 rounded-lg text-slate-300 hover:text-white tap-press">
+                <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 
