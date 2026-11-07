@@ -34,6 +34,19 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  html.dark, :root[data-theme="dark"] {
+    --bg-canvas: #090e17;
+    --bg-surface: #0f172a;
+    --bg-surface-subtle: #1e293b;
+    --border-subtle: #334155;
+    --border-strong: #475569;
+    --primary-navy: #f8fafc;
+    --primary-teal: #38bdf8;
+    --primary-teal-hover: #0284c7;
+    --primary-teal-subtle: rgba(14, 165, 233, 0.15);
   }
 
   /* Headings balanced, body pretty wrapping */
@@ -100,3 +113,189 @@
   -webkit-font-smoothing: antialiased;
   vertical-align: middle;
 }
+
+/* ==========================================================================
+   ApexCare System Themes (Light & Clinical Dark Mode)
+   ========================================================================== */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #090e17;
+  color: #f1f5f9;
+}
+
+html.dark .bg-bg-canvas,
+html.dark [class*="bg-bg-canvas"] {
+  background-color: #090e17 !important;
+}
+
+/* Header & Top Bar */
+html.dark header {
+  background-color: rgba(15, 23, 42, 0.92) !important;
+  border-color: #1e293b !important;
+}
+
+/* Mobile Persistent Navigation Bar */
+html.dark nav[aria-label="Mobile Navigation"] {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  border-color: #1e293b !important;
+}
+
+/* Cards & Surface Containers */
+html.dark .bg-white {
+  background-color: #0f172a !important;
+  color: #f1f5f9;
+}
+
+html.dark .bg-slate-50,
+html.dark .bg-slate-100 {
+  background-color: #1e293b !important;
+}
+
+/* Text Hierarchy */
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark .text-slate-700,
+html.dark .text-on-surface {
+  color: #f8fafc !important;
+}
+
+html.dark .text-slate-600,
+html.dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Borders & Dividers */
+html.dark .border-slate-100,
+html.dark .border-slate-200,
+html.dark .border-slate-300,
+html.dark .border-border-subtle {
+  border-color: #1e293b !important;
+}
+
+html.dark .border-slate-200\/90,
+html.dark .border-slate-200\/80 {
+  border-color: #334155 !important;
+}
+
+/* Inputs, Textareas, Selects */
+html.dark input[type="text"],
+html.dark input[type="search"],
+html.dark input[type="password"],
+html.dark input[type="email"],
+html.dark input[type="number"],
+html.dark input[type="date"],
+html.dark input[type="tel"],
+html.dark input[type="time"],
+html.dark textarea,
+html.dark select {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Tables */
+html.dark thead,
+html.dark thead tr,
+html.dark thead th {
+  background-color: #1e293b !important;
+  color: #cbd5e1 !important;
+  border-color: #334155 !important;
+}
+
+html.dark tbody tr {
+  border-color: #1e293b !important;
+}
+
+html.dark tbody tr:hover {
+  background-color: rgba(30, 41, 59, 0.6) !important;
+}
+
+/* Hover surfaces on dark mode */
+html.dark .hover\:bg-slate-50:hover,
+html.dark .hover\:bg-slate-100:hover {
+  background-color: #1e293b !important;
+}
+
+/* Status Chips & Alert Badges */
+html.dark .bg-emerald-50,
+html.dark .bg-emerald-50\/50 {
+  background-color: rgba(6, 78, 59, 0.35) !important;
+  border-color: rgba(5, 150, 105, 0.45) !important;
+}
+html.dark .text-emerald-800,
+html.dark .text-emerald-900,
+html.dark .text-emerald-700 {
+  color: #6ee7b7 !important;
+}
+
+html.dark .bg-amber-50,
+html.dark .bg-amber-50\/50 {
+  background-color: rgba(120, 53, 15, 0.35) !important;
+  border-color: rgba(217, 119, 6, 0.45) !important;
+}
+html.dark .text-amber-800,
+html.dark .text-amber-900,
+html.dark .text-amber-700 {
+  color: #fcd34d !important;
+}
+
+html.dark .bg-rose-50,
+html.dark .bg-rose-50\/50,
+html.dark .bg-status-critical-bg {
+  background-color: rgba(136, 19, 55, 0.35) !important;
+  border-color: rgba(225, 29, 72, 0.45) !important;
+}
+html.dark .text-rose-700,
+html.dark .text-rose-800,
+html.dark .text-rose-900,
+html.dark .text-status-critical {
+  color: #fda4af !important;
+}
+
+html.dark .bg-sky-50,
+html.dark .bg-sky-50\/50,
+html.dark .bg-blue-50 {
+  background-color: rgba(12, 74, 110, 0.35) !important;
+  border-color: rgba(2, 132, 199, 0.45) !important;
+}
+html.dark .text-sky-700,
+html.dark .text-sky-800,
+html.dark .text-sky-900 {
+  color: #7dd3fc !important;
+}
+
+html.dark .bg-indigo-50,
+html.dark .bg-indigo-50\/50 {
+  background-color: rgba(49, 46, 129, 0.35) !important;
+  border-color: rgba(99, 102, 241, 0.45) !important;
+}
+html.dark .text-indigo-800,
+html.dark .text-indigo-900 {
+  color: #a5b4fc !important;
+}
+
+/* Dropdown popovers in Dark Mode */
+html.dark .t-dropdown {
+  background-color: #0f172a !important;
+  border-color: #334155 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Modals in Dark Mode */
+html.dark .t-modal {
+  background-color: #0f172a !important;
+  border-color: #334155 !important;
+}
+

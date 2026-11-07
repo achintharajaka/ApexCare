@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import { useRealtime } from '../../context/RealtimeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 interface ShiftInfo {
   name: string;
@@ -64,6 +65,7 @@ export const Header: React.FC<HeaderProps> = ({
   const { user, logout } = useAuth();
   const isSuperAdmin = user?.role === 'ADMIN';
   const { isConnected, connectionStatus, triggerManualSync, telemetry } = useRealtime();
+  const { theme, setTheme, effectiveTheme } = useTheme();
   const [searchVal, setSearchVal] = useState('');
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [shift, setShift] = useState<ShiftInfo>(getLiveHospitalShift);
@@ -365,7 +367,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Contextual dropdown using transitions.dev .t-dropdown rules */}
           <div
             data-origin="top-right"
-            className={`t-dropdown absolute right-0 mt-2 w-60 rounded-2xl bg-white shadow-xl border border-slate-200/90 py-1.5 z-50 ${
+            className={`t-dropdown absolute right-0 mt-2 w-64 rounded-2xl bg-white shadow-xl border border-slate-200/90 py-1.5 z-50 ${
               showUserMenu ? 'is-open' : ''
             }`}
           >
@@ -376,6 +378,61 @@ export const Header: React.FC<HeaderProps> = ({
                 {user?.role.replace('_', ' ')}
               </span>
             </div>
+
+            {/* System Theme Configuration - Available for ALL users */}
+            <div className="px-3.5 py-2.5 border-b border-slate-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] font-semibold text-slate-700 flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[15px] text-primary-teal">palette</span>
+                  System Theme
+                </span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-primary-teal bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200/60">
+                  {theme === 'system' ? `Auto (${effectiveTheme})` : theme}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-1 p-1 bg-slate-100 rounded-xl">
+                <button
+                  type="button"
+                  onClick={() => setTheme('light')}
+                  className={`flex items-center justify-center gap-1 py-1.5 px-1.5 rounded-lg text-xs font-semibold transition-all ${
+                    theme === 'light'
+                      ? 'bg-white text-slate-900 shadow-xs ring-1 ring-slate-200/80 font-bold'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                  title="Daylight Clean"
+                >
+                  <span className="material-symbols-outlined text-[15px] text-amber-500">light_mode</span>
+                  <span>Light</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTheme('dark')}
+                  className={`flex items-center justify-center gap-1 py-1.5 px-1.5 rounded-lg text-xs font-semibold transition-all ${
+                    theme === 'dark'
+                      ? 'bg-slate-900 text-white shadow-xs font-bold'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                  title="Midnight Clinical"
+                >
+                  <span className="material-symbols-outlined text-[15px] text-indigo-400">dark_mode</span>
+                  <span>Dark</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTheme('system')}
+                  className={`flex items-center justify-center gap-1 py-1.5 px-1.5 rounded-lg text-xs font-semibold transition-all ${
+                    theme === 'system'
+                      ? 'bg-white text-slate-900 shadow-xs ring-1 ring-slate-200/80 font-bold'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                  title="Sync with OS Device"
+                >
+                  <span className="material-symbols-outlined text-[15px] text-slate-500">devices</span>
+                  <span>Auto</span>
+                </button>
+              </div>
+            </div>
+
             <div className="py-1">
               {isSuperAdmin && (
                 <button

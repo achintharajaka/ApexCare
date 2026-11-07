@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { RealtimeProvider, useRealtime } from './context/RealtimeContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { Sidebar } from './components/layout/Sidebar';
 import { Header } from './components/layout/Header';
 import { MobileNav } from './components/layout/MobileNav';
@@ -216,11 +217,13 @@ const MainLayout: React.FC = () => {
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <RealtimeProvider>
-          <MainLayout />
-        </RealtimeProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <RealtimeProvider>
+            <MainLayout />
+          </RealtimeProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
