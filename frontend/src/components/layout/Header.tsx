@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import { useRealtime } from '../../context/RealtimeContext';
@@ -417,33 +418,41 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* ADMIN EDIT HOSPITAL OPERATIONAL SHIFT SCHEDULE MODAL */}
-      {showShiftModal && (
+      {showShiftModal && typeof document !== 'undefined' && createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 overflow-y-auto t-modal-overlay is-open"
+          className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center bg-slate-950/70 backdrop-blur-xs p-0 sm:p-4 overflow-y-auto t-modal-overlay is-open"
           onClick={(e) => {
             if (e.target === e.currentTarget) setShowShiftModal(false);
           }}
         >
           <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-lg max-h-[92vh] sm:max-h-[88vh] flex flex-col overflow-hidden my-auto">
+            {/* Mobile Drag/Pull Indicator Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+              <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+            </div>
+
             {/* Modal Header (Pinned at top) */}
-            <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between flex-shrink-0">
+            <div className="px-5 sm:px-6 py-4 bg-slate-900 text-white flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-2.5">
-                <span className="material-symbols-outlined text-[20px] text-teal-400">schedule</span>
+                <span className="w-8 h-8 rounded-lg bg-teal-950 text-teal-400 border border-teal-800/60 flex items-center justify-center">
+                  <span className="material-symbols-outlined text-[18px]">schedule</span>
+                </span>
                 <div>
-                  <h2 className="text-base font-bold">Hospital Operational Shift Schedule</h2>
-                  <p className="text-xs text-slate-300">Admin Control • Configure hospital-wide shift hours & active handover</p>
+                  <h2 className="text-sm sm:text-base font-bold text-white">Hospital Operational Shift Schedule</h2>
+                  <p className="text-[11px] text-slate-300">Admin Control • Configure hospital-wide shift hours & active handover</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setShowShiftModal(false)}
-                className="p-1 rounded-lg text-slate-400 hover:text-white tap-press"
+                className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 tap-press transition-colors touch-target"
+                title="Close"
               >
                 <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 
-            <form onSubmit={handleSaveShiftConfig} className="p-6 space-y-4 overflow-y-auto flex-1">
+            <form onSubmit={handleSaveShiftConfig} className="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
               <div className="space-y-3">
                 {/* Morning Shift */}
                 <div className="p-3.5 rounded-xl border border-emerald-200/80 bg-emerald-50/50">
@@ -578,15 +587,17 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Floating feedback toast */}
-      {shiftFeedback && (
-        <div className="fixed bottom-20 right-6 z-50 p-3.5 rounded-xl bg-emerald-900 text-white text-xs font-semibold shadow-xl flex items-center gap-2 border border-emerald-700 animate-in fade-in slide-in-from-bottom-2">
+      {shiftFeedback && typeof document !== 'undefined' && createPortal(
+        <div className="fixed bottom-20 right-6 z-[100] p-3.5 rounded-xl bg-emerald-900 text-white text-xs font-semibold shadow-xl flex items-center gap-2 border border-emerald-700 animate-in fade-in slide-in-from-bottom-2">
           <span className="material-symbols-outlined text-[18px] text-emerald-400">check_circle</span>
           <span>{shiftFeedback}</span>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   );
