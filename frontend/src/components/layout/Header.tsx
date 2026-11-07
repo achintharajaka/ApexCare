@@ -419,13 +419,14 @@ export const Header: React.FC<HeaderProps> = ({
       {/* ADMIN EDIT HOSPITAL OPERATIONAL SHIFT SCHEDULE MODAL */}
       {showShiftModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-xs p-4 t-modal-overlay is-open"
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 overflow-y-auto t-modal-overlay is-open"
           onClick={(e) => {
             if (e.target === e.currentTarget) setShowShiftModal(false);
           }}
         >
-          <div className="t-modal is-open bg-white rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-lg overflow-hidden flex flex-col">
-            <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-lg max-h-[92vh] sm:max-h-[88vh] flex flex-col overflow-hidden my-auto">
+            {/* Modal Header (Pinned at top) */}
+            <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-2.5">
                 <span className="material-symbols-outlined text-[20px] text-teal-400">schedule</span>
                 <div>
@@ -442,7 +443,7 @@ export const Header: React.FC<HeaderProps> = ({
               </button>
             </div>
 
-            <form onSubmit={handleSaveShiftConfig} className="p-6 space-y-4">
+            <form onSubmit={handleSaveShiftConfig} className="p-6 space-y-4 overflow-y-auto flex-1">
               <div className="space-y-3">
                 {/* Morning Shift */}
                 <div className="p-3.5 rounded-xl border border-emerald-200/80 bg-emerald-50/50">
@@ -558,7 +559,7 @@ export const Header: React.FC<HeaderProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-200">
+              <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-200 flex-shrink-0 bg-white sticky bottom-0">
                 <button
                   type="button"
                   onClick={() => setShowShiftModal(false)}
