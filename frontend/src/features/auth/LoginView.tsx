@@ -134,27 +134,24 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col justify-center items-center p-4 lg:p-8 relative overflow-hidden">
-      {/* Background Subtle Gradient & Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-600/10 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div className="w-full max-w-6xl z-10 animate-fadeIn">
+    <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-4 sm:p-6 lg:p-8 relative select-none">
+      <div className="w-full max-w-6xl z-10 animate-fadeIn my-auto">
         {/* Header Branding */}
         <div className="flex flex-col items-center mb-8 text-center">
-          <ApexCareLogo variant="dark" className="h-10 w-auto mb-2" />
-          <h1 className="text-2xl font-bold text-white tracking-tight">
+          <ApexCareLogo variant="dark" className="h-10 w-auto mb-2.5" />
+          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
             ApexCare Enterprise Hospital Management System
           </h1>
-          <p className="text-sm text-slate-400 mt-1 max-w-xl">
+          <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-xl">
             Multi-Tenant Clinical Governance • Role-Based Authentication & Activity Segregation
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Left Column: Sign In Form (5 cols) */}
-          <div className="lg:col-span-5 bg-white rounded-2xl shadow-2xl border border-slate-100 p-8">
+          <div className="lg:col-span-5 bg-white rounded-2xl shadow-xl border border-slate-200/90 p-6 sm:p-8">
             <div className="mb-6">
-              <h2 className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+              <h2 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
                 <span className="material-symbols-outlined text-primary-teal text-[22px]">lock</span>
                 Workstation Authentication
               </h2>
@@ -164,7 +161,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
             </div>
 
             {resetBanner && (
-              <div className="mb-4 p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center justify-between">
+              <div className="mb-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-emerald-600 text-[18px]">check_circle</span>
                   <span>{resetBanner}</span>
@@ -172,15 +169,15 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
                 <button
                   type="button"
                   onClick={() => setResetBanner('')}
-                  className="text-emerald-700 hover:text-emerald-900"
+                  className="text-emerald-700 hover:text-emerald-900 tap-press"
                 >
-                  <span className="material-symbols-outlined text-[14px]">close</span>
+                  <span className="material-symbols-outlined text-[16px]">close</span>
                 </button>
               </div>
             )}
 
             {error && (
-              <div className="mb-4 p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
+              <div className="mb-4 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2 t-shake font-medium">
                 <span className="material-symbols-outlined text-rose-600 text-[18px]">error</span>
                 <span>{error}</span>
               </div>
@@ -188,7 +185,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                   User ID / Personnel Account
                 </label>
                 <div className="relative">
@@ -201,13 +198,13 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="e.g. superadmin, doctor1, nurse1"
-                    className="w-full h-10 pl-9 pr-3 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-1 focus:ring-primary-teal font-mono"
+                    className="w-full h-11 pl-9 pr-3 text-base sm:text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-2 focus:ring-primary-teal-subtle transition-all font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                   Station Password
                 </label>
                 <div className="relative">
@@ -220,12 +217,12 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••••••"
-                    className="w-full h-10 pl-9 pr-10 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-1 focus:ring-primary-teal font-mono"
+                    className="w-full h-11 pl-9 pr-10 text-base sm:text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-2 focus:ring-primary-teal-subtle transition-all font-mono"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-sm"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
                   >
                     <span className="material-symbols-outlined text-[18px]">
                       {showPassword ? 'visibility_off' : 'visibility'}
@@ -235,14 +232,14 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
               </div>
 
               <div className="flex items-center justify-between text-xs pt-1">
-                <label className="flex items-center gap-1.5 text-slate-600 cursor-pointer">
-                  <input type="checkbox" defaultChecked className="rounded text-primary-teal" />
+                <label className="flex items-center gap-2 text-slate-600 cursor-pointer">
+                  <input type="checkbox" defaultChecked className="rounded text-primary-teal focus:ring-primary-teal" />
                   <span>Remember station</span>
                 </label>
                 <button
                   type="button"
                   onClick={() => setShowForgotPassword(true)}
-                  className="text-primary-teal hover:underline font-semibold flex items-center gap-1 transition-colors"
+                  className="text-primary-teal hover:underline font-bold flex items-center gap-1 transition-colors tap-press"
                 >
                   <span className="material-symbols-outlined text-[15px]">lock_reset</span>
                   <span>Forgot password?</span>
@@ -252,7 +249,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full h-11 rounded-lg bg-primary-teal hover:bg-primary-teal-hover text-white font-semibold text-sm shadow-md transition-all flex items-center justify-center gap-2 transform active:scale-95 disabled:opacity-50"
+                className="w-full h-11 rounded-xl bg-primary-teal hover:bg-primary-teal-hover text-white font-semibold text-sm shadow-xs tap-press transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 <span className="material-symbols-outlined text-[18px]">login</span>
                 <span>{loading ? 'Authenticating...' : 'Sign In to Station'}</span>
@@ -289,30 +286,30 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
                   <div
                     key={acc.role}
                     onClick={() => handleSelectRole(acc, false)}
-                    className={`p-3.5 rounded-xl border transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                    className={`p-3.5 rounded-xl border transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-3 card-interactive ${
                       isSelected
-                        ? 'bg-slate-700/90 border-cyan-400 shadow-md ring-1 ring-cyan-400/50'
-                        : 'bg-slate-900/60 border-slate-700/60 hover:bg-slate-750 hover:border-slate-600'
+                        ? 'bg-slate-800 border-cyan-400 shadow-md ring-1 ring-cyan-400/50'
+                        : 'bg-slate-900/70 border-slate-700/60 hover:bg-slate-800 hover:border-slate-600'
                     }`}
                   >
                     <div className="flex items-start gap-3 min-w-0">
-                      <div className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center flex-shrink-0 text-cyan-400 border border-slate-700">
+                      <div className="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center flex-shrink-0 text-cyan-400 border border-slate-700">
                         <span className="material-symbols-outlined text-[20px]">{acc.icon}</span>
                       </div>
                       <div className="min-w-0">
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-sm text-white truncate">{acc.title}</span>
-                          <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded border ${acc.badgeClass}`}>
+                          <span className="font-bold text-sm text-white truncate">{acc.title}</span>
+                          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md border ${acc.badgeClass}`}>
                             {acc.role}
                           </span>
                         </div>
-                        <p className="text-xs text-slate-300 truncate font-medium">{acc.name}</p>
+                        <p className="text-xs text-slate-300 truncate font-medium mt-0.5">{acc.name}</p>
                         <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">{acc.description}</p>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-3 sm:self-center flex-shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-700/50 justify-between">
-                      <div className="text-right font-mono text-[11px] bg-slate-950/60 px-2.5 py-1.5 rounded-md border border-slate-800">
+                      <div className="text-right font-mono text-[11px] bg-slate-950/70 px-2.5 py-1.5 rounded-lg border border-slate-800">
                         <div className="text-cyan-300 font-semibold">{acc.username}</div>
                         <div className="text-slate-400">{acc.pass}</div>
                       </div>
@@ -323,7 +320,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
                           e.stopPropagation();
                           handleSelectRole(acc, true);
                         }}
-                        className="px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold shadow-xs transition-all flex items-center gap-1 active:scale-95"
+                        className="px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold shadow-xs tap-press transition-all flex items-center gap-1.5"
                         title={`Sign in immediately as ${acc.title}`}
                       >
                         <span>Sign In</span>

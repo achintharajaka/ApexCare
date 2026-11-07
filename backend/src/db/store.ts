@@ -215,6 +215,222 @@ export interface AuditLog {
   timestamp: string;
 }
 
+export interface HospitalShiftConfig {
+  morning: { name: string; hours: string; startHour: number; endHour: number };
+  evening: { name: string; hours: string; startHour: number; endHour: number };
+  night: { name: string; hours: string; startHour: number; endHour: number };
+  activeOverride?: string | null;
+}
+
+export const hospitalShiftConfig: HospitalShiftConfig = {
+  morning: { name: "Morning Shift", hours: "08:00 - 16:00", startHour: 8, endHour: 16 },
+  evening: { name: "Evening Shift", hours: "16:00 - 00:00", startHour: 16, endHour: 24 },
+  night: { name: "Night Shift", hours: "00:00 - 08:00", startHour: 0, endHour: 8 },
+  activeOverride: null,
+};
+
+// Core hospital attending physicians guaranteed across departments
+export const defaultDoctors: Array<{ user: User; staff: StaffMember }> = [
+  {
+    user: {
+      id: "usr-doctor-01",
+      tenantId: tenant.id,
+      username: "doctor1",
+      passwordHash: "$2a$10$LOyhQ7OQTxoaL.nVS6NTV.PWDtboIxmVgmELvtAwDzwuewe1MzB/S", // Doctor1234!
+      fullName: "Dr. Kasun Perera, MD",
+      email: "dr.kasun@apexcare.lk",
+      role: "DOCTOR",
+      isActive: true,
+      jobTitle: "Consultant Physician & Clinical Director",
+      department: "Cardiology & Internal Medicine",
+      roomNumber: "Consultation Suite 204",
+      consultationFee: 2500,
+      specialization: "Interventional Cardiology & Critical Care",
+    },
+    staff: {
+      id: "usr-doctor-01",
+      employeeId: "EMP-002",
+      fullName: "Dr. Kasun Perera, MD",
+      role: "DOCTOR",
+      department: "Cardiology & Internal Medicine",
+      jobTitle: "Consultant Physician & Clinical Director",
+      phoneNumber: "+94 77 123 4567",
+      attendanceStatus: "Present",
+      shift: "Day Clinical Shift (08:00 - 16:00)",
+      email: "dr.kasun@apexcare.lk",
+      joiningDate: "2024-02-01",
+      specialization: "Interventional Cardiology & Critical Care",
+      roomNumber: "Consultation Suite 204",
+      consultationFee: 2500,
+    },
+  },
+  {
+    user: {
+      id: "usr-doctor-02",
+      tenantId: tenant.id,
+      username: "doctor2",
+      passwordHash: "$2a$10$LOyhQ7OQTxoaL.nVS6NTV.PWDtboIxmVgmELvtAwDzwuewe1MzB/S",
+      fullName: "Dr. Ruwan Gunawardena, MD",
+      email: "dr.ruwan@apexcare.lk",
+      role: "DOCTOR",
+      isActive: true,
+      jobTitle: "Consultant Cardiologist",
+      department: "Cardiology & Internal Medicine",
+      roomNumber: "Consultation Suite 205",
+      consultationFee: 2500,
+      specialization: "Cardiology & Preventive Medicine",
+    },
+    staff: {
+      id: "usr-doctor-02",
+      employeeId: "EMP-008",
+      fullName: "Dr. Ruwan Gunawardena, MD",
+      role: "DOCTOR",
+      department: "Cardiology & Internal Medicine",
+      jobTitle: "Consultant Cardiologist",
+      phoneNumber: "+94 77 234 5678",
+      attendanceStatus: "Present",
+      shift: "Day Clinical Shift (08:00 - 16:00)",
+      email: "dr.ruwan@apexcare.lk",
+      joiningDate: "2024-02-10",
+      specialization: "Cardiology & Preventive Medicine",
+      roomNumber: "Consultation Suite 205",
+      consultationFee: 2500,
+    },
+  },
+  {
+    user: {
+      id: "usr-doctor-03",
+      tenantId: tenant.id,
+      username: "doctor3",
+      passwordHash: "$2a$10$LOyhQ7OQTxoaL.nVS6NTV.PWDtboIxmVgmELvtAwDzwuewe1MzB/S",
+      fullName: "Dr. Arthur Vance, MS, FRCS",
+      email: "dr.arthur@apexcare.lk",
+      role: "DOCTOR",
+      isActive: true,
+      jobTitle: "Consultant General & Laparoscopic Surgeon",
+      department: "General Surgery",
+      roomNumber: "Surgical Suite 301",
+      consultationFee: 3000,
+      specialization: "General & Minimally Invasive Surgery",
+    },
+    staff: {
+      id: "usr-doctor-03",
+      employeeId: "EMP-009",
+      fullName: "Dr. Arthur Vance, MS, FRCS",
+      role: "DOCTOR",
+      department: "General Surgery",
+      jobTitle: "Consultant General & Laparoscopic Surgeon",
+      phoneNumber: "+94 77 345 6789",
+      attendanceStatus: "Present",
+      shift: "Day Clinical Shift (08:00 - 16:00)",
+      email: "dr.arthur@apexcare.lk",
+      joiningDate: "2024-03-01",
+      specialization: "General & Minimally Invasive Surgery",
+      roomNumber: "Surgical Suite 301",
+      consultationFee: 3000,
+    },
+  },
+  {
+    user: {
+      id: "usr-doctor-04",
+      tenantId: tenant.id,
+      username: "doctor4",
+      passwordHash: "$2a$10$LOyhQ7OQTxoaL.nVS6NTV.PWDtboIxmVgmELvtAwDzwuewe1MzB/S",
+      fullName: "Dr. Anura Senanayake, MD, FRCP",
+      email: "dr.anura@apexcare.lk",
+      role: "DOCTOR",
+      isActive: true,
+      jobTitle: "Consultant Intensivist & Critical Care Specialist",
+      department: "Inpatient Care & ICU",
+      roomNumber: "ICU Consultation Suite 202",
+      consultationFee: 3500,
+      specialization: "Critical Care Medicine & Intensive Care",
+    },
+    staff: {
+      id: "usr-doctor-04",
+      employeeId: "EMP-010",
+      fullName: "Dr. Anura Senanayake, MD, FRCP",
+      role: "DOCTOR",
+      department: "Inpatient Care & ICU",
+      jobTitle: "Consultant Intensivist & Critical Care Specialist",
+      phoneNumber: "+94 77 456 7890",
+      attendanceStatus: "Present",
+      shift: "Day Clinical Shift (08:00 - 16:00)",
+      email: "dr.anura@apexcare.lk",
+      joiningDate: "2024-03-15",
+      specialization: "Critical Care Medicine & Intensive Care",
+      roomNumber: "ICU Consultation Suite 202",
+      consultationFee: 3500,
+    },
+  },
+  {
+    user: {
+      id: "usr-doctor-05",
+      tenantId: tenant.id,
+      username: "doctor5",
+      passwordHash: "$2a$10$LOyhQ7OQTxoaL.nVS6NTV.PWDtboIxmVgmELvtAwDzwuewe1MzB/S",
+      fullName: "Dr. Malini Jayasundara, MD",
+      email: "dr.malini@apexcare.lk",
+      role: "DOCTOR",
+      isActive: true,
+      jobTitle: "Consultant Pediatrician",
+      department: "Pediatrics & Child Health",
+      roomNumber: "Pediatric Clinic 105",
+      consultationFee: 2500,
+      specialization: "Pediatric Medicine & Child Development",
+    },
+    staff: {
+      id: "usr-doctor-05",
+      employeeId: "EMP-011",
+      fullName: "Dr. Malini Jayasundara, MD",
+      role: "DOCTOR",
+      department: "Pediatrics & Child Health",
+      jobTitle: "Consultant Pediatrician",
+      phoneNumber: "+94 77 567 8901",
+      attendanceStatus: "Present",
+      shift: "Day Clinical Shift (08:00 - 16:00)",
+      email: "dr.malini@apexcare.lk",
+      joiningDate: "2024-04-01",
+      specialization: "Pediatric Medicine & Child Development",
+      roomNumber: "Pediatric Clinic 105",
+      consultationFee: 2500,
+    },
+  },
+  {
+    user: {
+      id: "usr-doctor-06",
+      tenantId: tenant.id,
+      username: "pathologist1",
+      passwordHash: "$2a$10$LOyhQ7OQTxoaL.nVS6NTV.PWDtboIxmVgmELvtAwDzwuewe1MzB/S",
+      fullName: "Dr. Dilani Wickramasinghe, MBBS, FRCPath",
+      email: "dr.dilani@apexcare.lk",
+      role: "DOCTOR",
+      isActive: true,
+      jobTitle: "Consultant Diagnostic Pathologist & Lab Director",
+      department: "Clinical Pathology & Diagnostics",
+      roomNumber: "Diagnostic Lab Suite 102",
+      consultationFee: 2500,
+      specialization: "Clinical Biochemistry, Hematology & Diagnostics",
+    },
+    staff: {
+      id: "usr-doctor-06",
+      employeeId: "EMP-012",
+      fullName: "Dr. Dilani Wickramasinghe, MBBS, FRCPath",
+      role: "DOCTOR",
+      department: "Clinical Pathology & Diagnostics",
+      jobTitle: "Consultant Diagnostic Pathologist & Lab Director",
+      phoneNumber: "+94 77 678 9012",
+      attendanceStatus: "Present",
+      shift: "Day Clinical Shift (08:00 - 16:00)",
+      email: "dr.dilani@apexcare.lk",
+      joiningDate: "2024-04-10",
+      specialization: "Clinical Biochemistry, Hematology & Diagnostics",
+      roomNumber: "Diagnostic Lab Suite 102",
+      consultationFee: 2500,
+    },
+  },
+];
+
 // Configured accounts for each hospital role with verified bcrypt password hashes (Sri Lankan Healthcare Context)
 export const users: User[] = [
   {
@@ -232,21 +448,7 @@ export const users: User[] = [
     consultationFee: 0,
     specialization: "Hospital Operations & Healthcare Governance",
   },
-  {
-    id: "usr-doctor-01",
-    tenantId: tenant.id,
-    username: "doctor1",
-    passwordHash: "$2a$10$LOyhQ7OQTxoaL.nVS6NTV.PWDtboIxmVgmELvtAwDzwuewe1MzB/S", // Doctor1234!
-    fullName: "Dr. Kasun Perera, MD",
-    email: "dr.kasun@apexcare.lk",
-    role: "DOCTOR",
-    isActive: true,
-    jobTitle: "Consultant Physician & Clinical Director",
-    department: "Cardiology & Internal Medicine",
-    roomNumber: "Consultation Suite 204",
-    consultationFee: 2500,
-    specialization: "Interventional Cardiology & Critical Care",
-  },
+  ...defaultDoctors.map((d) => d.user),
   {
     id: "usr-nurse-01",
     tenantId: tenant.id,
@@ -510,6 +712,7 @@ export function saveStorage() {
       laboratoryTests,
       bills,
       auditLogs,
+      hospitalShiftConfig,
     };
 
     // Encrypt using international standard AES-256-GCM
@@ -589,6 +792,16 @@ function initStorage() {
   }
 }
 
+export function normalizeDoctorName(name: string): string {
+  if (!name) return "";
+  return name
+    .toLowerCase()
+    .replace(/,\s*(md|mbbs|ms|frcs|frcp|frcpath|bpharm|rn|aca|facc).*/gi, "")
+    .replace(/^dr\.\s*|^dr\s*/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function hydrateInMemoryStore(parsed: any) {
   if (Array.isArray(parsed.users) && parsed.users.length > 0) {
     users.length = 0;
@@ -630,6 +843,70 @@ function hydrateInMemoryStore(parsed: any) {
     auditLogs.length = 0;
     auditLogs.push(...parsed.auditLogs);
   }
+  if (parsed.hospitalShiftConfig) {
+    Object.assign(hospitalShiftConfig, parsed.hospitalShiftConfig);
+  }
+
+  // Ensure all hospital attending physicians are consistently present in users & staffMembers without duplicates
+  for (const docEntry of defaultDoctors) {
+    const normTarget = normalizeDoctorName(docEntry.user.fullName);
+    const existingUserIdx = users.findIndex(
+      (u) =>
+        normalizeDoctorName(u.fullName) === normTarget ||
+        (u.username && u.username === docEntry.user.username)
+    );
+
+    if (existingUserIdx === -1) {
+      users.push(docEntry.user);
+    } else {
+      // Standardize title and info while retaining existing account id
+      users[existingUserIdx] = {
+        ...docEntry.user,
+        id: users[existingUserIdx].id,
+      };
+    }
+
+    const existingStaffIdx = staffMembers.findIndex(
+      (s) =>
+        normalizeDoctorName(s.fullName) === normTarget ||
+        (s.employeeId && s.employeeId === docEntry.staff.employeeId)
+    );
+
+    if (existingStaffIdx === -1) {
+      staffMembers.push(docEntry.staff);
+    } else {
+      staffMembers[existingStaffIdx] = {
+        ...docEntry.staff,
+        id: staffMembers[existingStaffIdx].id,
+      };
+    }
+  }
+
+  // Deduplicate users by normalized doctor name and username
+  const seenUserKeys = new Set<string>();
+  const dedupedUsers: User[] = [];
+  for (const u of users) {
+    const key = u.role === "DOCTOR" ? `doc:${normalizeDoctorName(u.fullName)}` : `user:${u.username.toLowerCase()}`;
+    if (!seenUserKeys.has(key)) {
+      seenUserKeys.add(key);
+      dedupedUsers.push(u);
+    }
+  }
+  users.length = 0;
+  users.push(...dedupedUsers);
+
+  // Deduplicate staffMembers by normalized doctor name and employeeId
+  const seenStaffKeys = new Set<string>();
+  const dedupedStaff: StaffMember[] = [];
+  for (const s of staffMembers) {
+    const key = s.role === "DOCTOR" ? `doc:${normalizeDoctorName(s.fullName)}` : `staff:${s.employeeId}`;
+    if (!seenStaffKeys.has(key)) {
+      seenStaffKeys.add(key);
+      dedupedStaff.push(s);
+    }
+  }
+  staffMembers.length = 0;
+  staffMembers.push(...dedupedStaff);
 }
 
 export const auditLogs: AuditLog[] = [

@@ -27,9 +27,20 @@ exports.dashboardRouter.get("/summary", (_req, res) => {
     const occupiedBeds = store_js_1.patients.filter((p) => p.wardBed && !p.wardBed.toLowerCase().includes("outpatient") && !p.wardBed.toLowerCase().includes("clinic")).length;
     const totalBeds = store_js_1.wardBedCensus.totalBeds || 160;
     const occupancyPercentage = totalBeds > 0 ? Number(((occupiedBeds / totalBeds) * 100).toFixed(1)) : 0;
+    const hour = new Date().getHours();
+    let activeShiftName = `${store_js_1.hospitalShiftConfig.morning.name} (${store_js_1.hospitalShiftConfig.morning.hours})`;
+    if (store_js_1.hospitalShiftConfig.activeOverride) {
+        activeShiftName = store_js_1.hospitalShiftConfig.activeOverride;
+    }
+    else if (hour >= store_js_1.hospitalShiftConfig.evening.startHour && hour < store_js_1.hospitalShiftConfig.evening.endHour) {
+        activeShiftName = `${store_js_1.hospitalShiftConfig.evening.name} (${store_js_1.hospitalShiftConfig.evening.hours})`;
+    }
+    else if (hour >= store_js_1.hospitalShiftConfig.night.startHour && hour < store_js_1.hospitalShiftConfig.night.endHour) {
+        activeShiftName = `${store_js_1.hospitalShiftConfig.night.name} (${store_js_1.hospitalShiftConfig.night.hours})`;
+    }
     const responseData = {
         shift: {
-            name: "Morning Shift (08:00 - 16:00)",
+            name: activeShiftName,
             station: "Station 04",
             triageLevel: "ER Triage: Level 1 (Ready)",
             capacityStatus: "Operational Capacity: Normal",

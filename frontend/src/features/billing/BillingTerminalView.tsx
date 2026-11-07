@@ -462,10 +462,10 @@ export const BillingTerminalView: React.FC<BillingTerminalViewProps> = ({
         }
       `}</style>
 
-      {/* Feedback Toast */}
+      {/* Feedback Toast with transitions.dev .t-toast */}
       {feedback && (
         <div
-          className={`px-4 py-3 rounded-xl border flex items-center justify-between text-xs font-semibold shadow-xs transition-all ${
+          className={`t-toast is-open px-4 py-3 rounded-xl border flex items-center justify-between text-xs font-semibold shadow-xs ${
             feedback.type === 'success'
               ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
               : 'bg-rose-50 text-rose-800 border-rose-200'
@@ -477,7 +477,7 @@ export const BillingTerminalView: React.FC<BillingTerminalViewProps> = ({
             </span>
             <span>{feedback.message}</span>
           </div>
-          <button onClick={() => setFeedback(null)} className="text-slate-400 hover:text-slate-700">
+          <button onClick={() => setFeedback(null)} className="text-slate-400 hover:text-slate-700 tap-press">
             <span className="material-symbols-outlined text-[16px]">close</span>
           </button>
         </div>
@@ -566,13 +566,13 @@ export const BillingTerminalView: React.FC<BillingTerminalViewProps> = ({
                     <span className="text-base font-semibold text-slate-900">
                       {patient.firstName} {patient.lastName}
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-slate-200 text-slate-700 text-xs font-label-tabular">
+                    <span className="px-2 py-0.5 rounded-md bg-slate-200 text-slate-700 text-xs font-label-tabular">
                       {patient.gender[0]}, {patient.age}y
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-sky-100 text-primary-teal text-xs font-semibold font-label-tabular">
+                    <span className="px-2 py-0.5 rounded-md bg-sky-100 text-primary-teal text-xs font-semibold font-label-tabular border border-sky-200/60">
                       {patient.mrn}
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold flex items-center gap-1">
+                    <span className="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-xs font-semibold flex items-center gap-1 border border-emerald-200/60">
                       <span className="material-symbols-outlined text-[14px]">verified</span> Verified Patient
                     </span>
                   </div>
@@ -1279,21 +1279,31 @@ export const BillingTerminalView: React.FC<BillingTerminalViewProps> = ({
 
       {/* New Invoice Modal */}
       {showNewInvoiceModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-3 sm:p-4 animate-fadeIn">
-          <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-xl max-h-[92vh] flex flex-col overflow-hidden">
-            <div className="px-5 py-4 bg-primary-navy text-white flex items-center justify-between flex-shrink-0">
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowNewInvoiceModal(false);
+          }}
+        >
+          <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-xl max-h-[92vh] sm:max-h-[88vh] flex flex-col overflow-hidden">
+            {/* Mobile Drag Handle */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+              <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+            </div>
+
+            <div className="px-5 py-4 bg-slate-900 text-white flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[20px] text-teal-400">receipt_long</span>
                 <div>
-                  <h2 className="text-base font-semibold">Generate Clinical Invoice</h2>
+                  <h2 className="text-base font-bold">Generate Clinical Invoice</h2>
                   <p className="text-xs text-slate-300">Create itemized hospital charges and register in billing ledger</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowNewInvoiceModal(false)}
-                className="text-slate-300 hover:text-white transition-colors"
+                className="p-1 rounded-lg text-slate-400 hover:text-white tap-press"
               >
-                <span className="material-symbols-outlined">close</span>
+                <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 

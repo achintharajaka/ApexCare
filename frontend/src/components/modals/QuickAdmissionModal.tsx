@@ -59,33 +59,50 @@ export const QuickAdmissionModal: React.FC<QuickAdmissionModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-3 sm:p-4 animate-fadeIn">
-      <div className="bg-white rounded-xl shadow-2xl border border-border-subtle w-full max-w-xl max-h-[90vh] flex flex-col overflow-hidden">
+    <div
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-xs p-0 sm:p-4 t-modal-overlay is-open"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div className="t-modal t-sheet is-open bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border border-slate-200/90 w-full max-w-xl max-h-[92vh] sm:max-h-[88vh] flex flex-col overflow-hidden">
+        {/* Mobile Drag/Pull Indicator Handle */}
+        <div className="sm:hidden flex justify-center pt-2.5 pb-1 bg-slate-900">
+          <div className="w-10 h-1 rounded-full bg-slate-700"></div>
+        </div>
+
         {/* Modal Header */}
-        <div className="px-5 py-4 bg-primary-navy text-white flex items-center justify-between flex-shrink-0">
-          <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-cyan-400">emergency</span>
-            <h2 className="text-base sm:text-lg font-semibold tracking-tight">Rapid Inpatient & Triage Admission</h2>
+        <div className="px-5 py-4 bg-slate-900 text-white flex items-center justify-between flex-shrink-0">
+          <div className="flex items-center gap-2.5">
+            <span className="w-8 h-8 rounded-lg bg-cyan-950 text-cyan-400 border border-cyan-800/60 flex items-center justify-center">
+              <span className="material-symbols-outlined text-[18px]">emergency</span>
+            </span>
+            <div>
+              <h2 className="text-sm sm:text-base font-bold tracking-tight">Rapid Inpatient & Triage Admission</h2>
+              <p className="text-[11px] text-slate-400">Emergency patient intake and ward allocation</p>
+            </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="text-slate-300 hover:text-white transition-colors"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 tap-press transition-colors touch-target"
+            title="Close"
           >
-            <span className="material-symbols-outlined">close</span>
+            <span className="material-symbols-outlined text-[20px]">close</span>
           </button>
         </div>
 
         {/* Modal Form */}
-        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-3.5 sm:space-y-4 overflow-y-auto max-h-[calc(90vh-65px)]">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 overflow-y-auto flex-1">
           {error && (
-            <div className="p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs">
+            <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium t-shake">
               {error}
             </div>
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 First Name *
               </label>
               <input
@@ -94,11 +111,11 @@ export const QuickAdmissionModal: React.FC<QuickAdmissionModalProps> = ({
                 value={formData.firstName}
                 onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                 placeholder="e.g. Kasuni"
-                className="w-full h-9 px-3 text-sm rounded-md border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-1 focus:ring-primary-teal"
+                className="w-full h-10 px-3.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-2 focus:ring-primary-teal-subtle transition-all"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Last Name *
               </label>
               <input
@@ -107,14 +124,14 @@ export const QuickAdmissionModal: React.FC<QuickAdmissionModalProps> = ({
                 value={formData.lastName}
                 onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                 placeholder="e.g. Fernando"
-                className="w-full h-9 px-3 text-sm rounded-md border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-1 focus:ring-primary-teal"
+                className="w-full h-10 px-3.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-2 focus:ring-primary-teal-subtle transition-all"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Date of Birth
               </label>
               <input
@@ -122,17 +139,17 @@ export const QuickAdmissionModal: React.FC<QuickAdmissionModalProps> = ({
                 required
                 value={formData.dateOfBirth}
                 onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
-                className="w-full h-9 px-3 text-sm rounded-md border border-slate-300 focus:outline-none focus:border-primary-teal"
+                className="w-full h-10 px-3 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-2 focus:ring-primary-teal-subtle transition-all"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Gender
               </label>
               <select
                 value={formData.gender}
                 onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                className="w-full h-9 px-2 text-sm rounded-md border border-slate-300 focus:outline-none focus:border-primary-teal"
+                className="w-full h-10 px-3 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-2 focus:ring-primary-teal-subtle transition-all bg-white"
               >
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
@@ -140,13 +157,13 @@ export const QuickAdmissionModal: React.FC<QuickAdmissionModalProps> = ({
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Blood Group
               </label>
               <select
                 value={formData.bloodGroup}
                 onChange={(e) => setFormData({ ...formData, bloodGroup: e.target.value })}
-                className="w-full h-9 px-2 text-sm rounded-md border border-slate-300 focus:outline-none focus:border-primary-teal"
+                className="w-full h-10 px-3 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-2 focus:ring-primary-teal-subtle transition-all bg-white"
               >
                 <option value="O+">O+</option>
                 <option value="O-">O-</option>
@@ -162,7 +179,7 @@ export const QuickAdmissionModal: React.FC<QuickAdmissionModalProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Contact Phone Number
               </label>
               <input
@@ -170,17 +187,17 @@ export const QuickAdmissionModal: React.FC<QuickAdmissionModalProps> = ({
                 required
                 value={formData.contactNumber}
                 onChange={(e) => setFormData({ ...formData, contactNumber: e.target.value })}
-                className="w-full h-9 px-3 text-sm rounded-md border border-slate-300 focus:outline-none focus:border-primary-teal"
+                className="w-full h-10 px-3.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-2 focus:ring-primary-teal-subtle transition-all"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Ward Bed Allocation
               </label>
               <select
                 value={formData.wardBed}
                 onChange={(e) => setFormData({ ...formData, wardBed: e.target.value })}
-                className="w-full h-9 px-2 text-sm rounded-md border border-slate-300 focus:outline-none focus:border-primary-teal"
+                className="w-full h-10 px-3 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-2 focus:ring-primary-teal-subtle transition-all bg-white"
               >
                 <option value="Emergency Triage - Bed 04">Emergency Triage - Bed 04</option>
                 <option value="ICU Unit - Bed 02">ICU Unit - Bed 02 (Critical)</option>
@@ -192,13 +209,13 @@ export const QuickAdmissionModal: React.FC<QuickAdmissionModalProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Admitting Physician
               </label>
               <select
                 value={formData.assignedDoctor}
                 onChange={(e) => setFormData({ ...formData, assignedDoctor: e.target.value })}
-                className="w-full h-9 px-2 text-sm rounded-md border border-slate-300 focus:outline-none focus:border-primary-teal"
+                className="w-full h-10 px-3 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-2 focus:ring-primary-teal-subtle transition-all bg-white"
               >
                 <option value="Dr. Kasun Perera">Dr. Kasun Perera (Consultant Physician)</option>
                 <option value="Dr. Dilani Wickramasinghe">Dr. Dilani Wickramasinghe (Consultant Pathologist)</option>
@@ -206,7 +223,7 @@ export const QuickAdmissionModal: React.FC<QuickAdmissionModalProps> = ({
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                 Severe Drug Allergies
               </label>
               <input
@@ -214,36 +231,36 @@ export const QuickAdmissionModal: React.FC<QuickAdmissionModalProps> = ({
                 value={formData.allergies}
                 onChange={(e) => setFormData({ ...formData, allergies: e.target.value })}
                 placeholder="e.g. Penicillin, Sulfa"
-                className="w-full h-9 px-3 text-sm rounded-md border border-slate-300 focus:outline-none focus:border-primary-teal"
+                className="w-full h-10 px-3.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-2 focus:ring-primary-teal-subtle transition-all"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Chief Triage Complaint / Admission Note
             </label>
             <textarea
               rows={2}
               value={formData.chiefComplaint}
               onChange={(e) => setFormData({ ...formData, chiefComplaint: e.target.value })}
-              className="w-full p-2 text-sm rounded-md border border-slate-300 focus:outline-none focus:border-primary-teal"
+              className="w-full p-3 text-sm rounded-xl border border-slate-300 focus:outline-none focus:border-primary-teal focus:ring-2 focus:ring-primary-teal-subtle transition-all"
             ></textarea>
           </div>
 
           {/* Form Actions */}
-          <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100 pb-safe sm:pb-0">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm rounded-md border border-slate-300 hover:bg-slate-50 text-slate-700 font-medium"
+              className="px-4 py-2.5 text-sm rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold tap-press transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="px-5 py-2 text-sm rounded-md bg-primary-teal hover:bg-primary-teal-hover text-white font-semibold shadow-sm transition-all flex items-center gap-1.5"
+              className="px-5 py-2.5 text-sm rounded-xl bg-primary-teal hover:bg-primary-teal-hover text-white font-semibold shadow-xs tap-press transition-all flex items-center gap-2"
             >
               <span className="material-symbols-outlined text-[18px]">verified</span>
               <span>{loading ? 'Admitting...' : 'Confirm Admission'}</span>

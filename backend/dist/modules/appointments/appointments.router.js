@@ -14,7 +14,9 @@ exports.appointmentsRouter.get("/", (req, res) => {
         filtered = filtered.filter((a) => a.appointmentDate === date);
     }
     if (doctorId && doctorId !== "All") {
-        filtered = filtered.filter((a) => a.doctorId === doctorId);
+        const docObj = store_js_1.users.find((u) => u.id === doctorId) || store_js_1.staffMembers.find((s) => s.id === doctorId);
+        const docName = docObj?.fullName?.toLowerCase();
+        filtered = filtered.filter((a) => a.doctorId === doctorId || (docName && a.doctorName?.toLowerCase() === docName));
     }
     if (department && department !== "All") {
         filtered = filtered.filter((a) => a.department.toLowerCase() === department.toLowerCase());
@@ -25,23 +27,100 @@ exports.appointmentsRouter.get("/", (req, res) => {
     return res.json(filtered);
 });
 // Doctor roster list with availability badges
-exports.appointmentsRouter.get("/roster", (_req, res) => {
-    const doctors = store_js_1.users
-        .filter((u) => u.role === "DOCTOR" || u.role === "ADMIN")
-        .map((doc) => {
-        const activeCount = store_js_1.appointments.filter((a) => a.doctorId === doc.id && a.status !== "Cancelled").length;
+exports.appointmentsRouter.get("/roster", (req, res) => {
+    const { department } = req.query;
+    const normalizeDocName = (name) => {
+        if (!name)
+            return "";
+        return name
+            .toLowerCase()
+            .replace(/,\s*(md|mbbs|ms|frcs|frcp|frcpath|bpharm|rn|aca|facc).*/gi, "")
+            .replace(/^dr\.\s*|^dr\s*/gi, "")
+            .replace(/\s+/g, " ")
+            .trim();
+    };
+    // STRICT RULE: Only include clinical DOCTOR roles (never administrators)
+    const doctorsMap = new Map();
+    const seenNormNames = new Set();
+    // 1. Doctors from users
+    for (const u of store_js_1.users) {
+        if (u.role === "DOCTOR") {
+            const norm = normalizeDocName(u.fullName);
+            if (!seenNormNames.has(norm)) {
+                seenNormNames.add(norm);
+                doctorsMap.set(u.id, {
+                    id: u.id,
+                    fullName: u.fullName,
+                    department: u.department || "Cardiology & Internal Medicine",
+                    specialization: u.specialization || "Clinical Physician",
+                    roomNumber: u.roomNumber || "Consultation Room",
+                    consultationFee: u.consultationFee || 2500,
+                });
+            }
+        }
+    }
+    // 2. Doctors from staffMembers
+    for (const sm of store_js_1.staffMembers) {
+        if (sm.role === "DOCTOR") {
+            const norm = normalizeDocName(sm.fullName);
+            if (!seenNormNames.has(norm)) {
+                seenNormNames.add(norm);
+                doctorsMap.set(sm.id, {
+                    id: sm.id,
+                    fullName: sm.fullName,
+                    department: sm.department || "General Surgery",
+                    specialization: sm.specialization || "Consultant Specialist",
+                    roomNumber: sm.roomNumber || "Consultation Room",
+                    consultationFee: sm.consultationFee || 2500,
+                });
+            }
+        }
+    }
+    // 3. Ensure any clinical doctors referenced in historical appointments remain tracked
+    for (const a of store_js_1.appointments) {
+        if (a.doctorName) {
+            const norm = normalizeDocName(a.doctorName);
+            // STRICT FILTER: Never include administrators, nurses, receptionists, or accountants as doctors
+            const isAdministratorOrNonDoctor = store_js_1.users.some((u) => u.role !== "DOCTOR" && (normalizeDocName(u.fullName) === norm || u.id === a.doctorId)) || store_js_1.staffMembers.some((s) => s.role !== "DOCTOR" && (normalizeDocName(s.fullName) === norm || s.id === a.doctorId));
+            if (isAdministratorOrNonDoctor) {
+                continue;
+            }
+            if (!seenNormNames.has(norm)) {
+                seenNormNames.add(norm);
+                const docId = a.doctorId || `doc-${norm.replace(/[^a-z0-9]/g, "")}`;
+                doctorsMap.set(docId, {
+                    id: docId,
+                    fullName: a.doctorName,
+                    department: a.department || "Cardiology & Internal Medicine",
+                    specialization: "Attending Physician",
+                    roomNumber: a.roomNumber || "Consultation Room",
+                    consultationFee: 2500,
+                });
+            }
+        }
+    }
+    // Final safeguard: ensure no administrative accounts exist in the map
+    for (const [id, _] of Array.from(doctorsMap.entries())) {
+        const isExcluded = store_js_1.users.some((u) => u.id === id && u.role !== "DOCTOR") ||
+            store_js_1.staffMembers.some((s) => s.id === id && s.role !== "DOCTOR");
+        if (isExcluded) {
+            doctorsMap.delete(id);
+        }
+    }
+    let doctorsList = Array.from(doctorsMap.values()).map((doc) => {
+        const docNorm = normalizeDocName(doc.fullName);
+        const activeCount = store_js_1.appointments.filter((a) => (a.doctorId === doc.id || (a.doctorName && normalizeDocName(a.doctorName) === docNorm)) &&
+            a.status !== "Cancelled").length;
         return {
-            id: doc.id,
-            fullName: doc.fullName,
-            department: doc.department || "Internal Medicine",
-            specialization: doc.specialization || "Clinical Physician",
-            roomNumber: doc.roomNumber || "Room 101",
-            consultationFee: doc.consultationFee || 150.0,
+            ...doc,
             availableSlots: Math.max(0, 8 - activeCount),
             isOnline: true,
         };
     });
-    return res.json(doctors);
+    if (department && department !== "All") {
+        doctorsList = doctorsList.filter((d) => d.department.toLowerCase().includes(department.toLowerCase()));
+    }
+    return res.json(doctorsList);
 });
 // Book new appointment
 exports.appointmentsRouter.post("/", (req, res) => {
@@ -50,7 +129,7 @@ exports.appointmentsRouter.post("/", (req, res) => {
         return res.status(400).json({ error: "Patient, Doctor, and Appointment Date are required." });
     }
     const patient = store_js_1.patients.find((p) => p.id === patientId || p.mrn.toLowerCase() === patientId.toLowerCase());
-    const doctor = store_js_1.users.find((u) => u.id === doctorId);
+    const doctor = store_js_1.users.find((u) => u.id === doctorId) || store_js_1.staffMembers.find((s) => s.id === doctorId);
     if (!patient) {
         return res.status(404).json({ error: "Patient not found" });
     }
