@@ -223,7 +223,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="fixed top-0 left-0 lg:left-[260px] right-0 h-16 bg-white/95 backdrop-blur-md border-b border-border-subtle z-30 flex items-center justify-between px-3 sm:px-6 lg:px-8 shadow-xs transition-all">
       {/* Mobile Hamburger & Global Search */}
-      <div className="flex items-center gap-2 flex-1 max-w-xl min-w-[120px] sm:min-w-[200px]">
+      <div className="flex items-center gap-2.5 flex-1 max-w-xl min-w-[140px] sm:min-w-[240px] md:min-w-[300px]">
         <button
           type="button"
           onClick={onToggleMobileSidebar}
@@ -257,7 +257,7 @@ export const Header: React.FC<HeaderProps> = ({
         <button
           type="button"
           onClick={triggerManualSync}
-          className={`flex items-center justify-center gap-1.5 p-2 sm:px-2.5 sm:py-1.5 rounded-full text-[11px] font-semibold border tap-press transition-all ${
+          className={`flex items-center justify-center gap-1.5 h-10 px-2.5 sm:px-3 rounded-xl text-xs font-semibold border tap-press transition-all ${
             isConnected
               ? 'bg-emerald-50 border-emerald-200 text-emerald-800 hover:bg-emerald-100'
               : connectionStatus === 'connecting'
@@ -292,7 +292,7 @@ export const Header: React.FC<HeaderProps> = ({
         <button
           type="button"
           onClick={() => isSuperAdmin && setShowShiftModal(true)}
-          className={`hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold ${shift.badgeBg} ${shift.textColor} shadow-2xs transition-all ${
+          className={`hidden xl:flex items-center gap-1.5 h-10 px-3 py-1.5 rounded-xl text-xs font-semibold ${shift.badgeBg} ${shift.textColor} shadow-2xs transition-all ${
             isSuperAdmin ? 'hover:ring-2 hover:ring-primary-teal-subtle cursor-pointer' : 'cursor-default'
           }`}
           title={
@@ -315,7 +315,7 @@ export const Header: React.FC<HeaderProps> = ({
         <button
           type="button"
           onClick={onStartTour}
-          className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold tap-press transition-colors"
+          className="hidden 2xl:flex items-center gap-1.5 h-10 px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold tap-press transition-colors"
           title="Start interactive walkthrough"
         >
           <span className="material-symbols-outlined text-[16px] text-primary-teal">help</span>
@@ -326,25 +326,25 @@ export const Header: React.FC<HeaderProps> = ({
         <button
           type="button"
           onClick={onOpenStatAlerts}
-          className="flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-xl bg-status-critical-bg text-status-critical hover:bg-red-100 text-xs font-semibold tap-press transition-all border border-red-200/80"
+          className="flex items-center gap-1.5 h-10 px-2.5 sm:px-3 rounded-xl bg-status-critical-bg text-status-critical hover:bg-red-100 text-xs font-semibold tap-press transition-all border border-red-200/80"
           title="STAT Emergency & Laboratory Alerts"
         >
           <span className="material-symbols-outlined text-[18px]">warning</span>
-          <span className="hidden sm:inline">STAT</span>
+          <span className="hidden md:inline">STAT</span>
           <span className="inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-status-critical text-white tabular-nums">
             {effectiveStatAlerts}
           </span>
         </button>
 
-        {/* Primary Action Button: + Quick Admission (hidden on mobile where MobileNav has bottom button) */}
+        {/* Primary Action Button: + Quick Admission */}
         <button
           type="button"
           onClick={onOpenQuickAdmission}
           className="quick-admission-btn hidden sm:flex items-center gap-1.5 h-10 px-3 sm:px-4 rounded-xl bg-primary-teal hover:bg-primary-teal-hover text-white text-xs sm:text-sm font-semibold shadow-xs tap-press transition-all flex-shrink-0"
         >
           <span className="material-symbols-outlined text-[18px]">person_add</span>
-          <span className="hidden md:inline">+ Quick Admission</span>
-          <span className="md:hidden">+ Admit</span>
+          <span className="hidden lg:inline">+ Quick Admission</span>
+          <span className="lg:hidden">+ Admit</span>
         </button>
 
         {/* User Avatar & Menu */}
@@ -376,6 +376,19 @@ export const Header: React.FC<HeaderProps> = ({
               </span>
             </div>
             <div className="py-1">
+              {isSuperAdmin && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowUserMenu(false);
+                    setShowShiftModal(true);
+                  }}
+                  className="w-full text-left px-4 py-2 text-xs font-medium text-teal-700 hover:bg-teal-50 flex items-center gap-2.5 transition-colors border-b border-slate-100"
+                >
+                  <span className="material-symbols-outlined text-[18px] text-teal-600">edit_calendar</span>
+                  Configure Hospital Shifts
+                </button>
+              )}
               <button
                 type="button"
                 onClick={() => {

@@ -76,10 +76,15 @@ exports.appointmentsRouter.get("/roster", (req, res) => {
             }
         }
     }
-    // 3. Ensure any doctors referenced in historical appointments remain tracked
+    // 3. Ensure any clinical doctors referenced in historical appointments remain tracked
     for (const a of store_js_1.appointments) {
         if (a.doctorName) {
             const norm = normalizeDocName(a.doctorName);
+            // STRICT FILTER: Never include administrators, nurses, receptionists, or accountants as doctors
+            const isAdministratorOrNonDoctor = store_js_1.users.some((u) => u.role !== "DOCTOR" && (normalizeDocName(u.fullName) === norm || u.id === a.doctorId)) || store_js_1.staffMembers.some((s) => s.role !== "DOCTOR" && (normalizeDocName(s.fullName) === norm || s.id === a.doctorId));
+            if (isAdministratorOrNonDoctor) {
+                continue;
+            }
             if (!seenNormNames.has(norm)) {
                 seenNormNames.add(norm);
                 const docId = a.doctorId || `doc-${norm.replace(/[^a-z0-9]/g, "")}`;
@@ -92,6 +97,14 @@ exports.appointmentsRouter.get("/roster", (req, res) => {
                     consultationFee: 2500,
                 });
             }
+        }
+    }
+    // Final safeguard: ensure no administrative accounts exist in the map
+    for (const [id, _] of Array.from(doctorsMap.entries())) {
+        const isExcluded = store_js_1.users.some((u) => u.id === id && u.role !== "DOCTOR") ||
+            store_js_1.staffMembers.some((s) => s.id === id && s.role !== "DOCTOR");
+        if (isExcluded) {
+            doctorsMap.delete(id);
         }
     }
     let doctorsList = Array.from(doctorsMap.values()).map((doc) => {

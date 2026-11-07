@@ -156,21 +156,21 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
     }
   };
 
-  const handleDeleteSubmit = async () => {
+  const handleDeleteSubmit = async (isHardDelete = false) => {
     if (!deletingApt) return;
     setSubmittingDelete(true);
     try {
       await axios.delete(`/api/appointments/${deletingApt.id}`, {
         data: {
-          hardDelete: hardDeleteMode,
+          hardDelete: isHardDelete || hardDeleteMode,
           cancellationReason,
         },
       });
       setCrudFeedback({
         type: 'success',
-        message: hardDeleteMode
-          ? `Appointment ${deletingApt.id} was permanently deleted.`
-          : `Appointment ${deletingApt.id} was cancelled.`,
+        message: (isHardDelete || hardDeleteMode)
+          ? `Appointment ${deletingApt.id} was permanently removed from grid and database.`
+          : `Appointment ${deletingApt.id} was marked as Cancelled.`,
       });
       setTimeout(() => setCrudFeedback(null), 4000);
       setDeletingApt(null);
@@ -327,21 +327,22 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
             <select
               value={selectedDept}
               onChange={(e) => setSelectedDept(e.target.value)}
-              className="w-full text-xs h-9 px-2 rounded-lg bg-bg-surface-subtle border border-border-strong text-on-surface focus:outline-none focus:border-primary-teal"
+              className="w-full text-xs h-9 px-2.5 rounded-lg bg-bg-surface-subtle border border-border-strong text-on-surface focus:outline-none focus:border-primary-teal cursor-pointer"
             >
               <option value="All">All Departments</option>
               <option value="Cardiology & Internal Medicine">Cardiology & Internal Medicine</option>
-              <option value="Clinical Pathology & Diagnostics">Clinical Pathology & Diagnostics</option>
-              <option value="Inpatient Care & ICU">Inpatient Care & ICU</option>
               <option value="General Surgery">General Surgery</option>
+              <option value="Inpatient Care & ICU">Inpatient Care & ICU</option>
+              <option value="Pediatrics & Child Health">Pediatrics & Child Health</option>
+              <option value="Clinical Pathology & Diagnostics">Clinical Pathology & Diagnostics</option>
             </select>
           </div>
 
           {/* Doctor List */}
-          <div className="space-y-2 max-h-[260px] sm:max-h-[360px] lg:max-h-[520px] overflow-y-auto pr-1">
+          <div className="space-y-2.5 max-h-[280px] sm:max-h-[380px] lg:max-h-[540px] overflow-y-auto pr-1">
             <div
               onClick={() => setSelectedDoctorId('All')}
-              className={`p-2.5 rounded-xl border cursor-pointer text-xs transition-colors flex items-center justify-between ${
+              className={`p-3 rounded-xl border cursor-pointer text-xs transition-colors flex items-center justify-between ${
                 selectedDoctorId === 'All'
                   ? 'border-primary-teal bg-sky-50/70 text-primary-teal font-bold shadow-xs'
                   : 'border-slate-200 hover:bg-slate-50 text-slate-700'
@@ -362,31 +363,31 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
                 <div
                   key={doc.id}
                   onClick={() => setSelectedDoctorId(doc.id)}
-                  className={`p-2.5 rounded-xl border cursor-pointer transition-all ${
+                  className={`p-3 rounded-xl border cursor-pointer transition-all ${
                     selectedDoctorId === doc.id
-                      ? 'border-primary-teal bg-sky-50/50 shadow-xs'
+                      ? 'border-primary-teal bg-sky-50/60 shadow-xs ring-1 ring-primary-teal/20'
                       : 'border-slate-200 hover:bg-slate-50'
                   }`}
                 >
-                  <div className="flex items-center justify-between gap-2.5">
+                  <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                      <div className="w-8 h-8 rounded-lg bg-slate-800 text-white flex items-center justify-center font-bold text-xs flex-shrink-0 ring-1 ring-slate-900/10">
+                      <div className="w-9 h-9 min-w-[36px] min-h-[36px] max-w-[36px] max-h-[36px] rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-xs flex-shrink-0 ring-1 ring-slate-900/10">
                         {doc.fullName.split(' ').map((n: string) => n[0]).join('').substring(0, 2)}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs font-semibold text-slate-900 truncate">{doc.fullName}</p>
+                        <p className="text-xs font-bold text-slate-900 truncate">{doc.fullName}</p>
                         <p className="text-[10px] text-slate-500 truncate">{doc.department}</p>
                       </div>
                     </div>
                     <div
-                      className={`flex-shrink-0 flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold border tabular-nums whitespace-nowrap ${
+                      className={`flex-shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold border tabular-nums whitespace-nowrap shadow-2xs ${
                         doc.availableSlots > 0
-                          ? 'bg-emerald-50 text-emerald-800 border-emerald-200/80'
+                          ? 'bg-emerald-50 text-emerald-800 border-emerald-200/90'
                           : 'bg-slate-100 text-slate-600 border-slate-200'
                       }`}
                     >
                       <span
-                        className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
+                        className={`w-2 h-2 rounded-full flex-shrink-0 ${
                           doc.availableSlots > 0 ? 'bg-emerald-500' : 'bg-slate-400'
                         }`}
                       ></span>
@@ -583,7 +584,7 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
                                             setDeletingApt(dayApt);
                                             setHardDeleteMode(false);
                                           }}
-                                          className="opacity-0 group-hover:opacity-100 p-0.5 -mt-0.5 -mr-0.5 rounded text-rose-600 hover:bg-rose-100 hover:text-rose-800 transition-opacity flex-shrink-0"
+                                          className="opacity-80 sm:opacity-0 sm:group-hover:opacity-100 hover:opacity-100 p-1 -mt-1 -mr-1 rounded-md text-rose-600 hover:bg-rose-100 hover:text-rose-800 transition-all flex-shrink-0 tap-press"
                                           title="Cancel or Delete appointment"
                                           aria-label="Cancel or Delete appointment"
                                         >
@@ -923,39 +924,47 @@ export const AppointmentsView: React.FC<AppointmentsViewProps> = ({
               </div>
 
               {isSuperAdmin && (
-                <div className="p-3 rounded-lg bg-amber-50 border border-amber-200">
-                  <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-amber-900">
-                    <input
-                      type="checkbox"
-                      checked={hardDeleteMode}
-                      onChange={(e) => setHardDeleteMode(e.target.checked)}
-                      className="rounded text-rose-600"
-                    />
-                    <span>Permanent Hard Delete (Super Administrator only)</span>
-                  </label>
-                  <p className="text-[11px] text-amber-700 mt-1">
-                    Checking this completely removes the appointment from database rather than marking it Cancelled.
+                <div className="p-3 rounded-xl bg-amber-50/80 border border-amber-200 text-xs text-amber-900">
+                  <div className="flex items-center gap-2 font-bold mb-0.5">
+                    <span className="material-symbols-outlined text-[16px] text-amber-700">shield_person</span>
+                    <span>Administrator Deletion Authority</span>
+                  </div>
+                  <p className="text-[11px] text-amber-800">
+                    You can either mark this appointment as <strong>Cancelled</strong> (preserving the patient consultation history) or perform a <strong>Permanent Delete</strong> to completely remove the slot from the outpatient grid.
                   </p>
                 </div>
               )}
 
-              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+              <div className="flex flex-wrap items-center justify-end gap-2 pt-3 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={() => setDeletingApt(null)}
-                  className="px-4 py-2 text-sm rounded border border-slate-300 hover:bg-slate-50 text-slate-700"
+                  className="px-3.5 py-2 text-xs font-medium rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 tap-press"
                 >
                   Back
                 </button>
                 <button
                   type="button"
-                  onClick={handleDeleteSubmit}
+                  onClick={() => handleDeleteSubmit(false)}
                   disabled={submittingDelete}
-                  className="px-5 py-2 text-sm rounded bg-rose-600 hover:bg-rose-700 text-white font-semibold flex items-center gap-1.5 shadow-xs transition-colors"
+                  className="px-3.5 py-2 text-xs font-semibold rounded-xl bg-amber-500 hover:bg-amber-600 text-white flex items-center gap-1.5 shadow-2xs tap-press transition-colors"
+                  title="Mark status as Cancelled"
                 >
-                  {submittingDelete && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>}
-                  <span>{hardDeleteMode ? 'Permanently Delete' : 'Confirm Cancellation'}</span>
+                  {submittingDelete && <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>}
+                  <span>Cancel Appointment</span>
                 </button>
+                {isSuperAdmin && (
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteSubmit(true)}
+                    disabled={submittingDelete}
+                    className="px-4 py-2 text-xs font-semibold rounded-xl bg-rose-600 hover:bg-rose-700 text-white flex items-center gap-1.5 shadow-xs tap-press transition-colors"
+                    title="Permanently remove appointment record from database"
+                  >
+                    <span className="material-symbols-outlined text-[16px]">delete_forever</span>
+                    <span>Delete Permanently</span>
+                  </button>
+                )}
               </div>
             </div>
           </div>
