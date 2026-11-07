@@ -96,3 +96,4 @@ export const useTheme = (): ThemeContextType => {
   }
   return context;
 };
+
