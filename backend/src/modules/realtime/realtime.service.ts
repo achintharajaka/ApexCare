@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { EventEmitter } from "events";
+import { isOriginAllowed } from "../../middleware/securityHeaders.js";
+import { env } from "../../config/env.js";
 import {
   patients,
   appointments,
@@ -21,13 +23,26 @@ class RealtimeHub extends EventEmitter {
   }
 
   public registerClient(req: Request, res: Response): void {
+    const requestOrigin = (req.headers.origin as string) || (req.headers.referer as string) || "";
+    let allowedOrigin = env.FRONTEND_URL || env.APP_TRUSTED_ORIGIN || "http://localhost:5173";
+    if (requestOrigin && isOriginAllowed(requestOrigin)) {
+      try {
+        const originUrl = new URL(requestOrigin);
+        allowedOrigin = `${originUrl.protocol}//${originUrl.host}`;
+      } catch {
+        allowedOrigin = requestOrigin;
+      }
+    }
+
     // Standard Server-Sent Events headers
     res.writeHead(200, {
       "Content-Type": "text/event-stream",
       "Cache-Control": "no-cache, no-transform",
       "Connection": "keep-alive",
       "X-Accel-Buffering": "no",
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": allowedOrigin,
+      "Access-Control-Allow-Credentials": "true",
+      "Vary": "Origin",
     });
 
     res.write(": apexcare-live-stream-handshake\n\n");

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 import { Patient, MedicalRecord, Prescription, LaboratoryTest } from '../../types';
 import { useAuth } from '../../context/AuthContext';
 
@@ -463,7 +464,7 @@ export const EmrDeskView: React.FC<EmrDeskViewProps> = ({
                   {/* Render formatted clinical notes */}
                   <div
                     className="prose prose-sm max-w-none text-xs text-slate-700 space-y-1.5 border-t border-slate-200/60 pt-2"
-                    dangerouslySetInnerHTML={{ __html: rec.clinicalNotes }}
+                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(rec.clinicalNotes) }}
                   ></div>
                 </div>
               ))}

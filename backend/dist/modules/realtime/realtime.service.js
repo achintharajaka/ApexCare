@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.notifyChange = exports.realtimeHub = void 0;
 const events_1 = require("events");
+const securityHeaders_js_1 = require("../../middleware/securityHeaders.js");
+const env_js_1 = require("../../config/env.js");
 const store_js_1 = require("../../db/store.js");
 class RealtimeHub extends events_1.EventEmitter {
     clients = new Set();
@@ -12,13 +14,26 @@ class RealtimeHub extends events_1.EventEmitter {
         this.startBackgroundStreaming();
     }
     registerClient(req, res) {
+        const requestOrigin = req.headers.origin || req.headers.referer || "";
+        let allowedOrigin = env_js_1.env.FRONTEND_URL || env_js_1.env.APP_TRUSTED_ORIGIN || "http://localhost:5173";
+        if (requestOrigin && (0, securityHeaders_js_1.isOriginAllowed)(requestOrigin)) {
+            try {
+                const originUrl = new URL(requestOrigin);
+                allowedOrigin = `${originUrl.protocol}//${originUrl.host}`;
+            }
+            catch {
+                allowedOrigin = requestOrigin;
+            }
+        }
         // Standard Server-Sent Events headers
         res.writeHead(200, {
             "Content-Type": "text/event-stream",
             "Cache-Control": "no-cache, no-transform",
             "Connection": "keep-alive",
             "X-Accel-Buffering": "no",
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": allowedOrigin,
+            "Access-Control-Allow-Credentials": "true",
+            "Vary": "Origin",
         });
         res.write(": apexcare-live-stream-handshake\n\n");
         this.clients.add(res);

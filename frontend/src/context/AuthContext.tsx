@@ -22,6 +22,13 @@ const defaultUser: User = {
   department: 'Hospital Administration',
 };
 
+// Secure in-memory token storage (prevents token exposure in unencrypted persistent localStorage)
+let inMemoryAuthToken: string | null = 'AUTH_ACTIVE_SESSION';
+export const getAuthToken = (): string | null => inMemoryAuthToken;
+export const setAuthToken = (newToken: string | null): void => {
+  inMemoryAuthToken = newToken;
+};
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -31,7 +38,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   const [token, setToken] = useState<string | null>(() => {
-    return localStorage.getItem('apexcare_token') || 'AUTH_ACTIVE_SESSION';
+    return getAuthToken();
   });
 
   const activeRole: RoleType = user?.role || 'ADMIN';
@@ -49,7 +56,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Axios interceptor for transparent self-healing and auto-reauth
   useEffect(() => {
     const reqInterceptor = axios.interceptors.request.use((config) => {
-      const activeTok = token || localStorage.getItem('apexcare_token') || 'AUTH_ACTIVE_SESSION';
+      const activeTok = token || getAuthToken() || 'AUTH_ACTIVE_SESSION';
       config.headers = config.headers || {};
       config.headers['Authorization'] = `Bearer ${activeTok}`;
       return config;
@@ -68,7 +75,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             const res = await axios.post('/api/auth/switch-role', { role: fallbackRole });
             if (res.data?.token) {
               setToken(res.data.token);
-              localStorage.setItem('apexcare_token', res.data.token);
+              setAuthToken(res.data.token);
               originalRequest.headers['Authorization'] = `Bearer ${res.data.token}`;
               isRefreshingSession.current = false;
               return axios(originalRequest);
@@ -91,13 +98,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Auto-acquire fresh signed token on startup if only using placeholder
   useEffect(() => {
     const initSession = async () => {
-      const storedToken = localStorage.getItem('apexcare_token');
+      const storedToken = getAuthToken();
       if (!storedToken || storedToken === 'AUTH_ACTIVE_SESSION') {
         try {
           const res = await axios.post('/api/auth/switch-role', { role: user?.role || 'ADMIN' });
           if (res.data?.token) {
             setToken(res.data.token);
-            localStorage.setItem('apexcare_token', res.data.token);
+            setAuthToken(res.data.token);
             if (res.data?.user) {
               setUser(res.data.user);
               localStorage.setItem('apexcare_user', JSON.stringify(res.data.user));
@@ -117,8 +124,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (res.data?.user && res.data?.token) {
         setUser(res.data.user);
         setToken(res.data.token);
+        setAuthToken(res.data.token);
         localStorage.setItem('apexcare_user', JSON.stringify(res.data.user));
-        localStorage.setItem('apexcare_token', res.data.token);
         return true;
       }
       return false;
@@ -131,8 +138,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = () => {
     setUser(null);
     setToken(null);
+    setAuthToken(null);
     localStorage.removeItem('apexcare_user');
-    localStorage.removeItem('apexcare_token');
   };
 
   const switchRole = async (newRole: RoleType) => {
@@ -141,8 +148,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (res.data?.user) {
         setUser(res.data.user);
         setToken(res.data.token);
+        setAuthToken(res.data.token);
         localStorage.setItem('apexcare_user', JSON.stringify(res.data.user));
-        localStorage.setItem('apexcare_token', res.data.token);
         return;
       }
     } catch {
